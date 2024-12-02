@@ -8,7 +8,7 @@ import { udapteLettersComplete } from "../utilities/Database";
 import { Context } from "../DataContext";
 
 const LetterExample = ({ navigation, route }) => {
-  const { sound } = useContext(Context);
+  const { sound, speak } = useContext(Context);
   const [ndx, setNdx] = useState(0);
   const item = route.params;
 
@@ -28,6 +28,10 @@ const LetterExample = ({ navigation, route }) => {
   useEffect(() => {
     if (ndx == item.images.length) {
       udapteLettersComplete(item.uid);
+    }
+
+    if (item?.words[ndx - 1]) {
+      speak(item.words[ndx - 1]);
     }
   }, [ndx]);
 

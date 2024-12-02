@@ -27,7 +27,7 @@ const MainContainer = ({
 }) => {
   const [showSettingModal, setShowSettingModal] = useState(false);
 
-  const { sound, stop } = useContext(Context);
+  const { sound, stop, speak } = useContext(Context);
 
   const toggleSetting = () => {
     sound();

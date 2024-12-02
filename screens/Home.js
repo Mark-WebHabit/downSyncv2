@@ -10,6 +10,7 @@ import { Context } from "../DataContext";
 
 const Home = ({ navigation }) => {
   const { sound } = useContext(Context);
+
   return (
     <MainContainer
       showBack={false}

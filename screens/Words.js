@@ -1,14 +1,18 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  ImageBackground,
+} from "react-native";
 import React, { useContext, useState, useEffect } from "react";
 
 import MainContainer from "../components/MainContainer";
 import SplashScreen from "./SplashScreen";
-import { ImageBackground } from "expo-image";
 import useUserPreferences from "../customHooks/useUserPreference";
 import { Context } from "../DataContext";
 import { WordContext } from "../GroupContext/WordsContext";
 
-const Numbers = ({ navigation }) => {
+const Words = ({ navigation }) => {
   const [doneFetching, setDoneFetching] = useState(false);
   const { fetching } = useContext(WordContext);
   const { fontSize, buttonFontColor, buttonSize } = useUserPreferences();
@@ -70,7 +74,7 @@ const Numbers = ({ navigation }) => {
         ]}
         onPress={() => {
           sound();
-          navigation.navigate("Vocabulary");
+          navigation.navigate("Pronunciation");
         }}
       >
         <ImageBackground
@@ -154,7 +158,7 @@ const Numbers = ({ navigation }) => {
   );
 };
 
-export default Numbers;
+export default Words;
 
 const styles = StyleSheet.create({
   container: {
