@@ -7,6 +7,7 @@ export const WordContext = createContext(null);
 const WordContextProvider = ({ children }) => {
   const [fetching, setFetching] = useState(true);
   const [user, setUser] = useState(null);
+  const [dndObjects, setDndObjects] = useState(null);
   const [letters, setLetters] = useState(null);
 
   useEffect(() => {
@@ -34,6 +35,25 @@ const WordContextProvider = ({ children }) => {
             setLetters(result);
           }
         );
+        const unsubscribeDndProgress = createListener(
+          `words/dnd`,
+          savedUser.uid,
+          (data) => {
+            const result = [];
+
+            const keys = Object.keys(data);
+            keys.forEach((key) => {
+              const obj = {
+                uid: key,
+                ...data[key],
+              };
+
+              result.push(obj);
+            });
+
+            setDndObjects(result);
+          }
+        );
 
         setFetching(false);
         // Add more listeners here as needed
@@ -42,6 +62,7 @@ const WordContextProvider = ({ children }) => {
         // Cleanup listeners when the component unmounts
         return () => {
           unsubscribeMatchingEasy();
+          unsubscribeDndProgress();
           // unsubscribeAnother();
         };
       }
@@ -50,7 +71,7 @@ const WordContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <WordContext.Provider value={{ fetching, user, letters }}>
+    <WordContext.Provider value={{ fetching, user, letters, dndObjects }}>
       {children}
     </WordContext.Provider>
   );

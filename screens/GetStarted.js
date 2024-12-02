@@ -22,6 +22,7 @@ import {
   CreateGameInstanceMatchingMedium,
   CreateGameInstanceMatchingHard,
   CreateWrodInstanceLetters,
+  CreateWrodInstanceDragAndDrop,
 } from "../utilities/CreateGameInstance";
 
 // components
@@ -70,15 +71,13 @@ const GetStarted = ({ navigation }) => {
     const usernameRegex = /^[a-zA-Z]+$/;
     try {
       if (username === "") {
-        Speech.speak("Please type your nickname", { language: "en-US" });
+        speak("Please type your nickname");
         shake();
         return;
       }
 
       if (!usernameRegex.test(username)) {
-        Speech.speak("Your nickname should only contain letters", {
-          language: "en-US",
-        });
+        speak("Your nickname should only contain letters");
         shake();
         return;
       }
@@ -101,6 +100,7 @@ const GetStarted = ({ navigation }) => {
       await CreateGameInstanceMatchingMedium(newUserRef.key);
       await CreateGameInstanceMatchingHard(newUserRef.key);
       await CreateWrodInstanceLetters(newUserRef.key);
+      await CreateWrodInstanceDragAndDrop(newUserRef.key);
       setLoading(false);
 
       navigation.navigate("Home");

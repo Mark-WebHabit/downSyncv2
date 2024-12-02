@@ -66,3 +66,19 @@ export const udapteLettersComplete = async (uid) => {
     console.error("Error updating data: ", error);
   }
 };
+
+// update matching easy level field
+export const updateDandDComplete = async (uid) => {
+  // Reference to the user's data
+  const user = await getSavedUser();
+  const userRef = ref(db, `words/dnd/${user.uid}/${uid}`);
+
+  try {
+    // Update the specific field in the node
+    await update(userRef, {
+      complete: true,
+    });
+  } catch (error) {
+    console.error("Error updating data: ", error);
+  }
+};

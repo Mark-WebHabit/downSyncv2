@@ -104,7 +104,7 @@ const Words = ({ navigation }) => {
         ]}
         onPress={() => {
           sound();
-          navigation.navigate("Quiz");
+          navigation.navigate("DandDList");
         }}
       >
         <ImageBackground
@@ -120,7 +120,7 @@ const Words = ({ navigation }) => {
               },
             ]}
           >
-            Quiz
+            D & D
           </Text>
         </ImageBackground>
       </TouchableOpacity>
