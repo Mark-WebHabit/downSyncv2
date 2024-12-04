@@ -17,6 +17,7 @@ const ModelTie = ({ isTie, close }) => {
           <Image
             source={require("../assets/images/clapping.gif")}
             style={styles.clap}
+            contentFit="fill"
           />
           <View style={styles.textCOntainer}>
             <Text style={styles.text}>A Tie!</Text>
@@ -59,7 +60,6 @@ const styles = StyleSheet.create({
   },
 
   clap: {
-    resizeMode: "stretch",
     width: "30%",
     aspectRatio: 1,
   },

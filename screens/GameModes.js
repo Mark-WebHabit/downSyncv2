@@ -3,7 +3,6 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
 } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import SplashScreem from "../screens/SplashScreen";

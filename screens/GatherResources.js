@@ -1,6 +1,5 @@
 import { Image, StyleSheet, View, Animated, Alert } from "react-native";
-import React, { useContext, useEffect, useRef, useState } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import React, { useEffect, useRef, useState } from "react";
 
 import Container from "../components/Container.js";
 import Loading from "../components/Loading.js";

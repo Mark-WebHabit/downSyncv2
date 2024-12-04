@@ -5,7 +5,6 @@ import React, { useContext } from "react";
 import MainContainer from "../components/MainContainer";
 import { Image } from "expo-image";
 
-import { usePlaySound } from "../customHooks/PlaySound";
 import { Context } from "../DataContext";
 
 const Home = ({ navigation }) => {

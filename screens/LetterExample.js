@@ -3,7 +3,6 @@ import React, { useContext, useEffect, useState } from "react";
 
 import MainContainer from "../components/MainContainer";
 import { Image } from "expo-image";
-import useUserPreferences from "../customHooks/useUserPreference";
 import { udapteLettersComplete } from "../utilities/Database";
 import { Context } from "../DataContext";
 

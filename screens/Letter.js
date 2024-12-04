@@ -1,5 +1,5 @@
 import { StyleSheet, View, FlatList } from "react-native";
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 
 import MainContainer from "../components/MainContainer";
 import { alphabetWords } from "../assets/letters_flatfiledb_local";

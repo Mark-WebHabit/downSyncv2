@@ -57,8 +57,8 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
   },
   textContainer: {
-    width: "60%",
-    height: "33%",
+    width: "70%",
+    height: "35%",
     margin: "auto",
   },
   textContainerBg: {
@@ -68,13 +68,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   shape: {
-    fontSize: 30,
+    fontSize: 25,
     fontWeight: "bold",
   },
 
   text: {
     textAlign: "center",
-    width: "80%",
-    fontSize: 22,
+    width: "90%",
+    fontSize: 20,
   },
 });

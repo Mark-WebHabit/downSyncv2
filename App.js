@@ -13,10 +13,17 @@ import NumbersNavigator from "./routes/NumbersNavigator";
 import WordsNavigator from "./routes/WordsNavigator";
 import EmotionsNavigator from "./routes/EmotionsNavigator";
 import ArtsNavigator from "./routes/ArtsNavigator";
+import { usePlayBg } from "./customHooks/PlaySound";
+import { useEffect } from "react";
 
 const Stack = createStackNavigator();
 
 export default function App() {
+  const bgSound = usePlayBg(0.07);
+
+  useEffect(() => {
+    bgSound();
+  }, [bgSound]);
   return (
     <DataContext>
       <NavigationContainer>

@@ -31,33 +31,45 @@ export const usePlaySound = () => {
   return playSound;
 };
 
-// export const usePlaySound = () => {
-//   const sound = useRef(new Audio.Sound());
-//   const file = require("../assets/sounds/buttonclick.mp3");
+export const usePlayBg = (volume = 1.0) => {
+  const [sound, setSound] = useState();
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
-//   useEffect(() => {
-//     const loadSound = async () => {
-//       await sound.current.loadAsync(file);
-//     };
+  useEffect(() => {
+    const loadSound = async () => {
+      const { sound: loadedSound } = await Audio.Sound.createAsync(
+        require("../assets/sounds/bg_music.mp3")
+      );
+      await loadedSound.setVolumeAsync(volume); // Set the volume here
+      setSound(loadedSound);
+      setIsLoaded(true);
+    };
 
-//     loadSound();
+    loadSound();
 
-//     // Unload sound when the component unmounts
-//     return () => {
-//       if (sound.current) {
-//         sound.current.unloadAsync();
-//       }
-//     };
-//   }, []);
+    return () => {
+      if (sound) {
+        sound.unloadAsync();
+      }
+    };
+  }, []);
 
-//   const playSound = async () => {
-//     if (sound.current._loaded) {
-//       await sound.current.replayAsync();
-//     }
-//   };
+  const playSound = async () => {
+    if (isLoaded && sound && !isPlaying) {
+      await sound.playAsync();
+      setIsPlaying(true);
 
-//   return playSound;
-// };
+      sound.setOnPlaybackStatusUpdate((status) => {
+        if (status.didJustFinish) {
+          setIsPlaying(false);
+        }
+      });
+    }
+  };
+
+  return playSound;
+};
 
 export const usePlayMp3 = (file) => {
   const [sound, setSound] = useState();

@@ -65,6 +65,11 @@ const MatchShapesLevel = ({ navigation, route }) => {
       })();
     }
   }, [correct]);
+
+  useEffect(() => {
+    speak(` Select the image that represent ${item.shape} shape`);
+  }, []);
+
   if (items.length <= 1) {
     return null;
   }
@@ -84,6 +89,7 @@ const MatchShapesLevel = ({ navigation, route }) => {
                   feedbackSound(true);
                 }
               }}
+              key={i}
             >
               <Image
                 source={el.image}
@@ -128,8 +134,8 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   textContainer: {
-    height: "30%",
-    width: "55%",
+    height: "35%",
+    width: "70%",
     margin: "auto",
   },
   textImageBg: {
@@ -142,8 +148,7 @@ const styles = StyleSheet.create({
     width: "85%",
     textAlign: "center",
     marginHorizontal: "auto",
-    fontSize: 25,
-
+    fontSize: 22,
     fontWeight: "700",
   },
 });

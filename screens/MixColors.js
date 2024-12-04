@@ -127,11 +127,11 @@ const styles = StyleSheet.create({
   },
   colorContainer: {
     width: "100%",
-    height: "45%",
+    height: "50%",
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "space-evenly",
     alignItems: "center",
-    width: Dimensions.get("window").width * 0.5,
+    marginBottom: 20,
   },
   resultContainer: {
     width: "100%",
@@ -141,8 +141,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   box: {
-    height: 120,
-    width: 120,
+    height: 100,
+    width: 100,
     borderWidth: 2,
     borderRadius: 10,
     justifyContent: "center",

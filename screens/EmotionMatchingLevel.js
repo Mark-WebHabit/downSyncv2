@@ -11,7 +11,6 @@ import React, { useContext, useEffect, useState } from "react";
 
 import MainContainer from "../components/MainContainer";
 import { generateTwoRandomNumbers } from "../utilities/Arrays";
-import { animalsName } from "../assets/animal_flatfiledb";
 import { emotionSample } from "../assets/emotions_sample_flatfiledb_local";
 import useUserPreferences from "../customHooks/useUserPreference";
 import { feedbackSound } from "../customHooks/PlaySound";
@@ -27,7 +26,7 @@ const backgrounds = [
 const EmotionMatchingLevel = ({ navigation, route }) => {
   const { buttonSize, bodyText } = useUserPreferences();
   const { item } = route.params;
-  const { speak } = useContext(Context);
+  const { speak, stop } = useContext(Context);
 
   const [emotionsArray, setEmotionsArray] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -72,6 +71,7 @@ const EmotionMatchingLevel = ({ navigation, route }) => {
       const id = item.uid;
       await updateEmotionTypeMatching(id);
       feedbackSound(true);
+      stop();
       navigation.goBack();
     } else {
       feedbackSound();

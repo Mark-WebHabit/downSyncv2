@@ -18,6 +18,7 @@ const ModelWinnerXox = ({ showWinner, close, winner }) => {
           <Image
             source={require("../assets/images/clapping.gif")}
             style={styles.clap}
+            contentFit="fill"
           />
           <View style={styles.textCOntainer}>
             <Text style={styles.text}>Winner</Text>
@@ -38,6 +39,7 @@ const ModelWinnerXox = ({ showWinner, close, winner }) => {
             <Image
               source={require("../assets/images/delete.png")}
               style={styles.close}
+              contentFit="fill"
             />
           </TouchableOpacity>
         </View>
@@ -70,7 +72,6 @@ const styles = StyleSheet.create({
   },
 
   clap: {
-    resizeMode: "stretch",
     width: "30%",
     aspectRatio: 1,
   },
@@ -86,7 +87,6 @@ const styles = StyleSheet.create({
     right: 10,
   },
   close: {
-    resizeMode: "stretch",
     width: 50,
     height: 50,
   },

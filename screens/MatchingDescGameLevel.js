@@ -8,7 +8,6 @@ import {
   ActivityIndicator,
 } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
-import * as Speech from "expo-speech";
 
 import MainContainer from "../components/MainContainer";
 import { generateTwoRandomNumbers } from "../utilities/Arrays";
@@ -25,15 +24,12 @@ const backgrounds = [
 ];
 
 const MatchingDescGameLevel = ({ navigation, route }) => {
-  const { fontSize, buttonFontColor, buttonSize, bodyText } =
-    useUserPreferences();
+  const { buttonSize, bodyText } = useUserPreferences();
   const { item } = route.params;
   const { speak } = useContext(Context);
 
   const [animalsArray, setAnimalsArray] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isSpeechPlaying, setIsSpeechPlaying] = useState(false);
 
   useEffect(() => {
     const loadData = async () => {
