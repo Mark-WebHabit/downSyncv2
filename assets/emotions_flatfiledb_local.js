@@ -71,7 +71,7 @@ export const emotions = [
     emotion: "surprise",
     image: require("../assets/emotions/surprise1.jpeg"),
     sampleImages: [
-      require("../assets/emotions/surprise1.jpeg"),
+      require("../assets/emotions/surprise11.jpeg"),
       require("../assets/emotions/surprise1.jpg"),
       require("../assets/emotions/surprise2.jpg"),
       require("../assets/emotions/surprise3.png"),
