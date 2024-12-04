@@ -4,8 +4,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import Container from "../components/Container.js";
 import Loading from "../components/Loading.js";
-import { Context } from "../DataContext.js";
-import { getUserGameInstanceMatchingEasy } from "../utilities/GetUserGameInstance.js";
 import { getSavedUser, removePreference } from "../utilities/preferences.js";
 
 const Letter = ({ path, delay }) => {
@@ -39,7 +37,7 @@ const GatherResources = ({ navigation }) => {
     // if (!fetching) {
     setTimeout(() => {
       setDelay(false);
-    }, 2000);
+    }, 3000);
     // }
   }, [fetching]);
 

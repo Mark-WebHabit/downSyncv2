@@ -23,6 +23,8 @@ import {
   CreateGameInstanceMatchingHard,
   CreateWrodInstanceLetters,
   CreateWrodInstanceDragAndDrop,
+  CreateEmotionTypeINstance,
+  CreateEmotionMatchingINstance,
 } from "../utilities/CreateGameInstance";
 
 // components
@@ -101,6 +103,8 @@ const GetStarted = ({ navigation }) => {
       await CreateGameInstanceMatchingHard(newUserRef.key);
       await CreateWrodInstanceLetters(newUserRef.key);
       await CreateWrodInstanceDragAndDrop(newUserRef.key);
+      await CreateEmotionTypeINstance(newUserRef.key);
+      await CreateEmotionMatchingINstance(newUserRef.key);
       setLoading(false);
 
       navigation.navigate("Home");

@@ -11,6 +11,7 @@ import GamesNavigator from "./routes/GamesNavigator";
 import DataContext from "./DataContext";
 import NumbersNavigator from "./routes/NumbersNavigator";
 import WordsNavigator from "./routes/WordsNavigator";
+import EmotionsNavigator from "./routes/EmotionsNavigator";
 
 const Stack = createStackNavigator();
 
@@ -31,6 +32,7 @@ export default function App() {
           <Stack.Screen name="Games" component={GamesNavigator} />
           <Stack.Screen name="Numbers" component={NumbersNavigator} />
           <Stack.Screen name="Words" component={WordsNavigator} />
+          <Stack.Screen name="Emotions" component={EmotionsNavigator} />
         </Stack.Navigator>
       </NavigationContainer>
     </DataContext>

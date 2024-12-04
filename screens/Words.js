@@ -124,36 +124,6 @@ const Words = ({ navigation }) => {
           </Text>
         </ImageBackground>
       </TouchableOpacity>
-
-      <TouchableOpacity
-        style={[
-          styles.button,
-          {
-            transform: [{ scale: buttonSize }],
-          },
-        ]}
-        onPress={() => {
-          sound();
-          navigation.navigate("Colros");
-        }}
-      >
-        <ImageBackground
-          style={styles.buttonImage}
-          source={require("../assets/images/buttonwhite.png")}
-        >
-          <Text
-            style={[
-              styles.Text,
-              {
-                color: buttonFontColor,
-                fontSize: fontSize,
-              },
-            ]}
-          >
-            Colors
-          </Text>
-        </ImageBackground>
-      </TouchableOpacity>
     </MainContainer>
   );
 };
@@ -168,7 +138,7 @@ const styles = StyleSheet.create({
 
   button: {
     width: "45%",
-    height: 70,
+    height: 80,
   },
   buttonImage: {
     width: "100%",

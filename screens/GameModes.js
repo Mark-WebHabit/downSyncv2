@@ -16,7 +16,7 @@ import { Context } from "../DataContext";
 const GameModes = ({ navigation }) => {
   const [doneFetching, setDoneFetching] = useState(false);
   const { fontSize, buttonFontColor, buttonSize } = useUserPreferences();
-  const { fetching, matchingMedium } = useContext(GamesContext);
+  const { fetching } = useContext(GamesContext);
   const { sound } = useContext(Context);
 
   //   if done fetching add another second of dealy

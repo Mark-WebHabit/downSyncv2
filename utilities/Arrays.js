@@ -6,11 +6,11 @@ export const randomizeOrder = (array) => {
   return array;
 };
 
-export const generateTwoRandomNumbers = (excludeIndex) => {
+export const generateTwoRandomNumbers = (excludeIndex, num = 49) => {
   const numbers = [];
 
   while (numbers.length < 2) {
-    const randomNumber = Math.floor(Math.random() * 49);
+    const randomNumber = Math.floor(Math.random() * num);
     if (randomNumber !== excludeIndex && !numbers.includes(randomNumber)) {
       numbers.push(randomNumber);
     }

@@ -5,15 +5,30 @@ import {
   Text,
   TouchableOpacity,
 } from "react-native";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import MainContainer from "../components/MainContainer";
 
 import useUserPreferences from "../customHooks/useUserPreference";
 import { Context } from "../DataContext";
+import { EmotionContext } from "../GroupContext/EmotionContext";
+import SplashScreen from "./SplashScreen";
 
-const GamesList = ({ navigation }) => {
+const EmotionsCategory = ({ navigation }) => {
+  const [doneFetching, setDoneFetching] = useState(false);
   const { fontSize, buttonFontColor, buttonSize } = useUserPreferences();
   const { sound } = useContext(Context);
+  const { fetching } = useContext(EmotionContext);
+
+  //   if done fetching add another second of dealy
+  useEffect(() => {
+    if (!fetching) {
+      setTimeout(() => {
+        setDoneFetching(true);
+      }, 1500);
+    }
+  }, [fetching]);
+
+  if (!doneFetching) return <SplashScreen navigation={navigation} />;
 
   return (
     <MainContainer
@@ -34,7 +49,7 @@ const GamesList = ({ navigation }) => {
           onPress={() => {
             sound();
 
-            navigation.navigate("Games");
+            navigation.navigate("EmotionType");
           }}
         >
           <ImageBackground
@@ -48,7 +63,7 @@ const GamesList = ({ navigation }) => {
                 { fontSize: fontSize, color: buttonFontColor },
               ]}
             >
-              Games
+              Types
             </Text>
           </ImageBackground>
         </TouchableOpacity>
@@ -62,7 +77,7 @@ const GamesList = ({ navigation }) => {
           ]}
           onPress={() => {
             sound();
-            navigation.navigate("Numbers");
+            navigation.navigate("EmotionMatching");
           }}
         >
           <ImageBackground
@@ -76,86 +91,7 @@ const GamesList = ({ navigation }) => {
                 { fontSize: fontSize, color: buttonFontColor },
               ]}
             >
-              Numbers
-            </Text>
-          </ImageBackground>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={[
-            styles.button,
-            {
-              transform: [{ scale: buttonSize }],
-            },
-          ]}
-          onPress={() => {
-            sound();
-            navigation.navigate("Words");
-          }}
-        >
-          <ImageBackground
-            source={require("../assets/images/buttonmint.png")}
-            resizeMode="stretch"
-            style={styles.buttonContainer}
-          >
-            <Text
-              style={[
-                styles.text,
-                { fontSize: fontSize, color: buttonFontColor },
-              ]}
-            >
-              Words
-            </Text>
-          </ImageBackground>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={[
-            styles.button,
-            {
-              transform: [{ scale: buttonSize }],
-            },
-          ]}
-          onPress={() => {
-            sound();
-            navigation.navigate("Emotions");
-          }}
-        >
-          <ImageBackground
-            source={require("../assets/images/buttongreen.png")}
-            resizeMode="stretch"
-            style={styles.buttonContainer}
-          >
-            <Text
-              style={[
-                styles.text,
-                { fontSize: fontSize, color: buttonFontColor },
-              ]}
-            >
-              Emotions
-            </Text>
-          </ImageBackground>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            styles.button,
-            {
-              transform: [{ scale: buttonSize }],
-            },
-          ]}
-        >
-          <ImageBackground
-            source={require("../assets/images/buttonmint.png")}
-            resizeMode="stretch"
-            style={styles.buttonContainer}
-          >
-            <Text
-              style={[
-                styles.text,
-                { fontSize: fontSize, color: buttonFontColor },
-              ]}
-            >
-              Arts
+              MATCHing
             </Text>
           </ImageBackground>
         </TouchableOpacity>
@@ -164,13 +100,12 @@ const GamesList = ({ navigation }) => {
   );
 };
 
-export default GamesList;
+export default EmotionsCategory;
 
 const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
-    borderWidth: 2,
   },
   scroll: {
     justifyContent: "center",
