@@ -69,7 +69,7 @@ export const emotions = [
   },
   {
     emotion: "surprise",
-    image: require("../assets/emotions/surprise1.jpeg"),
+    image: require("../assets/emotions/surprise11.jpeg"),
     sampleImages: [
       require("../assets/emotions/surprise11.jpeg"),
       require("../assets/emotions/surprise1.jpg"),
