@@ -5,15 +5,30 @@ import {
   Text,
   TouchableOpacity,
 } from "react-native";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import MainContainer from "../components/MainContainer";
 
 import useUserPreferences from "../customHooks/useUserPreference";
 import { Context } from "../DataContext";
+import { ArtContext } from "../GroupContext/ArtsContext";
+import SplashScreen from "./SplashScreen";
 
-const GamesList = ({ navigation }) => {
+const ArtsCategory = ({ navigation }) => {
+  const [doneFetching, setDoneFetching] = useState(false);
   const { fontSize, buttonFontColor, buttonSize } = useUserPreferences();
   const { sound } = useContext(Context);
+  const { fetching } = useContext(ArtContext);
+
+  //   if done fetching add another second of dealy
+  useEffect(() => {
+    if (!fetching) {
+      setTimeout(() => {
+        setDoneFetching(true);
+      }, 1500);
+    }
+  }, [fetching]);
+
+  if (!doneFetching) return <SplashScreen navigation={navigation} />;
 
   return (
     <MainContainer
@@ -34,91 +49,7 @@ const GamesList = ({ navigation }) => {
           onPress={() => {
             sound();
 
-            navigation.navigate("Games");
-          }}
-        >
-          <ImageBackground
-            source={require("../assets/images/buttonwhite.png")}
-            resizeMode="stretch"
-            style={styles.buttonContainer}
-          >
-            <Text
-              style={[
-                styles.text,
-                { fontSize: fontSize, color: buttonFontColor },
-              ]}
-            >
-              Games
-            </Text>
-          </ImageBackground>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={[
-            styles.button,
-            {
-              transform: [{ scale: buttonSize }],
-            },
-          ]}
-          onPress={() => {
-            sound();
-            navigation.navigate("Numbers");
-          }}
-        >
-          <ImageBackground
-            source={require("../assets/images/buttonblue.png")}
-            resizeMode="stretch"
-            style={styles.buttonContainer}
-          >
-            <Text
-              style={[
-                styles.text,
-                { fontSize: fontSize, color: buttonFontColor },
-              ]}
-            >
-              Numbers
-            </Text>
-          </ImageBackground>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={[
-            styles.button,
-            {
-              transform: [{ scale: buttonSize }],
-            },
-          ]}
-          onPress={() => {
-            sound();
-            navigation.navigate("Words");
-          }}
-        >
-          <ImageBackground
-            source={require("../assets/images/buttonmint.png")}
-            resizeMode="stretch"
-            style={styles.buttonContainer}
-          >
-            <Text
-              style={[
-                styles.text,
-                { fontSize: fontSize, color: buttonFontColor },
-              ]}
-            >
-              Words
-            </Text>
-          </ImageBackground>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={[
-            styles.button,
-            {
-              transform: [{ scale: buttonSize }],
-            },
-          ]}
-          onPress={() => {
-            sound();
-            navigation.navigate("Emotions");
+            navigation.navigate("Colors");
           }}
         >
           <ImageBackground
@@ -132,7 +63,7 @@ const GamesList = ({ navigation }) => {
                 { fontSize: fontSize, color: buttonFontColor },
               ]}
             >
-              Emotions
+              Basic Colors
             </Text>
           </ImageBackground>
         </TouchableOpacity>
@@ -145,11 +76,12 @@ const GamesList = ({ navigation }) => {
           ]}
           onPress={() => {
             sound();
-            navigation.navigate("Arts");
+
+            navigation.navigate("MixColors");
           }}
         >
           <ImageBackground
-            source={require("../assets/images/buttonmint.png")}
+            source={require("../assets/images/buttonwhite.png")}
             resizeMode="stretch"
             style={styles.buttonContainer}
           >
@@ -159,7 +91,35 @@ const GamesList = ({ navigation }) => {
                 { fontSize: fontSize, color: buttonFontColor },
               ]}
             >
-              Arts
+              Mix Colors
+            </Text>
+          </ImageBackground>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[
+            styles.button,
+            {
+              transform: [{ scale: buttonSize }],
+            },
+          ]}
+          onPress={() => {
+            sound();
+            navigation.navigate("shapes");
+          }}
+        >
+          <ImageBackground
+            source={require("../assets/images/buttonblue.png")}
+            resizeMode="stretch"
+            style={styles.buttonContainer}
+          >
+            <Text
+              style={[
+                styles.text,
+                { fontSize: fontSize, color: buttonFontColor },
+              ]}
+            >
+              Shapes
             </Text>
           </ImageBackground>
         </TouchableOpacity>
@@ -168,21 +128,20 @@ const GamesList = ({ navigation }) => {
   );
 };
 
-export default GamesList;
+export default ArtsCategory;
 
 const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
-    borderWidth: 2,
   },
   scroll: {
     justifyContent: "center",
     alignItems: "center",
   },
   button: {
-    width: 300,
-    height: 80,
+    width: 400,
+    height: 100,
     marginVertical: 10,
   },
   buttonContainer: {

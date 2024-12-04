@@ -1,4 +1,4 @@
-export const colors = [
+export const colorsObj = [
   {
     name: "Cherry Red",
     hex: "#FF1C1C",

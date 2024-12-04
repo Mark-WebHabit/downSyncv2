@@ -12,6 +12,7 @@ import DataContext from "./DataContext";
 import NumbersNavigator from "./routes/NumbersNavigator";
 import WordsNavigator from "./routes/WordsNavigator";
 import EmotionsNavigator from "./routes/EmotionsNavigator";
+import ArtsNavigator from "./routes/ArtsNavigator";
 
 const Stack = createStackNavigator();
 
@@ -33,6 +34,7 @@ export default function App() {
           <Stack.Screen name="Numbers" component={NumbersNavigator} />
           <Stack.Screen name="Words" component={WordsNavigator} />
           <Stack.Screen name="Emotions" component={EmotionsNavigator} />
+          <Stack.Screen name="Arts" component={ArtsNavigator} />
         </Stack.Navigator>
       </NavigationContainer>
     </DataContext>

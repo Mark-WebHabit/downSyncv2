@@ -25,6 +25,7 @@ import {
   CreateWrodInstanceDragAndDrop,
   CreateEmotionTypeINstance,
   CreateEmotionMatchingINstance,
+  CreateArtColorsInstance,
 } from "../utilities/CreateGameInstance";
 
 // components
@@ -105,6 +106,7 @@ const GetStarted = ({ navigation }) => {
       await CreateWrodInstanceDragAndDrop(newUserRef.key);
       await CreateEmotionTypeINstance(newUserRef.key);
       await CreateEmotionMatchingINstance(newUserRef.key);
+      await CreateArtColorsInstance(newUserRef.key);
       setLoading(false);
 
       navigation.navigate("Home");

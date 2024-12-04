@@ -9,6 +9,7 @@ import { alphabetWords } from "../assets/letters_flatfiledb_local";
 import { objects } from "../assets/objects_flatfiledb";
 import { emotions } from "../assets/emotions_flatfiledb_local";
 import { emotionSample } from "../assets/emotions_sample_flatfiledb_local";
+import { colors } from "../assets/colors_flatfiledb_local";
 export const CreateGameInstanceMatchingEasy = async (key) => {
   try {
     // Base reference for the game instance
@@ -160,6 +161,28 @@ export const CreateEmotionMatchingINstance = async (key) => {
     // Wait for all promises to resolve
     await Promise.all(promises);
     return "All emotions are inserted";
+  } catch (error) {
+    console.error("Error in CreateGameInstanceMatchingEasy with push:", error);
+    throw error; // Re-throw the error for the caller to handle
+  }
+};
+export const CreateArtColorsInstance = async (key) => {
+  try {
+    // Base reference for the game instance
+    const baseRef = sref(db, `arts/colors/${key}`);
+
+    // Create an array of promises for all animal entries
+    const promises = colors.map((_, i) => {
+      const newRef = push(baseRef); // Generate a unique key
+      return set(newRef, {
+        name: i,
+        complete: false,
+      });
+    });
+
+    // Wait for all promises to resolve
+    await Promise.all(promises);
+    return "All colors are inserted";
   } catch (error) {
     console.error("Error in CreateGameInstanceMatchingEasy with push:", error);
     throw error; // Re-throw the error for the caller to handle

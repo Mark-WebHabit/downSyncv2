@@ -4,7 +4,6 @@ import { getSavedUser } from "./preferences";
 // Initialize the Realtime Database
 const db = getDatabase();
 
-// update matching easy level field
 export const updateMatchingEasyComplete = async (uid) => {
   // Reference to the user's data
   const user = await getSavedUser();
@@ -20,7 +19,6 @@ export const updateMatchingEasyComplete = async (uid) => {
   }
 };
 
-// update matching easy level field
 export const updateMatchingMediumComplete = async (uid) => {
   // Reference to the user's data
   const user = await getSavedUser();
@@ -36,7 +34,6 @@ export const updateMatchingMediumComplete = async (uid) => {
   }
 };
 
-// update matching easy level field
 export const updateMatchingHardComplete = async (uid) => {
   // Reference to the user's data
   const user = await getSavedUser();
@@ -51,7 +48,7 @@ export const updateMatchingHardComplete = async (uid) => {
     console.error("Error updating data: ", error);
   }
 };
-// update matching easy level field
+
 export const udapteLettersComplete = async (uid) => {
   // Reference to the user's data
   const user = await getSavedUser();
@@ -67,7 +64,6 @@ export const udapteLettersComplete = async (uid) => {
   }
 };
 
-// update matching easy level field
 export const updateDandDComplete = async (uid) => {
   // Reference to the user's data
   const user = await getSavedUser();
@@ -82,7 +78,7 @@ export const updateDandDComplete = async (uid) => {
     console.error("Error updating data: ", error);
   }
 };
-// update matching easy level field
+
 export const updateEmotionTypeComplete = async (uid) => {
   // Reference to the user's data
   const user = await getSavedUser();
@@ -97,11 +93,27 @@ export const updateEmotionTypeComplete = async (uid) => {
     console.error("Error updating data: ", error);
   }
 };
-// update matching easy level field
+
 export const updateEmotionTypeMatching = async (uid) => {
   // Reference to the user's data
   const user = await getSavedUser();
   const userRef = ref(db, `emotions/matching/${user.uid}/${uid}`);
+
+  try {
+    // Update the specific field in the node
+    await update(userRef, {
+      complete: true,
+    });
+  } catch (error) {
+    console.error("Error updating data: ", error);
+  }
+};
+
+// update matching easy level field
+export const updateBasicColors = async (uid) => {
+  // Reference to the user's data
+  const user = await getSavedUser();
+  const userRef = ref(db, `arts/colors/${user.uid}/${uid}`);
 
   try {
     // Update the specific field in the node
