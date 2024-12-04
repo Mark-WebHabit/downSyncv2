@@ -109,11 +109,25 @@ export const updateEmotionTypeMatching = async (uid) => {
   }
 };
 
-// update matching easy level field
 export const updateBasicColors = async (uid) => {
   // Reference to the user's data
   const user = await getSavedUser();
   const userRef = ref(db, `arts/colors/${user.uid}/${uid}`);
+
+  try {
+    // Update the specific field in the node
+    await update(userRef, {
+      complete: true,
+    });
+  } catch (error) {
+    console.error("Error updating data: ", error);
+  }
+};
+
+export const updateBasicShapes = async (uid) => {
+  // Reference to the user's data
+  const user = await getSavedUser();
+  const userRef = ref(db, `arts/shapes/basic/${user.uid}/${uid}`);
 
   try {
     // Update the specific field in the node

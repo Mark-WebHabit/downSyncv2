@@ -5,6 +5,9 @@ import ArtContextProvider from "../GroupContext/ArtsContext";
 import BasicColors from "../screens/BasicColors";
 import ColorsLevel from "../screens/ColorsLevel";
 import MixColors from "../screens/MixColors";
+import Shapes from "../screens/Shapes";
+import ShapesBasic from "../screens/ShapesBasic";
+import ShapesBasicLevels from "../screens/ShapesBasicLevels";
 const Stack = createStackNavigator();
 
 const ArtsNavigator = () => {
@@ -19,6 +22,9 @@ const ArtsNavigator = () => {
         <Stack.Screen name="Colors" component={BasicColors} />
         <Stack.Screen name="ColorsLevel" component={ColorsLevel} />
         <Stack.Screen name="MixColors" component={MixColors} />
+        <Stack.Screen name="shapes" component={Shapes} />
+        <Stack.Screen name="ShapesBasic" component={ShapesBasic} />
+        <Stack.Screen name="ShapesBasicLevels" component={ShapesBasicLevels} />
       </Stack.Navigator>
     </ArtContextProvider>
   );

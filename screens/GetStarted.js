@@ -26,6 +26,7 @@ import {
   CreateEmotionTypeINstance,
   CreateEmotionMatchingINstance,
   CreateArtColorsInstance,
+  CreateArtShapesBasicInstance,
 } from "../utilities/CreateGameInstance";
 
 // components
@@ -107,6 +108,7 @@ const GetStarted = ({ navigation }) => {
       await CreateEmotionTypeINstance(newUserRef.key);
       await CreateEmotionMatchingINstance(newUserRef.key);
       await CreateArtColorsInstance(newUserRef.key);
+      await CreateArtShapesBasicInstance(newUserRef.key);
       setLoading(false);
 
       navigation.navigate("Home");
