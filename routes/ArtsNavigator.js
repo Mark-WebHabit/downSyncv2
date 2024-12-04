@@ -8,6 +8,8 @@ import MixColors from "../screens/MixColors";
 import Shapes from "../screens/Shapes";
 import ShapesBasic from "../screens/ShapesBasic";
 import ShapesBasicLevels from "../screens/ShapesBasicLevels";
+import MatchShapes from "../screens/MatchShapes";
+import MatchShapesLevel from "../screens/MatchShapesLevel";
 const Stack = createStackNavigator();
 
 const ArtsNavigator = () => {
@@ -25,6 +27,8 @@ const ArtsNavigator = () => {
         <Stack.Screen name="shapes" component={Shapes} />
         <Stack.Screen name="ShapesBasic" component={ShapesBasic} />
         <Stack.Screen name="ShapesBasicLevels" component={ShapesBasicLevels} />
+        <Stack.Screen name="MatchShapes" component={MatchShapes} />
+        <Stack.Screen name="MatchShapesLevel" component={MatchShapesLevel} />
       </Stack.Navigator>
     </ArtContextProvider>
   );

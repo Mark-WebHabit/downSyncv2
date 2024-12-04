@@ -138,3 +138,18 @@ export const updateBasicShapes = async (uid) => {
     console.error("Error updating data: ", error);
   }
 };
+
+export const updateMatchingShapes = async (uid) => {
+  // Reference to the user's data
+  const user = await getSavedUser();
+  const userRef = ref(db, `arts/shapes/matching/${user.uid}/${uid}`);
+
+  try {
+    // Update the specific field in the node
+    await update(userRef, {
+      complete: true,
+    });
+  } catch (error) {
+    console.error("Error updating data: ", error);
+  }
+};

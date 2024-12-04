@@ -1,68 +1,8 @@
-const shapesObj = [
+export const shapesObj = [
   {
     shape: "circle",
     image: require("../assets/shapes_sample/clock.png"),
     name: "clock",
-  },
-  {
-    shape: "circle",
-    image: require("../assets/shapes_sample/coin.png"),
-    name: "coin",
-  },
-  {
-    shape: "circle",
-    image: require("../assets/shapes_sample/pizza.png"),
-    name: "pizza",
-  },
-  {
-    shape: "square",
-    image: require("../assets/shapes_sample/game.png"),
-    name: "chessboard",
-  },
-  {
-    shape: "square",
-    image: require("../assets/shapes_sample/napkin.png"),
-    name: "napkin",
-  },
-  {
-    shape: "square",
-    image: require("../assets/shapes_sample/photo.png"),
-    name: "photo frame",
-  },
-  {
-    shape: "triangle",
-    image: require("../assets/shapes_sample/warning.png"),
-    name: "warning sign",
-  },
-  {
-    shape: "triangle",
-    image: require("../assets/shapes_sample/cheese.png"),
-    name: "slice of cheese",
-  },
-  {
-    shape: "triangle",
-    image: require("../assets/shapes_sample/hanger.png"),
-    name: "hanger",
-  },
-  {
-    shape: "rectangle",
-    image: require("../assets/shapes_sample/smartphone"),
-    name: "smartphone",
-  },
-  {
-    shape: "rectangle",
-    image: require("../assets/shapes_sample/book.png"),
-    name: "book",
-  },
-  {
-    shape: "rectangle",
-    image: require("../assets/shapes_sample/door.png"),
-    name: "door",
-  },
-  {
-    shape: "oval",
-    image: require("../assets/shapes_sample/mirror.png"),
-    name: "mirror",
   },
   {
     shape: "oval",
@@ -70,14 +10,43 @@ const shapesObj = [
     name: "rugby ball",
   },
   {
-    shape: "oval",
-    image: require("../assets/shapes_sample/egg.png"),
-    name: "egg",
+    shape: "square",
+    image: require("../assets/shapes_sample/napkin.png"),
+    name: "napkin",
   },
+
+  {
+    shape: "triangle",
+    image: require("../assets/shapes_sample/warning.png"),
+    name: "warning sign",
+  },
+
+  {
+    shape: "rectangle",
+    image: require("../assets/shapes_sample/smartphone.png"),
+    name: "smartphone",
+  },
+  {
+    shape: "cube",
+    image: require("../assets/shapes_sample/gift-box.png"),
+    name: "gift box",
+  },
+
+  {
+    shape: "oval",
+    image: require("../assets/shapes_sample/mirror.png"),
+    name: "mirror",
+  },
+
   {
     shape: "hexagon",
     image: require("../assets/shapes_sample/honeycomb.png"),
     name: "honeycomb cell",
+  },
+  {
+    shape: "triangle",
+    image: require("../assets/shapes_sample/hanger.png"),
+    name: "hanger",
   },
   {
     shape: "hexagon",
@@ -85,14 +54,29 @@ const shapesObj = [
     name: "bolt head",
   },
   {
+    shape: "oval",
+    image: require("../assets/shapes_sample/egg.png"),
+    name: "egg",
+  },
+  {
+    shape: "circle",
+    image: require("../assets/shapes_sample/coin.png"),
+    name: "coin",
+  },
+  {
+    shape: "square",
+    image: require("../assets/shapes_sample/game.png"),
+    name: "chessboard",
+  },
+  {
     shape: "pentagon",
     image: require("../assets/shapes_sample/home.png"),
     name: "house",
   },
   {
-    shape: "diamond",
-    image: require("../assets/shapes_sample/diamond.png"),
-    name: "playing card",
+    shape: "cylinder",
+    image: require("../assets/shapes_sample/battery.png"),
+    name: "battery",
   },
   {
     shape: "diamond",
@@ -100,19 +84,30 @@ const shapesObj = [
     name: "kite",
   },
   {
+    shape: "sphere",
+    image: require("../assets/shapes_sample/earth.png"),
+    name: "globe",
+  },
+  {
     shape: "octagon",
     image: require("../assets/shapes_sample/stop.png"),
     name: "stop sign",
+  },
+  {
+    shape: "crescent",
+    image: require("../assets/shapes_sample/sickle.png"),
+    name: "sickle",
   },
   {
     shape: "cube",
     image: require("../assets/shapes_sample/dice.png"),
     name: "dice",
   },
+
   {
-    shape: "cube",
-    image: require("../assets/shapes_sample/gift-box.png"),
-    name: "gift box",
+    shape: "rectangle",
+    image: require("../assets/shapes_sample/book.png"),
+    name: "book",
   },
   {
     shape: "cube",
@@ -125,39 +120,9 @@ const shapesObj = [
     name: "basketball",
   },
   {
-    shape: "sphere",
-    image: require("../assets/shapes_sample/earth.png"),
-    name: "globe",
-  },
-  {
-    shape: "sphere",
-    image: require("../assets/shapes_sample/marbles.png"),
-    name: "marble",
-  },
-  {
-    shape: "cylinder",
-    image: require("../assets/shapes_sample/can.png"),
-    name: "soda can",
-  },
-  {
-    shape: "cylinder",
-    image: require("../assets/shapes_sample/battery.png"),
-    name: "battery",
-  },
-  {
-    shape: "cylinder",
-    image: require("../assets/shapes_sample/candle.png"),
-    name: "candle",
-  },
-  {
-    shape: "cone",
-    image: require("../assets/shapes_sample/icecreamcone.png"),
-    name: "ice cream cone",
-  },
-  {
-    shape: "cone",
-    image: require("../assets/shapes_sample/partyhat.png"),
-    name: "party hat",
+    shape: "pyramid",
+    image: require("../assets/shapes_sample/tent.png"),
+    name: "tent",
   },
   {
     shape: "cone",
@@ -165,29 +130,76 @@ const shapesObj = [
     name: "traffic cone",
   },
   {
-    shape: "pyramid",
-    image: require("../assets/shapes_sample/pyramid.png"),
-    name: "Egyptian pyramid",
+    shape: "diamond",
+    image: require("../assets/shapes_sample/diamond.png"),
+    name: "playing card",
   },
   {
-    shape: "pyramid",
-    image: require("../assets/shapes_sample/tent.png"),
-    name: "tent",
+    shape: "cylinder",
+    image: require("../assets/shapes_sample/can.png"),
+    name: "soda can",
   },
   {
-    shape: "torus",
-    image: require("../assets/shapes_sample/doughtnut.png"),
-    name: "doughnut",
+    shape: "cross",
+    image: require("../assets/shapes_sample/cross.png"),
+    name: "cross",
   },
   {
-    shape: "torus",
-    image: require("../assets/shapes_sample/bracelet.png"),
-    name: "bracelet",
+    shape: "cylinder",
+    image: require("../assets/shapes_sample/candle.png"),
+    name: "candle",
+  },
+  {
+    shape: "trapezoid",
+    image: require("../assets/shapes_sample/lampshade.png"),
+    name: "lampshade",
+  },
+  {
+    shape: "cone",
+    image: require("../assets/shapes_sample/icecreamcone.png"),
+    name: "ice cream cone",
+  },
+  {
+    shape: "square",
+    image: require("../assets/shapes_sample/photo.png"),
+    name: "photo frame",
+  },
+  {
+    shape: "sphere",
+    image: require("../assets/shapes_sample/marbles.png"),
+    name: "marble",
+  },
+  {
+    shape: "cone",
+    image: require("../assets/shapes_sample/partyhat.png"),
+    name: "party hat",
   },
   {
     shape: "ellipsoid",
     image: require("../assets/shapes_sample/rugbyball.png"),
     name: "rugby ball",
+  },
+  {
+    shape: "circle",
+    image: require("../assets/shapes_sample/pizza.png"),
+    name: "pizza",
+  },
+  {
+    shape: "pyramid",
+    image: require("../assets/shapes_sample/pyramid.png"),
+    name: "Egyptian pyramid",
+  },
+
+  {
+    shape: "torus",
+    image: require("../assets/shapes_sample/doughnut.png"),
+    name: "doughnut",
+  },
+
+  {
+    shape: "crescent",
+    image: require("../assets/shapes_sample/crescentmoon.png"),
+    name: "crescent moon",
   },
   {
     shape: "ellipsoid",
@@ -199,39 +211,37 @@ const shapesObj = [
     image: require("../assets/shapes_sample/handbag.png"),
     name: "handbag",
   },
-  {
-    shape: "trapezoid",
-    image: require("../assets/shapes_sample/lampshade.png"),
-    name: "lampshade",
-  },
-  {
-    shape: "crescent",
-    image: require("../assets/shapes_sample/crescentmoon.png"),
-    name: "crescent moon",
-  },
-  {
-    shape: "crescent",
-    image: require("../assets/shapes_sample/croissant.png"),
-    name: "croissant",
-  },
-  {
-    shape: "crescent",
-    image: require("../assets/shapes_sample/sickle.png"),
-    name: "sickle",
-  },
+
   {
     shape: "arrow",
     image: require("../assets/shapes_sample/arrow.png"),
     name: "bow arrow",
   },
   {
-    shape: "cross",
-    image: require("../assets/shapes_sample/cross.png"),
-    name: "cross",
+    shape: "crescent",
+    image: require("../assets/shapes_sample/croissant.png"),
+    name: "croissant",
   },
+
   {
     shape: "cross",
     image: require("../assets/shapes_sample/pharmacy.png"),
     name: "red cross",
+  },
+
+  {
+    shape: "triangle",
+    image: require("../assets/shapes_sample/cheese.png"),
+    name: "slice of cheese",
+  },
+  {
+    shape: "torus",
+    image: require("../assets/shapes_sample/bracelet.png"),
+    name: "bracelet",
+  },
+  {
+    shape: "rectangle",
+    image: require("../assets/shapes_sample/door.png"),
+    name: "door",
   },
 ];

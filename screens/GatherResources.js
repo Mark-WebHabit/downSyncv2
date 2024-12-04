@@ -4,7 +4,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import Container from "../components/Container.js";
 import Loading from "../components/Loading.js";
-import { getSavedUser, removePreference } from "../utilities/preferences.js";
+import { getSavedUser, checkFirstLaunch } from "../utilities/preferences.js";
 
 const Letter = ({ path, delay }) => {
   const translateY = useRef(new Animated.Value(-1000)).current;
@@ -29,8 +29,11 @@ const GatherResources = ({ navigation }) => {
   const [fetching, setFetching] = useState(true);
   const [delay, setDelay] = useState(true);
 
-  // removePreference("uid");
-  // removePreference("user");
+  useEffect(() => {
+    (async () => {
+      await checkFirstLaunch();
+    })();
+  }, []);
 
   useEffect(() => {
     // gather resources here

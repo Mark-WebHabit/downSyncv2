@@ -9,6 +9,7 @@ const ArtContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [colors, setColors] = useState(null);
   const [basicShapes, setBasicShapes] = useState(null);
+  const [shapesMatching, setShapesMatching] = useState(null);
 
   useEffect(() => {
     async function getUser() {
@@ -55,6 +56,25 @@ const ArtContextProvider = ({ children }) => {
             setBasicShapes(result);
           }
         );
+        const unsubscribeMatchingShapes = createListener(
+          `arts/shapes/matching`,
+          savedUser.uid,
+          (data) => {
+            const result = [];
+
+            const keys = Object.keys(data);
+            keys.forEach((key) => {
+              const obj = {
+                uid: key,
+                ...data[key],
+              };
+
+              result.push(obj);
+            });
+
+            setShapesMatching(result);
+          }
+        );
 
         setFetching(false);
         // Add more listeners here as needed
@@ -64,6 +84,7 @@ const ArtContextProvider = ({ children }) => {
         return () => {
           unsubscribeColors();
           unsubscribeBasicShapes();
+          unsubscribeMatchingShapes();
           // unsubscribeAnother();
         };
       }
@@ -72,7 +93,9 @@ const ArtContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <ArtContext.Provider value={{ fetching, user, colors, basicShapes }}>
+    <ArtContext.Provider
+      value={{ fetching, user, colors, basicShapes, shapesMatching }}
+    >
       {children}
     </ArtContext.Provider>
   );

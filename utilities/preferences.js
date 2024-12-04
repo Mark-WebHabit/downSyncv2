@@ -44,3 +44,20 @@ export const getSavedUser = async () => {
     console.log(error);
   }
 };
+
+export const checkFirstLaunch = async () => {
+  try {
+    const isFirstLaunch = await AsyncStorage.getItem("isFirstLaunch");
+    if (isFirstLaunch === null) {
+      // This is the first launch
+      removePreference("uid");
+      removePreference("user");
+      await AsyncStorage.setItem("isFirstLaunch", "false");
+      return true;
+    }
+    return false;
+  } catch (error) {
+    console.error("Error checking first launch:", error);
+    return false;
+  }
+};
