@@ -28,6 +28,7 @@ import {
   CreateArtColorsInstance,
   CreateArtShapesBasicInstance,
   CreateArtShapesBasicMatching,
+  createLoginDocument,
 } from "../utilities/CreateGameInstance";
 
 // components
@@ -101,6 +102,7 @@ const GetStarted = ({ navigation }) => {
       await savePreference("uid", newUserRef.key);
 
       // // create the game instance here to make data in the database
+      createLoginDocument(newUserRef.key);
       await CreateGameInstanceMatchingEasy(newUserRef.key);
       await CreateGameInstanceMatchingMedium(newUserRef.key);
       await CreateGameInstanceMatchingHard(newUserRef.key);

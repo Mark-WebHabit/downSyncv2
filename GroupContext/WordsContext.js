@@ -16,7 +16,7 @@ const WordContextProvider = ({ children }) => {
       setUser(savedUser);
 
       if (savedUser?.uid) {
-        const unsubscribeMatchingEasy = createListener(
+        const unsubscribeLetters = createListener(
           `words/letters`,
           savedUser.uid,
           (data) => {
@@ -61,7 +61,7 @@ const WordContextProvider = ({ children }) => {
 
         // Cleanup listeners when the component unmounts
         return () => {
-          unsubscribeMatchingEasy();
+          unsubscribeLetters();
           unsubscribeDndProgress();
           // unsubscribeAnother();
         };

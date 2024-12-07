@@ -4,8 +4,11 @@ import * as SplashScreen from "expo-splash-screen";
 
 import Container from "../components/Container.js";
 import Loading from "../components/Loading.js";
-import { getSavedUser, checkFirstLaunch } from "../utilities/preferences.js";
-
+import {
+  getSavedUser,
+  checkFirstLaunch,
+  removePreference,
+} from "../utilities/preferences.js";
 const Letter = ({ path, delay }) => {
   const translateY = useRef(new Animated.Value(-1000)).current;
 
@@ -28,6 +31,9 @@ const Letter = ({ path, delay }) => {
 const GatherResources = ({ navigation }) => {
   const [fetching, setFetching] = useState(true);
   const [delay, setDelay] = useState(true);
+
+  // removePreference("user");
+  // removePreference("uid");
 
   useEffect(() => {
     (async () => {

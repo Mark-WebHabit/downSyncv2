@@ -78,9 +78,9 @@ const MainContainer = ({
         <TouchableWithoutFeedback onPress={() => toggleSetting()}>
           <View style={styles.modalOverlay}>
             <SettinModal
-              navigation={() => {
+              redirect={(param) => {
                 toggleSetting();
-                navigation.navigate("Setting");
+                navigation.navigate(param);
               }}
             />
           </View>
@@ -94,7 +94,6 @@ export default MainContainer;
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: Platform.OS == "android" ? StatusBar.currentHeight : 0,
     flex: 1,
     zIndex: 2,
   },

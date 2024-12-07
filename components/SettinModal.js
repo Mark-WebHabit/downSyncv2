@@ -9,7 +9,7 @@ import useUserPreferences from "../customHooks/useUserPreference";
 import React, { useContext, useEffect } from "react";
 import { Context } from "../DataContext";
 
-const SettinModal = ({ navigation }) => {
+const SettinModal = ({ redirect }) => {
   const { fontSize, buttonFontColor, buttonSize } = useUserPreferences();
   const { sound } = useContext(Context);
 
@@ -25,7 +25,7 @@ const SettinModal = ({ navigation }) => {
         ]}
         onPress={() => {
           sound();
-          navigation();
+          redirect("Setting");
         }}
       >
         <ImageBackground
@@ -56,6 +56,9 @@ const SettinModal = ({ navigation }) => {
             transform: [{ scale: buttonSize }],
           },
         ]}
+        onPress={() => {
+          redirect("Dashboard");
+        }}
       >
         <ImageBackground
           style={styles.buttonWrapper}

@@ -1,4 +1,5 @@
-import { set, push, ref as sref } from "firebase/database";
+import { set, push, ref as sref, serverTimestamp } from "firebase/database";
+import { onDisconnect } from "firebase/database";
 import { db } from "../firebase";
 import {
   animals,
@@ -12,6 +13,31 @@ import { emotionSample } from "../assets/emotions_sample_flatfiledb_local";
 import { colorsObj } from "../assets/colors_flatfiledb_local";
 import { shapes } from "../assets/shapes_flatfiledb_local";
 import { shapesObj } from "../assets/shapes_sample_flatfiledb_local";
+import { getSavedUser } from "./preferences";
+import { getCurrentDate } from "../utilities/Date";
+
+// Function to create a new login document
+export const createLoginDocument = async (uid) => {
+  if (uid) {
+    const currentDate = getCurrentDate();
+    const userLoginsRef = sref(db, `logins/${uid}/${currentDate}`);
+
+    // Create a new document with a unique ID
+    const newLoginRef = await push(userLoginsRef, {
+      loginTime: serverTimestamp(),
+    });
+
+    // Set up onDisconnect to log the logout time
+    onDisconnect(newLoginRef)
+      .update({
+        logoutTime: serverTimestamp(),
+      })
+      .catch((error) => {
+        console.error("Error setting onDisconnect:", error);
+      });
+  }
+};
+
 export const CreateGameInstanceMatchingEasy = async (key) => {
   try {
     // Base reference for the game instance

@@ -1,6 +1,6 @@
 import { getDatabase, ref, update } from "firebase/database";
 import { getSavedUser } from "./preferences";
-
+import { getCurrentDate } from "./Date";
 // Initialize the Realtime Database
 const db = getDatabase();
 
@@ -167,4 +167,27 @@ export const updateUsername = async (name) => {
   } catch (error) {
     console.error("Error updating data: ", error);
   }
+};
+
+export const updateTodaysMathAlgebra = (op) => {
+  let operation = "addition";
+
+  switch (op) {
+    case "+":
+      operation = "addition";
+      break;
+    case "-":
+      operation = "subtraction";
+      break;
+    case "*":
+      operation = "multiplication";
+      break;
+    default:
+      operation = "division";
+      break;
+  }
+
+  const currentDate = getCurrentDate();
+
+  console.log(currentDate);
 };
