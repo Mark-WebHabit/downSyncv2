@@ -174,7 +174,6 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
-    borderWidth: 2,
   },
   scroll: {
     justifyContent: "center",

@@ -15,6 +15,7 @@ const WordsNavigator = () => {
   return (
     <WordContextProvider>
       <Stack.Navigator
+        initialRouteName="wordsCategory"
         screenOptions={{
           headerShown: false,
         }}

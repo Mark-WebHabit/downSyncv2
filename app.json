@@ -13,7 +13,8 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.markdev03.DownSync"
     },
     "android": {
       "adaptiveIcon": {
@@ -25,7 +26,14 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "plugins": [],
+    "plugins": [
+      [
+        "expo-screen-orientation",
+        {
+          "initialOrientation": "LANDSCAPE"
+        }
+      ]
+    ],
     "extra": {
       "eas": {
         "projectId": "bb97fc12-76c4-4ab1-902f-f26b2277e102"

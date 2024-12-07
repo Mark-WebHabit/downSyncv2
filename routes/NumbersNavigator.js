@@ -13,6 +13,7 @@ const NumbersNavigator = () => {
   return (
     <NumbersContextProvder>
       <Stack.Navigator
+        initialRouteName="BasicNumber"
         screenOptions={{
           headerShown: false,
         }}

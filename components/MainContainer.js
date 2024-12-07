@@ -13,10 +13,12 @@ import {
 
 import { Image as Img } from "expo-image";
 import SettingButtons from "./SettingButtons";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import SettinModal from "./SettinModal";
 import { Context } from "../DataContext";
+import { getPreference } from "../utilities/preferences";
+import { changeScreenOrientation } from "../utilities/Orientation";
 
 const MainContainer = ({
   children,
@@ -26,8 +28,17 @@ const MainContainer = ({
   showBack = true,
 }) => {
   const [showSettingModal, setShowSettingModal] = useState(false);
+  const [bg, setBg] = useState(null);
 
   const { sound, stop, speak } = useContext(Context);
+
+  useEffect(() => {
+    changeScreenOrientation();
+    (async function () {
+      const response = await getPreference("backgroundImage");
+      setBg(response);
+    })();
+  }, []);
 
   const toggleSetting = () => {
     sound();
@@ -43,7 +54,7 @@ const MainContainer = ({
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={require("../assets/images/farm.jpg")}
+        source={bg ? { uri: bg } : require("../assets/images/farm.jpg")}
         style={[styles.wrapper, addStyle]}
       >
         {/* main body */}
@@ -52,6 +63,7 @@ const MainContainer = ({
           showSetting={showSetting}
           showBack={showBack}
           goBack={goBack}
+          navigation={navigation}
         />
         <Img
           source={require("../assets/images/panda.gif")}
@@ -65,7 +77,12 @@ const MainContainer = ({
       <Modal visible={showSettingModal} transparent>
         <TouchableWithoutFeedback onPress={() => toggleSetting()}>
           <View style={styles.modalOverlay}>
-            <SettinModal />
+            <SettinModal
+              navigation={() => {
+                toggleSetting();
+                navigation.navigate("Setting");
+              }}
+            />
           </View>
         </TouchableWithoutFeedback>
       </Modal>

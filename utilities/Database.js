@@ -153,3 +153,18 @@ export const updateMatchingShapes = async (uid) => {
     console.error("Error updating data: ", error);
   }
 };
+
+export const updateUsername = async (name) => {
+  // Reference to the user's data
+  const user = await getSavedUser();
+  const userRef = ref(db, `users/${user.uid}`);
+
+  try {
+    // Update the specific field in the node
+    await update(userRef, {
+      username: name,
+    });
+  } catch (error) {
+    console.error("Error updating data: ", error);
+  }
+};

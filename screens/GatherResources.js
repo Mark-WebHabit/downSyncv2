@@ -1,5 +1,6 @@
-import { Image, StyleSheet, View, Animated, Alert } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
+import { Image, StyleSheet, View, Animated } from "react-native";
+import * as SplashScreen from "expo-splash-screen";
 
 import Container from "../components/Container.js";
 import Loading from "../components/Loading.js";
@@ -31,16 +32,15 @@ const GatherResources = ({ navigation }) => {
   useEffect(() => {
     (async () => {
       await checkFirstLaunch();
+      setFetching(false);
+      SplashScreen.hideAsync(); // Hide splash screen after initialization
     })();
   }, []);
 
   useEffect(() => {
-    // gather resources here
-    // if (!fetching) {
     setTimeout(() => {
       setDelay(false);
     }, 3000);
-    // }
   }, [fetching]);
 
   useEffect(() => {

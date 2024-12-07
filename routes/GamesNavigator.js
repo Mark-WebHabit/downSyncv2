@@ -24,6 +24,7 @@ const GamesNavigator = () => {
   return (
     <GameContext>
       <Stack.Navigator
+        initialRouteName="GameScreen"
         screenOptions={{
           headerShown: false,
         }}

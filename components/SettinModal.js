@@ -6,10 +6,12 @@ import {
   ImageBackground,
 } from "react-native";
 import useUserPreferences from "../customHooks/useUserPreference";
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { Context } from "../DataContext";
 
-const SettinModal = () => {
+const SettinModal = ({ navigation }) => {
   const { fontSize, buttonFontColor, buttonSize } = useUserPreferences();
+  const { sound } = useContext(Context);
 
   return (
     <View style={styles.settingContainerButton}>
@@ -21,6 +23,10 @@ const SettinModal = () => {
             transform: [{ scale: buttonSize }],
           },
         ]}
+        onPress={() => {
+          sound();
+          navigation();
+        }}
       >
         <ImageBackground
           style={styles.buttonWrapper}

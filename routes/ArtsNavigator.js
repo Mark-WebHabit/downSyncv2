@@ -16,6 +16,7 @@ const ArtsNavigator = () => {
   return (
     <ArtContextProvider>
       <Stack.Navigator
+        initialRouteName="ArtsCateg"
         screenOptions={{
           headerShown: false,
         }}

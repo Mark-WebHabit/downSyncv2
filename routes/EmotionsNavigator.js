@@ -13,6 +13,7 @@ const EmotionsNavigator = () => {
   return (
     <EmotionContextProvider>
       <Stack.Navigator
+        initialRouteName="EmotionCateg"
         screenOptions={{
           headerShown: false,
         }}
