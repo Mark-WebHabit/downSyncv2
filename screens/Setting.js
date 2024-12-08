@@ -165,124 +165,134 @@ const Setting = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      {dimensionWidth > 0 && (
-        <Image
-          source={require("../assets/logos/logo_splash.png")}
-          style={{
-            ...styles.Image,
-            width: dimensionWidth * 0.3,
-            height: dimensionWidth * 0.3,
-          }}
-          resizeMode="stretch"
-        />
-      )}
-      <View style={styles.nameWrapper}>
-        <Text style={styles.name}>{user}</Text>
-        <TouchableOpacity
-          style={styles.pencilContainer}
-          onPress={() => setModalVisible(true)}
-        >
-          <Image
-            source={require("../assets/images/edit.png")}
-            style={styles.edit}
-          />
-        </TouchableOpacity>
-      </View>
       <ScrollView
-        style={styles.containerScroll}
-        contentContainerStyle={{
-          ...styles.scrollViewContent,
+        style={{
+          borderWidth: 1,
+          width: "100%",
         }}
       >
-        <TouchableOpacity
-          onPress={() => setButtonSizeVisible(!buttonSizeVisible)}
-          style={[
-            styles.colorPickerToggle,
-            {
-              backgroundColor: "#98FF98",
-            },
-          ]}
-        >
-          <Text style={styles.colorPickerToggleText}>Button Size</Text>
-        </TouchableOpacity>
-
-        <ChangeButtonSize
-          buttonSizeVisible={buttonSizeVisible}
-          buttonSize={buttonSize}
-          handleButtonSizeChange={handleButtonSizeChange}
-        />
-
-        <TouchableOpacity
-          onPress={() => setColorPickerVisible(!colorPickerVisible)}
-          style={[
-            styles.colorPickerToggle,
-            {
-              backgroundColor: "#40E0D0",
-            },
-          ]}
-        >
-          <Text style={styles.colorPickerToggleText}>Button Text Color</Text>
-        </TouchableOpacity>
-        {colorPickerVisible && (
-          <ChangeButtonFontColor
-            buttonColor={buttonColor}
-            setButtonColor={setButtonColor}
+        {dimensionWidth > 0 && (
+          <Image
+            source={require("../assets/logos/logo_splash.png")}
+            style={{
+              ...styles.Image,
+              width: dimensionWidth * 0.3,
+              height: dimensionWidth * 0.3,
+            }}
+            resizeMode="stretch"
           />
         )}
+        <View style={styles.nameWrapper}>
+          <Text style={styles.name}>{user}</Text>
+          <TouchableOpacity
+            style={styles.pencilContainer}
+            onPress={() => setModalVisible(true)}
+          >
+            <Image
+              source={require("../assets/images/edit.png")}
+              style={styles.edit}
+            />
+          </TouchableOpacity>
+        </View>
+        <ScrollView
+          style={styles.containerScroll}
+          contentContainerStyle={{
+            ...styles.scrollViewContent,
+          }}
+        >
+          <TouchableOpacity
+            onPress={() => setButtonSizeVisible(!buttonSizeVisible)}
+            style={[
+              styles.colorPickerToggle,
+              {
+                backgroundColor: "#98FF98",
+              },
+            ]}
+          >
+            <Text style={styles.colorPickerToggleText}>Button Size</Text>
+          </TouchableOpacity>
 
-        {/* Add Image Picker Button */}
-        <TouchableOpacity onPress={pickImage} style={styles.colorPickerToggle}>
-          <Text style={styles.colorPickerToggleText}>Background Image</Text>
-        </TouchableOpacity>
-        <ChangeBackgroundImage
-          imageUri={imageUri}
-          setImagePreviewVisible={setImagePreviewVisible}
-          imagePreviewVisible={imagePreviewVisible}
+          <ChangeButtonSize
+            buttonSizeVisible={buttonSizeVisible}
+            buttonSize={buttonSize}
+            handleButtonSizeChange={handleButtonSizeChange}
+          />
+
+          <TouchableOpacity
+            onPress={() => setColorPickerVisible(!colorPickerVisible)}
+            style={[
+              styles.colorPickerToggle,
+              {
+                backgroundColor: "#40E0D0",
+              },
+            ]}
+          >
+            <Text style={styles.colorPickerToggleText}>Button Text Color</Text>
+          </TouchableOpacity>
+          {colorPickerVisible && (
+            <ChangeButtonFontColor
+              buttonColor={buttonColor}
+              setButtonColor={setButtonColor}
+            />
+          )}
+
+          {/* Add Image Picker Button */}
+          <TouchableOpacity
+            onPress={pickImage}
+            style={styles.colorPickerToggle}
+          >
+            <Text style={styles.colorPickerToggleText}>Background Image</Text>
+          </TouchableOpacity>
+          <ChangeBackgroundImage
+            imageUri={imageUri}
+            setImagePreviewVisible={setImagePreviewVisible}
+            imagePreviewVisible={imagePreviewVisible}
+          />
+          <TouchableOpacity
+            onPress={() => handleSave()}
+            style={[
+              styles.colorPickerToggle,
+              {
+                backgroundColor: "#FF7F50",
+              },
+            ]}
+          >
+            <Text style={styles.colorPickerToggleText}>Save</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => handleReset()}
+            style={[
+              styles.colorPickerToggle,
+              {
+                backgroundColor: "#FFD700",
+              },
+            ]}
+          >
+            <Text style={styles.colorPickerToggleText}>Reset</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.goBack()}
+            style={[
+              styles.colorPickerToggle,
+              {
+                backgroundColor: "#87CEEB",
+              },
+            ]}
+          >
+            <Text style={styles.colorPickerToggleText}>Cancel</Text>
+          </TouchableOpacity>
+        </ScrollView>
+
+        <UpdateUsernameModal
+          modalVisible={modalVisible}
+          newUsername={newUsername}
+          setNewUsername={setNewUsername}
+          errorMessage={errorMessage}
+          setErrorMessage={setErrorMessage}
+          setModalVisible={setModalVisible}
+          handleUsernameChange={handleUsernameChange}
         />
-        <TouchableOpacity
-          onPress={() => handleSave()}
-          style={[
-            styles.colorPickerToggle,
-            {
-              backgroundColor: "#FF7F50",
-            },
-          ]}
-        >
-          <Text style={styles.colorPickerToggleText}>Save</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => handleReset()}
-          style={[
-            styles.colorPickerToggle,
-            {
-              backgroundColor: "#FFD700",
-            },
-          ]}
-        >
-          <Text style={styles.colorPickerToggleText}>Reset</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
-          style={[
-            styles.colorPickerToggle,
-            {
-              backgroundColor: "#87CEEB",
-            },
-          ]}
-        >
-          <Text style={styles.colorPickerToggleText}>Cancel</Text>
-        </TouchableOpacity>
       </ScrollView>
-
-      <UpdateUsernameModal
-        modalVisible={modalVisible}
-        newUsername={newUsername}
-        setNewUsername={setNewUsername}
-        errorMessage={errorMessage}
-        setErrorMessage={setErrorMessage}
-        setModalVisible={setModalVisible}
-        handleUsernameChange={handleUsernameChange}
-      />
     </View>
   );
 };

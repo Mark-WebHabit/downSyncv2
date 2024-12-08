@@ -221,7 +221,8 @@ const styles = StyleSheet.create({
     height: "100%",
     justifyContent: "space-between",
     alignItems: "flex-end",
-    padding: 20,
+    padding: 10,
+    gap: 10,
   },
   GetStartedText: {
     textAlign: "center",

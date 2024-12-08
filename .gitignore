@@ -78,3 +78,8 @@ yarn-error.*
 # @end expo-cli
 
 *.aab
+
+
+# .gitignore
+/android
+/ios
