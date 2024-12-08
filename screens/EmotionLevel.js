@@ -123,6 +123,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textTransform: "capitalize",
     textAlign: "center",
+    width: "80%",
+    marginHorizontal: "auto",
   },
   arrow: {
     position: "absolute",

@@ -4,6 +4,7 @@ import {
   View,
   TouchableOpacity,
   ImageBackground,
+  BackHandler,
 } from "react-native";
 import useUserPreferences from "../customHooks/useUserPreference";
 import React, { useContext, useEffect } from "react";
@@ -88,6 +89,9 @@ const SettinModal = ({ redirect }) => {
             transform: [{ scale: buttonSize }],
           },
         ]}
+        onPress={() => {
+          BackHandler.exitApp();
+        }}
       >
         <ImageBackground
           style={styles.buttonWrapper}

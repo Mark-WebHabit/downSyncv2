@@ -22,6 +22,13 @@ import CollapsibleMatchingEasy from "../components/CollapsibleMatchingEasy";
 import CollapsibleMatchingMedium from "../components/CollapsibleMatchingMedium";
 import CollapsiblematchingHard from "../components/CollapsibleMatchingHard";
 import Collapsibleletters from "../components/CollapsibleAlphabets";
+import CollapsibleDandD from "../components/CollapsibleDandD";
+import CollapsibleColors from "../components/CollapsibleColors";
+import CollapsibleBAsicShapes from "../components/CollapsibleBAsicShapes";
+import CollapsibleShapeMatching from "../components/CollapsibleShapeMatching";
+import CollpasibleEmotionTypes from "../components/CollpasibleEmotionTypes";
+import CollapsibleEmotionMatching from "../components/CollapsibleEmotionMatching";
+import Summary from "../components/Summary";
 
 const Progress = ({ navigation }) => {
   const {
@@ -32,6 +39,12 @@ const Progress = ({ navigation }) => {
     matchingMedium,
     matchingHard,
     letters,
+    dndObjects,
+    colors,
+    basicShapes,
+    shapesMatching,
+    emotionTypes,
+    emotionMatching,
   } = useContext(ProgressContext);
 
   const [showRecentLogin, setShowRecentLogin] = useState(false);
@@ -39,6 +52,14 @@ const Progress = ({ navigation }) => {
   const [showMathingMedium, setShowMatchingMedium] = useState(false);
   const [showMathingHard, setShowMatchingHard] = useState(false);
   const [showAlphabets, setShowAlphabets] = useState(false);
+  const [showDandD, setShowDandD] = useState(false);
+  const [showColors, setShowColors] = useState(false);
+  const [showBasicShapes, setShowBasicShapes] = useState(false);
+  const [showShapeMatching, setShowShapeMatching] = useState(false);
+  const [showEmotionTypes, setShowEmotionTypes] = useState(false);
+  const [showEmotionMatching, setShowEmotionMatching] = useState(false);
+  const [showSummery, setShowSummary] = useState(false);
+
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredLogins, setFilteredLogins] = useState([]);
 
@@ -79,6 +100,18 @@ const Progress = ({ navigation }) => {
         >
           <Text style={styles.backText}>Back</Text>
         </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => setShowSummary(!showSummery)}
+        >
+          <Text style={styles.text}>Summary</Text>
+          <Icon
+            name={showSummery ? "chevron-up" : "chevron-down"}
+            size={20}
+            color="#fff"
+          />
+        </TouchableOpacity>
+        <Summary logins={logins} user={user} showSummary={showSummery} />
         <TouchableOpacity
           style={styles.button}
           onPress={() => setShowRecentLogin(!showRecentLogin)}
@@ -162,6 +195,108 @@ const Progress = ({ navigation }) => {
           letters={letters}
           user={user}
         />
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => setShowDandD(!showDandD)}
+        >
+          <Text style={styles.text}>Drag and Drop</Text>
+          <Icon
+            name={showDandD ? "chevron-up" : "chevron-down"}
+            size={20}
+            color="#fff"
+          />
+        </TouchableOpacity>
+        <CollapsibleDandD
+          showDandD={showDandD}
+          dndObjects={dndObjects}
+          user={user}
+        />
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => setShowColors(!showColors)}
+        >
+          <Text style={styles.text}>Colors</Text>
+          <Icon
+            name={showColors ? "chevron-up" : "chevron-down"}
+            size={20}
+            color="#fff"
+          />
+        </TouchableOpacity>
+        <CollapsibleColors
+          colors={colors}
+          showColors={showColors}
+          user={user}
+        />
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => setShowBasicShapes(!showBasicShapes)}
+        >
+          <Text style={styles.text}>Shapes</Text>
+          <Icon
+            name={showBasicShapes ? "chevron-up" : "chevron-down"}
+            size={20}
+            color="#fff"
+          />
+        </TouchableOpacity>
+        <CollapsibleBAsicShapes
+          basicShapes={basicShapes}
+          showBasicShapes={showBasicShapes}
+          user={user}
+        />
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => setShowShapeMatching(!showShapeMatching)}
+        >
+          <Text style={styles.text}>Shapes Matching</Text>
+          <Icon
+            name={showBasicShapes ? "chevron-up" : "chevron-down"}
+            size={20}
+            color="#fff"
+          />
+        </TouchableOpacity>
+        <CollapsibleShapeMatching
+          shapesMatching={shapesMatching}
+          showShapeMatching={showShapeMatching}
+          user={user}
+        />
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => setShowEmotionTypes(!showEmotionTypes)}
+        >
+          <Text style={styles.text}>Types of Emotions</Text>
+          <Icon
+            name={showEmotionTypes ? "chevron-up" : "chevron-down"}
+            size={20}
+            color="#fff"
+          />
+        </TouchableOpacity>
+        <CollpasibleEmotionTypes
+          showEmotionTypes={showEmotionTypes}
+          emotionTypes={emotionTypes}
+          user={user}
+        />
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => setShowEmotionMatching(!showEmotionMatching)}
+        >
+          <Text style={styles.text}>Emotions Matching</Text>
+          <Icon
+            name={showEmotionMatching ? "chevron-up" : "chevron-down"}
+            size={20}
+            color="#fff"
+          />
+        </TouchableOpacity>
+        <CollapsibleEmotionMatching
+          showEmotionMatching={showEmotionMatching}
+          emotionMatching={emotionMatching}
+          user={user}
+        />
+
+        <View
+          style={{
+            marginTop: 50,
+          }}
+        ></View>
       </ScrollView>
     </View>
   );
@@ -174,7 +309,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     backgroundColor: "#FFEBEE",
-    marginTop: Platform.OS == "android" ? StatusBar.currentHeight + 10 : 0 + 10,
   },
   button: {
     width: "95%",

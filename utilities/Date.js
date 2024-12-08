@@ -16,3 +16,12 @@ export const formatDuration = (loginTime, logoutTime) => {
     hours > 0 ? `${hours} hr${hours > 1 ? "s" : ""} and ` : ""
   }${remainingMinutes} min${remainingMinutes > 1 ? "s" : ""}`;
 };
+export const formatDurationOneParam = (time) => {
+  const durationInMillis = time;
+  const minutes = Math.floor(durationInMillis / 60000);
+  const hours = Math.floor(minutes / 60);
+  const remainingMinutes = minutes % 60;
+  return `${
+    hours > 0 ? `${hours} hr${hours > 1 ? "s" : ""} and ` : ""
+  }${remainingMinutes} min${remainingMinutes > 1 ? "s" : ""}`;
+};

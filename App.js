@@ -18,6 +18,7 @@ import DashboardNavigator from "./routes/DashboardNavigator";
 
 import { usePlayBg } from "./customHooks/PlaySound";
 import Setting from "./screens/Setting";
+import { StatusBar } from "react-native";
 
 const Stack = createStackNavigator();
 
@@ -46,6 +47,7 @@ export default function App() {
 
   return (
     <DataContext>
+      <StatusBar hidden={true} />
       <NavigationContainer>
         <Stack.Navigator
           initialRouteName="Resources"
