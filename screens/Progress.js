@@ -1,18 +1,12 @@
 import {
-  Platform,
-  StatusBar,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
   ScrollView,
-  Button,
-  KeyboardAvoidingView,
 } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { BarChart } from "react-native-chart-kit";
 
 import { ProgressContext } from "../GroupContext/Dashboard";
 import SplashScreen from "./SplashScreen";

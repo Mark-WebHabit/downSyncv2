@@ -178,6 +178,7 @@ const Setting = ({ navigation }) => {
               ...styles.Image,
               width: dimensionWidth * 0.3,
               height: dimensionWidth * 0.3,
+              marginHorizontal: "auto",
             }}
             resizeMode="stretch"
           />

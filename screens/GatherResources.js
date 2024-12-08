@@ -31,13 +31,15 @@ const Letter = ({ path, delay }) => {
 const GatherResources = ({ navigation }) => {
   const [fetching, setFetching] = useState(true);
   const [delay, setDelay] = useState(true);
+  const [firstRun, setFirstRun] = useState(false);
 
   // removePreference("user");
   // removePreference("uid");
 
   useEffect(() => {
     (async () => {
-      await checkFirstLaunch();
+      const run = await checkFirstLaunch();
+      setFirstRun(run);
       setFetching(false);
       SplashScreen.hideAsync(); // Hide splash screen after initialization
     })();
@@ -53,7 +55,7 @@ const GatherResources = ({ navigation }) => {
     async function fetch() {
       const { uid } = await getSavedUser();
 
-      if (!delay && !uid) {
+      if (!delay && !uid && firstRun) {
         navigation.navigate("Start");
       } else if (!delay && uid) {
         navigation.navigate("Home");
