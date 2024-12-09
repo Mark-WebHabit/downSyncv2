@@ -15,6 +15,7 @@ import WordsNavigator from "./routes/WordsNavigator";
 import EmotionsNavigator from "./routes/EmotionsNavigator";
 import ArtsNavigator from "./routes/ArtsNavigator";
 import DashboardNavigator from "./routes/DashboardNavigator";
+import AnimalsNavigator from "./routes/AnimalsNavigator";
 
 import { usePlayBg } from "./customHooks/PlaySound";
 import Setting from "./screens/Setting";
@@ -61,12 +62,14 @@ export default function App() {
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="GameList" component={GamesList} />
           <Stack.Screen name="Games" component={GamesNavigator} />
+
           <Stack.Screen name="Numbers" component={NumbersNavigator} />
           <Stack.Screen name="Words" component={WordsNavigator} />
           <Stack.Screen name="Emotions" component={EmotionsNavigator} />
           <Stack.Screen name="Arts" component={ArtsNavigator} />
           <Stack.Screen name="Setting" component={Setting} />
           <Stack.Screen name="Dashboard" component={DashboardNavigator} />
+          <Stack.Screen name="Animals" component={AnimalsNavigator} />
         </Stack.Navigator>
       </NavigationContainer>
     </DataContext>

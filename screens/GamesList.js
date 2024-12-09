@@ -62,6 +62,35 @@ const GamesList = ({ navigation }) => {
           ]}
           onPress={() => {
             sound();
+
+            navigation.navigate("Animals");
+          }}
+        >
+          <ImageBackground
+            source={require("../assets/images/buttonmint.png")}
+            resizeMode="stretch"
+            style={styles.buttonContainer}
+          >
+            <Text
+              style={[
+                styles.text,
+                { fontSize: fontSize, color: buttonFontColor },
+              ]}
+            >
+              Animals
+            </Text>
+          </ImageBackground>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[
+            styles.button,
+            {
+              transform: [{ scale: buttonSize }],
+            },
+          ]}
+          onPress={() => {
+            sound();
             navigation.navigate("Numbers");
           }}
         >

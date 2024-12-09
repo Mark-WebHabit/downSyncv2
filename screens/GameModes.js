@@ -11,11 +11,12 @@ import useUserPreferences from "../customHooks/useUserPreference";
 import MainContainer from "../components/MainContainer";
 import { GamesContext } from "../GroupContext/GameContext";
 import { Context } from "../DataContext";
+import { AnimalsContext } from "../GroupContext/AnimalsContext";
 
 const GameModes = ({ navigation }) => {
   const [doneFetching, setDoneFetching] = useState(false);
   const { fontSize, buttonFontColor, buttonSize } = useUserPreferences();
-  const { fetching } = useContext(GamesContext);
+  const { fetching } = useContext(AnimalsContext);
   const { sound } = useContext(Context);
 
   //   if done fetching add another second of dealy

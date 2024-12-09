@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, FlatList } from "react-native";
 import React, { useContext } from "react";
 
 import MainContainer from "../components/MainContainer";
-import { GamesContext } from "../GroupContext/GameContext";
+import { AnimalsContext } from "../GroupContext/AnimalsContext";
 
 import LevelContainer from "../components/LevelContainer";
 import { Context } from "../DataContext";
@@ -15,7 +15,7 @@ const images = [
 ];
 
 const MatchingSound = ({ navigation }) => {
-  const { matchingEasy } = useContext(GamesContext);
+  const { matchingEasy } = useContext(AnimalsContext);
   const { sound } = useContext(Context);
 
   const renderItem = ({ item, index }) => {

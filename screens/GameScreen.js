@@ -21,7 +21,7 @@ const GameScreen = ({ navigation }) => {
       showSetting={false}
       addStyle={styles.container}
     >
-      <TouchableOpacity
+      {/* <TouchableOpacity
         style={[
           styles.buttonContainer,
           {
@@ -46,10 +46,10 @@ const GameScreen = ({ navigation }) => {
               },
             ]}
           >
-            Matching
+            Animals
           </Text>
         </ImageBackground>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       <TouchableOpacity
         style={[
           styles.buttonContainer,

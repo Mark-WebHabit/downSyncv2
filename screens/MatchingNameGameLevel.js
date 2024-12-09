@@ -95,7 +95,7 @@ const MatchingNameGameLevel = ({ navigation, route }) => {
               }}
             >
               <ImageBackground source={backgrounds[index]} style={styles.btnBg}>
-                <Image source={{ uri: animal.image }} style={styles.img} />
+                <Image source={animal.image} style={styles.img} />
               </ImageBackground>
             </TouchableOpacity>
           );
