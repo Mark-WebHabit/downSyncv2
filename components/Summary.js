@@ -20,6 +20,7 @@ const Summary = ({ logins, user, showSummary }) => {
     shapesMatching,
     emotionTypes,
     emotionMatching,
+    gameMatching,
   } = useContext(ProgressContext);
 
   useEffect(() => {
@@ -64,6 +65,7 @@ const Summary = ({ logins, user, showSummary }) => {
       shapesMatching,
       emotionTypes,
       emotionMatching,
+      gameMatching,
     ]);
   }, [
     matchingEasy,
@@ -76,6 +78,7 @@ const Summary = ({ logins, user, showSummary }) => {
     shapesMatching,
     emotionTypes,
     emotionMatching,
+    gameMatching,
   ]);
 
   const completed = totalCompleted;

@@ -2,8 +2,10 @@ import { StyleSheet, View, FlatList } from "react-native";
 import React, { useContext } from "react";
 
 import MainContainer from "../components/MainContainer";
+import { shapesObj } from "../assets/shapes_sample_flatfiledb_local";
+import { ArtContext } from "../GroupContext/ArtsContext";
+import { GamesContext } from "../GroupContext/GameContext";
 import { matching } from "../assets/matching_flatfiledb_local";
-
 import LevelContainer from "../components/LevelContainer";
 import { Context } from "../DataContext";
 
@@ -14,7 +16,8 @@ const images = [
   require("../assets/images/buttongreenbox.png"),
 ];
 
-const MatchShapes = ({ navigation }) => {
+const MatchingObjects = ({ navigation }) => {
+  const { matching } = useContext(GamesContext);
   const { sound } = useContext(Context);
 
   const renderItem = ({ item, index }) => {
@@ -22,11 +25,11 @@ const MatchShapes = ({ navigation }) => {
 
     const imageSource = images[index % images.length];
 
-    const newItem = { ...item, ...shapesObj[item.name] };
+    const newItem = { ...item, ...matching[item.name] };
 
     const navigateToGame = () => {
       sound();
-      navigation.navigate("MatchShapesLevel", {
+      navigation.navigate("Matching", {
         item: newItem,
       });
     };
@@ -49,7 +52,7 @@ const MatchShapes = ({ navigation }) => {
     >
       <View style={styles.levelContainer}>
         <FlatList
-          data={shapesMatching}
+          data={matching}
           renderItem={renderItem}
           keyExtractor={(item) => item.uid}
           numColumns={3}
@@ -60,7 +63,7 @@ const MatchShapes = ({ navigation }) => {
   );
 };
 
-export default MatchShapes;
+export default MatchingObjects;
 
 const styles = StyleSheet.create({
   levelContainer: {

@@ -1,7 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { getSavedUser } from "../utilities/preferences";
 import { createListener } from "../utilities/CreateListener";
-import { objects } from "../assets/objects_flatfiledb";
 
 export const ProgressContext = createContext(null);
 const Dashboard = ({ children }) => {
@@ -19,6 +18,7 @@ const Dashboard = ({ children }) => {
   const [colors, setColors] = useState(null);
   const [basicShapes, setBasicShapes] = useState(null);
   const [shapesMatching, setShapesMatching] = useState(null);
+  const [gameMatching, setGameMatching] = useState(null);
   const [logins, setLogins] = useState(null);
 
   useEffect(() => {
@@ -94,7 +94,7 @@ const Dashboard = ({ children }) => {
         );
 
         const unsubscribeMatchingEasy = createListener(
-          `games/matching/easy`,
+          `animals/matching/easy`,
           savedUser.uid,
           (data) => {
             const result = [];
@@ -114,7 +114,7 @@ const Dashboard = ({ children }) => {
         );
 
         const unsubscribeMatchingMedium = createListener(
-          `games/matching/medium`,
+          `animals/matching/medium`,
           savedUser.uid,
           (data) => {
             const result = [];
@@ -134,7 +134,7 @@ const Dashboard = ({ children }) => {
         );
 
         const unsubscribeMatchingHard = createListener(
-          `games/matching/hard`,
+          `animals/matching/hard`,
           savedUser.uid,
           (data) => {
             const result = [];
@@ -250,6 +250,25 @@ const Dashboard = ({ children }) => {
             setShapesMatching(result);
           }
         );
+        const unsubscribeGameMatching = createListener(
+          `games/matching`,
+          savedUser.uid,
+          (data) => {
+            const result = [];
+
+            const keys = Object.keys(data);
+            keys.forEach((key) => {
+              const obj = {
+                uid: key,
+                ...data[key],
+              };
+
+              result.push(obj);
+            });
+
+            setGameMatching(result);
+          }
+        );
 
         setFetching(false);
 
@@ -266,6 +285,7 @@ const Dashboard = ({ children }) => {
           unsubscribeBasicShapes();
           unsubscribeMatchingShapes();
           unsubscribeLoginDates();
+          unsubscribeGameMatching();
         };
       }
     }
@@ -288,6 +308,7 @@ const Dashboard = ({ children }) => {
         basicShapes,
         shapesMatching,
         logins,
+        gameMatching,
       }}
     >
       {children}

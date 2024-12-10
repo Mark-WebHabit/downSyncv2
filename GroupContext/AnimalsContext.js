@@ -19,7 +19,7 @@ const AnimalsContextProvider = ({ children }) => {
 
       if (savedUser?.uid) {
         const unsubscribeMatchingEasy = createListener(
-          `games/matching/easy`,
+          `animals/matching/easy`,
           savedUser.uid,
           (data) => {
             const result = [];
@@ -39,7 +39,7 @@ const AnimalsContextProvider = ({ children }) => {
         );
 
         const unsubscribeMatchingMedium = createListener(
-          `games/matching/medium`,
+          `animals/matching/medium`,
           savedUser.uid,
           (data) => {
             const result = [];
@@ -59,7 +59,7 @@ const AnimalsContextProvider = ({ children }) => {
         );
 
         const unsubscribeMatchingHard = createListener(
-          `games/matching/hard`,
+          `animals/matching/hard`,
           savedUser.uid,
           (data) => {
             const result = [];

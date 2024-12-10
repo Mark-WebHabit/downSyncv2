@@ -5,12 +5,10 @@ import { createListener } from "../utilities/CreateListener";
 
 export const GamesContext = createContext(null);
 
-const GameContext = ({ children }) => {
+const GameContextProvider = ({ children }) => {
   const [fetching, setFetching] = useState(true);
   const [user, setUser] = useState(null);
-  const [matchingEasy, setMatchingEasy] = useState(null);
-  const [matchingMedium, setMatchingMedium] = useState(null);
-  const [matchingHard, setMatchingHard] = useState(null);
+  const [matching, setMatching] = useState(null);
 
   useEffect(() => {
     async function getUser() {
@@ -18,8 +16,8 @@ const GameContext = ({ children }) => {
       setUser(savedUser);
 
       if (savedUser?.uid) {
-        const unsubscribeMatchingEasy = createListener(
-          `games/matching/easy`,
+        const unsubscribeMatching = createListener(
+          `games/matching`,
           savedUser.uid,
           (data) => {
             const result = [];
@@ -34,47 +32,7 @@ const GameContext = ({ children }) => {
               result.push(obj);
             });
 
-            setMatchingEasy(result);
-          }
-        );
-
-        const unsubscribeMatchingMedium = createListener(
-          `games/matching/medium`,
-          savedUser.uid,
-          (data) => {
-            const result = [];
-
-            const keys = Object.keys(data);
-            keys.forEach((key) => {
-              const obj = {
-                uid: key,
-                ...data[key],
-              };
-
-              result.push(obj);
-            });
-
-            setMatchingMedium(result);
-          }
-        );
-
-        const unsubscribeMatchingHard = createListener(
-          `games/matching/hard`,
-          savedUser.uid,
-          (data) => {
-            const result = [];
-
-            const keys = Object.keys(data);
-            keys.forEach((key) => {
-              const obj = {
-                uid: key,
-                ...data[key],
-              };
-
-              result.push(obj);
-            });
-
-            setMatchingHard(result);
+            setMatching(result);
           }
         );
 
@@ -84,9 +42,7 @@ const GameContext = ({ children }) => {
 
         // Cleanup listeners when the component unmounts
         return () => {
-          unsubscribeMatchingEasy();
-          unsubscribeMatchingMedium();
-          unsubscribeMatchingHard();
+          unsubscribeMatching;
           // unsubscribeAnother();
         };
       }
@@ -95,12 +51,10 @@ const GameContext = ({ children }) => {
   }, []);
 
   return (
-    <GamesContext.Provider
-      value={{ fetching, user, matchingEasy, matchingMedium, matchingHard }}
-    >
+    <GamesContext.Provider value={{ fetching, user, matching }}>
       {children}
     </GamesContext.Provider>
   );
 };
 
-export default GameContext;
+export default GameContextProvider;

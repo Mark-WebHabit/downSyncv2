@@ -7,7 +7,7 @@ const db = getDatabase();
 export const updateMatchingEasyComplete = async (uid) => {
   // Reference to the user's data
   const user = await getSavedUser();
-  const userRef = ref(db, `games/matching/easy/${user.uid}/${uid}`);
+  const userRef = ref(db, `animals/matching/easy/${user.uid}/${uid}`);
 
   try {
     // Update the specific field in the node
@@ -22,7 +22,7 @@ export const updateMatchingEasyComplete = async (uid) => {
 export const updateMatchingMediumComplete = async (uid) => {
   // Reference to the user's data
   const user = await getSavedUser();
-  const userRef = ref(db, `games/matching/medium/${user.uid}/${uid}`);
+  const userRef = ref(db, `animals/matching/medium/${user.uid}/${uid}`);
 
   try {
     // Update the specific field in the node
@@ -37,7 +37,7 @@ export const updateMatchingMediumComplete = async (uid) => {
 export const updateMatchingHardComplete = async (uid) => {
   // Reference to the user's data
   const user = await getSavedUser();
-  const userRef = ref(db, `games/matching/hard/${user.uid}/${uid}`);
+  const userRef = ref(db, `animals/matching/hard/${user.uid}/${uid}`);
 
   try {
     // Update the specific field in the node
@@ -190,4 +190,19 @@ export const updateTodaysMathAlgebra = (op) => {
   const currentDate = getCurrentDate();
 
   console.log(currentDate);
+};
+
+export const updateMatchingObjects = async (uid) => {
+  // Reference to the user's data
+  const user = await getSavedUser();
+  const userRef = ref(db, `games/matching/${user.uid}/${uid}`);
+
+  try {
+    // Update the specific field in the node
+    await update(userRef, {
+      complete: true,
+    });
+  } catch (error) {
+    console.error("Error updating data: ", error);
+  }
 };

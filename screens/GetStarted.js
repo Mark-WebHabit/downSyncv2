@@ -29,6 +29,7 @@ import {
   CreateArtShapesBasicInstance,
   CreateArtShapesBasicMatching,
   createLoginDocument,
+  CreateObjectMatching,
 } from "../utilities/CreateGameInstance";
 
 // components
@@ -70,7 +71,7 @@ const GetStarted = ({ navigation }) => {
   useEffect(() => {
     setTimeout(() => {
       setIsModal(true);
-    }, 1000);
+    }, 500);
   }, []);
 
   const submit = async () => {
@@ -113,8 +114,9 @@ const GetStarted = ({ navigation }) => {
       await CreateArtColorsInstance(newUserRef.key);
       await CreateArtShapesBasicInstance(newUserRef.key);
       await CreateArtShapesBasicMatching(newUserRef.key);
+      await CreateObjectMatching(newUserRef.key);
       setLoading(false);
-
+      setIsModal(false);
       navigation.navigate("Home");
     } catch (error) {
       console.log(`Error: ${error}`);
@@ -132,7 +134,11 @@ const GetStarted = ({ navigation }) => {
       >
         {/* <View style={styles.absolute} /> */}
 
-        <Modal isVisible={isMOdal} animationIn={"bounceInDown"}>
+        <Modal
+          isVisible={isMOdal}
+          animationIn={"bounceInDown"}
+          backdropOpacity={0}
+        >
           <View style={styles.Modal}>
             <View style={styles.pandaContainer}>
               <Image

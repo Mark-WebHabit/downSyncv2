@@ -21,7 +21,7 @@ const GameScreen = ({ navigation }) => {
       showSetting={false}
       addStyle={styles.container}
     >
-      {/* <TouchableOpacity
+      <TouchableOpacity
         style={[
           styles.buttonContainer,
           {
@@ -30,7 +30,7 @@ const GameScreen = ({ navigation }) => {
         ]}
         onPress={() => {
           sound();
-          navigation.navigate("Mode");
+          navigation.navigate("MatchingObjects");
         }}
       >
         <ImageBackground
@@ -46,10 +46,10 @@ const GameScreen = ({ navigation }) => {
               },
             ]}
           >
-            Animals
+            Matching
           </Text>
         </ImageBackground>
-      </TouchableOpacity> */}
+      </TouchableOpacity>
       <TouchableOpacity
         style={[
           styles.buttonContainer,

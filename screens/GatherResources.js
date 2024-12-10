@@ -35,6 +35,7 @@ const GatherResources = ({ navigation }) => {
 
   // removePreference("user");
   // removePreference("uid");
+  // removePreference("alphav1.2");
 
   useEffect(() => {
     (async () => {

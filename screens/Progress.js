@@ -22,6 +22,7 @@ import CollapsibleBAsicShapes from "../components/CollapsibleBAsicShapes";
 import CollapsibleShapeMatching from "../components/CollapsibleShapeMatching";
 import CollpasibleEmotionTypes from "../components/CollpasibleEmotionTypes";
 import CollapsibleEmotionMatching from "../components/CollapsibleEmotionMatching";
+import CollapsibleGameMatching from "../components/CollapsibleGameMatching";
 import Summary from "../components/Summary";
 
 const Progress = ({ navigation }) => {
@@ -39,6 +40,7 @@ const Progress = ({ navigation }) => {
     shapesMatching,
     emotionTypes,
     emotionMatching,
+    gameMatching,
   } = useContext(ProgressContext);
 
   const [showRecentLogin, setShowRecentLogin] = useState(false);
@@ -53,6 +55,7 @@ const Progress = ({ navigation }) => {
   const [showEmotionTypes, setShowEmotionTypes] = useState(false);
   const [showEmotionMatching, setShowEmotionMatching] = useState(false);
   const [showSummery, setShowSummary] = useState(false);
+  const [showGameMatching, setShowGameMatching] = useState(false);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredLogins, setFilteredLogins] = useState([]);
@@ -126,6 +129,22 @@ const Progress = ({ navigation }) => {
         />
         <TouchableOpacity
           style={styles.button}
+          onPress={() => setShowGameMatching(!showGameMatching)}
+        >
+          <Text style={styles.text}>Games Matching</Text>
+          <Icon
+            name={showGameMatching ? "chevron-up" : "chevron-down"}
+            size={20}
+            color="#fff"
+          />
+        </TouchableOpacity>
+        <CollapsibleGameMatching
+          gameMatching={gameMatching}
+          showGameMatching={showGameMatching}
+          user={user}
+        />
+        <TouchableOpacity
+          style={styles.button}
           onPress={() => setShowMatchingEasy(!showMathingEasy)}
         >
           <Text style={styles.text}>Animals Sound</Text>
@@ -162,7 +181,7 @@ const Progress = ({ navigation }) => {
         >
           <Text style={styles.text}>Animal Description</Text>
           <Icon
-            name={showMathingEasy ? "chevron-up" : "chevron-down"}
+            name={showMathingHard ? "chevron-up" : "chevron-down"}
             size={20}
             color="#fff"
           />
@@ -312,7 +331,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingVertical: 10,
+    paddingVertical: 20,
     paddingHorizontal: 10,
     marginVertical: 10,
     borderRadius: 5,
