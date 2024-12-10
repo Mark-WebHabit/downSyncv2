@@ -2,7 +2,8 @@ import { StyleSheet, View, FlatList } from "react-native";
 import React, { useContext } from "react";
 
 import MainContainer from "../components/MainContainer";
-import { matching } from "../assets/matching_flatfiledb_local";
+import { shapesObj } from "../assets/shapes_sample_flatfiledb_local";
+import { ArtContext } from "../GroupContext/ArtsContext";
 
 import LevelContainer from "../components/LevelContainer";
 import { Context } from "../DataContext";
@@ -15,6 +16,7 @@ const images = [
 ];
 
 const MatchShapes = ({ navigation }) => {
+  const { shapesMatching } = useContext(ArtContext);
   const { sound } = useContext(Context);
 
   const renderItem = ({ item, index }) => {

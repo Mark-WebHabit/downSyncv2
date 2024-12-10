@@ -51,7 +51,7 @@ const CollapsibleGameMatching = ({ gameMatching, showGameMatching, user }) => {
           />
           <Text style={styles.info}>
             {user.user} has completed {completed} out of {gameMatching.length}{" "}
-            questions
+            set of objects
           </Text>
         </>
       )}

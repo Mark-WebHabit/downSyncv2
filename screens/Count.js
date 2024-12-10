@@ -138,7 +138,7 @@ export default Count;
 const styles = StyleSheet.create({
   container: {},
   bg: {
-    backgroundColor: "rgba(255,255,255,0.2)",
+    backgroundColor: "rgba(0,0,0,0.3)",
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
@@ -168,8 +168,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#EF5350",
     borderRadius: 5,
     position: "absolute",
-    bottom: 10,
-    left: 10,
+    bottom: 30,
+    left: 20,
     zIndex: 3,
   },
 
@@ -186,9 +186,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(0,0,0,0.5)",
   },
   modalContent: {
+    borderWidth: 4,
     backgroundColor: "white",
     padding: 20,
     borderRadius: 10,
