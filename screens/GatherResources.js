@@ -33,10 +33,6 @@ const GatherResources = ({ navigation }) => {
   const [delay, setDelay] = useState(true);
   const [firstRun, setFirstRun] = useState(false);
 
-  // removePreference("user");
-  // removePreference("uid");
-  // removePreference("alphav1.3");
-
   useEffect(() => {
     (async () => {
       const run = await checkFirstLaunch();
