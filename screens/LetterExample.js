@@ -29,6 +29,10 @@ const LetterExample = ({ navigation, route }) => {
       udapteLettersComplete(item.uid);
     }
 
+    if (ndx == 0) {
+      speak(`Letter ${item.letter}`);
+    }
+
     if (item?.words[ndx - 1]) {
       speak(item.words[ndx - 1]);
     }
@@ -108,11 +112,11 @@ const styles = StyleSheet.create({
 
   imageConatiner: {
     flex: 1,
-    justifyContent: "flex-start",
+    justifyContent: "center",
     alignItems: "center",
   },
   image: {
-    height: "80%",
+    height: "70%",
     aspectRatio: 1,
   },
   textContainer: {

@@ -4,11 +4,11 @@
     "slug": "DownSync",
     "version": "1.0.0",
     "orientation": "landscape",
-    "icon": "./assets/logos/logo_splash.png",
+    "icon": "./assets/logos/logo_splash_smaller.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/logos/logo_splash.png",
+      "image": "./assets/logos/logo_splash_smaller.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -18,7 +18,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/logos/logo_splash.png",
+        "foregroundImage": "./assets/logos/logo_splash_smaller.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.markdev03.DownSync"
