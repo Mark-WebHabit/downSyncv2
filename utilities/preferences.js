@@ -47,7 +47,7 @@ export const getSavedUser = async () => {
 
 export const checkFirstLaunch = async () => {
   try {
-    const alphav1 = await AsyncStorage.getItem("alphav1.3");
+    const alphav1 = await AsyncStorage.getItem("alphav1.4");
     if (alphav1 === null) {
       // This is the first launch
       removePreference("uid");
