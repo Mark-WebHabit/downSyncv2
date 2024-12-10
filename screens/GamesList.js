@@ -137,6 +137,33 @@ const GamesList = ({ navigation }) => {
             </Text>
           </ImageBackground>
         </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            styles.button,
+            {
+              transform: [{ scale: buttonSize }],
+            },
+          ]}
+          onPress={() => {
+            sound();
+            navigation.navigate("BodyParts");
+          }}
+        >
+          <ImageBackground
+            source={require("../assets/images/buttonwhite.png")}
+            resizeMode="stretch"
+            style={styles.buttonContainer}
+          >
+            <Text
+              style={[
+                styles.text,
+                { fontSize: fontSize, color: buttonFontColor },
+              ]}
+            >
+              Body
+            </Text>
+          </ImageBackground>
+        </TouchableOpacity>
 
         <TouchableOpacity
           style={[

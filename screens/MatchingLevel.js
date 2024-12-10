@@ -94,8 +94,6 @@ const MatchingLevel = ({ navigation, route }) => {
         const imageIndex = endKey.replace("img-", "");
         const targetImage = images[imageIndex];
 
-        console.log(targetImage);
-
         if (targettext == targetImage) {
           setLines([...lines, { ...currentLine, color: "green" }]);
 
@@ -258,7 +256,10 @@ const MatchingLevel = ({ navigation, route }) => {
       />
       <CorrectMatchModal
         visible={correctMatchVisible}
-        onClose={() => setCorrectMatchVisible(false)}
+        onClose={() => {
+          setCorrectMatchVisible(false);
+          navigation.goBack();
+        }}
       />
       <HelpModal visible={helpVisible} onClose={() => setHelpVisible(false)} />
     </View>
