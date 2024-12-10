@@ -10,7 +10,8 @@ import MainContainer from "../components/MainContainer";
 
 import useUserPreferences from "../customHooks/useUserPreference";
 import { Context } from "../DataContext";
-const Shapes = ({ navigation }) => {
+
+const ThingsList = ({ navigation }) => {
   const { fontSize, buttonFontColor, buttonSize } = useUserPreferences();
   const { sound } = useContext(Context);
 
@@ -23,6 +24,7 @@ const Shapes = ({ navigation }) => {
     >
       <ScrollView contentContainerStyle={styles.scroll}>
         {/* buttons */}
+
         <TouchableOpacity
           style={[
             styles.button,
@@ -33,35 +35,7 @@ const Shapes = ({ navigation }) => {
           onPress={() => {
             sound();
 
-            navigation.navigate("ShapesBasic");
-          }}
-        >
-          <ImageBackground
-            source={require("../assets/images/buttongreen.png")}
-            resizeMode="stretch"
-            style={styles.buttonContainer}
-          >
-            <Text
-              style={[
-                styles.text,
-                { fontSize: fontSize, color: buttonFontColor },
-              ]}
-            >
-              Basic Shapes
-            </Text>
-          </ImageBackground>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            styles.button,
-            {
-              transform: [{ scale: buttonSize }],
-            },
-          ]}
-          onPress={() => {
-            sound();
-
-            navigation.navigate("MatchShapes");
+            navigation.navigate("SchoolSupplies");
           }}
         >
           <ImageBackground
@@ -75,7 +49,63 @@ const Shapes = ({ navigation }) => {
                 { fontSize: fontSize, color: buttonFontColor },
               ]}
             >
-              Matching
+              School
+            </Text>
+          </ImageBackground>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            styles.button,
+            {
+              transform: [{ scale: buttonSize }],
+            },
+          ]}
+          onPress={() => {
+            sound();
+
+            navigation.navigate("Wearables");
+          }}
+        >
+          <ImageBackground
+            source={require("../assets/images/buttonmint.png")}
+            resizeMode="stretch"
+            style={styles.buttonContainer}
+          >
+            <Text
+              style={[
+                styles.text,
+                { fontSize: fontSize, color: buttonFontColor },
+              ]}
+            >
+              Wearables
+            </Text>
+          </ImageBackground>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            styles.button,
+            {
+              transform: [{ scale: buttonSize }],
+            },
+          ]}
+          onPress={() => {
+            sound();
+
+            navigation.navigate("Household");
+          }}
+        >
+          <ImageBackground
+            source={require("../assets/images/buttonblue.png")}
+            resizeMode="stretch"
+            style={styles.buttonContainer}
+          >
+            <Text
+              style={[
+                styles.text,
+                { fontSize: fontSize, color: buttonFontColor },
+              ]}
+            >
+              Household
             </Text>
           </ImageBackground>
         </TouchableOpacity>
@@ -84,7 +114,7 @@ const Shapes = ({ navigation }) => {
   );
 };
 
-export default Shapes;
+export default ThingsList;
 
 const styles = StyleSheet.create({
   container: {
@@ -97,8 +127,8 @@ const styles = StyleSheet.create({
     minHeight: "100%",
   },
   button: {
-    width: 400,
-    height: 100,
+    width: 300,
+    height: 80,
     marginVertical: 10,
   },
   buttonContainer: {

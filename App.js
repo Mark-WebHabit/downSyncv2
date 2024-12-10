@@ -16,6 +16,7 @@ import EmotionsNavigator from "./routes/EmotionsNavigator";
 import ArtsNavigator from "./routes/ArtsNavigator";
 import DashboardNavigator from "./routes/DashboardNavigator";
 import AnimalsNavigator from "./routes/AnimalsNavigator";
+import ThinsNavigator from "./routes/ThingsNavigator";
 import BodyParts from "./screens/BodyParts";
 
 import { usePlayBg } from "./customHooks/PlaySound";
@@ -72,6 +73,7 @@ export default function App() {
           <Stack.Screen name="Dashboard" component={DashboardNavigator} />
           <Stack.Screen name="Animals" component={AnimalsNavigator} />
           <Stack.Screen name="BodyParts" component={BodyParts} />
+          <Stack.Screen name="Things" component={ThinsNavigator} />
         </Stack.Navigator>
       </NavigationContainer>
     </DataContext>

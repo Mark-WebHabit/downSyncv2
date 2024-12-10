@@ -7,15 +7,15 @@ import {
   Animated,
 } from "react-native";
 import React, { useContext } from "react";
-import { bodyParts } from "../assets/bodyparts_flatfiledb_local";
+import { wearableItems } from "../assets/wearabble_flatfiledb_local";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 import MainContainer from "../components/MainContainer";
 import { Context } from "../DataContext";
 
-const BodyParts = ({ navigation }) => {
+const Wearables = ({ navigation }) => {
   const { speak } = useContext(Context);
-  const animatedValues = bodyParts.map(() => new Animated.Value(1));
+  const animatedValues = wearableItems.map(() => new Animated.Value(1));
 
   const handlePress = (index, name) => {
     Animated.sequence([
@@ -43,7 +43,7 @@ const BodyParts = ({ navigation }) => {
       >
         <View style={styles.container}>
           <View style={styles.row}>
-            {bodyParts.slice(0, 3).map((part, index) => {
+            {wearableItems.slice(0, 3).map((part, index) => {
               return (
                 <View style={styles.rowCol} key={index}>
                   <View style={styles.rowColWrapper}>
@@ -68,7 +68,7 @@ const BodyParts = ({ navigation }) => {
             })}
           </View>
           <View style={styles.row}>
-            {bodyParts.slice(3, 7).map((part, index) => {
+            {wearableItems.slice(3, 7).map((part, index) => {
               const adjustedIndex = index + 3; // Adjust index for the second row
               return (
                 <View
@@ -108,7 +108,7 @@ const BodyParts = ({ navigation }) => {
             })}
           </View>
           <View style={styles.row}>
-            {bodyParts.slice(7, 10).map((part, index) => {
+            {wearableItems.slice(7, 10).map((part, index) => {
               const adjustedIndex = index + 7; // Adjust index for the third row
               return (
                 <View style={styles.rowCol} key={adjustedIndex}>
@@ -145,7 +145,7 @@ const BodyParts = ({ navigation }) => {
   );
 };
 
-export default BodyParts;
+export default Wearables;
 
 const styles = StyleSheet.create({
   container: {

@@ -123,7 +123,7 @@ const GamesList = ({ navigation }) => {
           }}
         >
           <ImageBackground
-            source={require("../assets/images/buttonmint.png")}
+            source={require("../assets/images/buttongreen.png")}
             resizeMode="stretch"
             style={styles.buttonContainer}
           >
@@ -164,6 +164,33 @@ const GamesList = ({ navigation }) => {
             </Text>
           </ImageBackground>
         </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            styles.button,
+            {
+              transform: [{ scale: buttonSize }],
+            },
+          ]}
+          onPress={() => {
+            sound();
+            navigation.navigate("Things");
+          }}
+        >
+          <ImageBackground
+            source={require("../assets/images/buttonmint.png")}
+            resizeMode="stretch"
+            style={styles.buttonContainer}
+          >
+            <Text
+              style={[
+                styles.text,
+                { fontSize: fontSize, color: buttonFontColor },
+              ]}
+            >
+              Things
+            </Text>
+          </ImageBackground>
+        </TouchableOpacity>
 
         <TouchableOpacity
           style={[
@@ -178,7 +205,7 @@ const GamesList = ({ navigation }) => {
           }}
         >
           <ImageBackground
-            source={require("../assets/images/buttongreen.png")}
+            source={require("../assets/images/buttonblue.png")}
             resizeMode="stretch"
             style={styles.buttonContainer}
           >
@@ -205,7 +232,7 @@ const GamesList = ({ navigation }) => {
           }}
         >
           <ImageBackground
-            source={require("../assets/images/buttonmint.png")}
+            source={require("../assets/images/buttongreen.png")}
             resizeMode="stretch"
             style={styles.buttonContainer}
           >
@@ -234,6 +261,7 @@ const styles = StyleSheet.create({
   scroll: {
     justifyContent: "center",
     alignItems: "center",
+    paddingBottom: 30,
   },
   button: {
     width: 300,

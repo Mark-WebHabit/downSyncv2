@@ -110,6 +110,7 @@ const styles = StyleSheet.create({
   scroll: {
     justifyContent: "center",
     alignItems: "center",
+    minHeight: "100%",
   },
   button: {
     width: 300,
