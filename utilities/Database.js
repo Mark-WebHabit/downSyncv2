@@ -188,8 +188,6 @@ export const updateTodaysMathAlgebra = (op) => {
   }
 
   const currentDate = getCurrentDate();
-
-  console.log(currentDate);
 };
 
 export const updateMatchingObjects = async (uid) => {
