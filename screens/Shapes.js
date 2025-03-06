@@ -75,7 +75,7 @@ const Shapes = ({ navigation }) => {
                 { fontSize: fontSize, color: buttonFontColor },
               ]}
             >
-              Matching
+              Recognize
             </Text>
           </ImageBackground>
         </TouchableOpacity>

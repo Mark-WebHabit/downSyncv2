@@ -129,7 +129,7 @@ const MatchingSoundGameLevel = ({ navigation, route }) => {
             style={[
               styles.question,
               {
-                fontSize: bodyText,
+                fontSize: bodyText * 1.5,
                 fontWeight: "600",
               },
             ]}

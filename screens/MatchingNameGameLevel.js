@@ -131,7 +131,7 @@ const MatchingNameGameLevel = ({ navigation, route }) => {
             style={[
               styles.question,
               {
-                fontSize: bodyText,
+                fontSize: bodyText * 1.5,
                 fontWeight: "600",
               },
             ]}
@@ -194,7 +194,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 10,
   },
-  question: {},
 
   speaker: {
     resizeMode: "stretch",

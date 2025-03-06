@@ -20,11 +20,11 @@ const Letter = ({ navigation }) => {
   const { letters } = useContext(WordContext);
 
   const renderItem = ({ item, index }) => {
-    const isComplete = letters[index].complete;
+    const isComplete = letters[index]?.complete;
 
     const imageSource = images[index % images.length];
 
-    const newItem = { ...item, uid: letters[index].uid };
+    const newItem = { ...item, uid: letters[index]?.uid };
 
     const navigateToGame = () => {
       sound();

@@ -127,7 +127,8 @@ const MatchingDescGameLevel = ({ navigation, route }) => {
             style={[
               styles.question,
               {
-                fontSize: bodyText,
+                fontSize: bodyText * 1.2,
+                wordWrap: "wrap",
                 fontWeight: "600",
               },
             ]}
