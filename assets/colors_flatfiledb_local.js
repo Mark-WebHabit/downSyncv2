@@ -39,4 +39,24 @@ export const colorsObj = [
     hex: "#800080",
     description: "A lavender flower or a royal robe.",
   },
+  {
+    name: "Pink",
+    hex: "#FFC0CB",
+    description: "A pink rose or cotton candy.",
+  },
+  {
+    name: "Brown",
+    hex: "#A52A2A",
+    description: "A chocolate bar or a tree trunk.",
+  },
+  {
+    name: "Gray",
+    hex: "#808080",
+    description: "A cloudy sky or a concrete wall.",
+  },
+  {
+    name: "Cyan",
+    hex: "#00FFFF",
+    description: "A tropical lagoon or a bright sky.",
+  },
 ];

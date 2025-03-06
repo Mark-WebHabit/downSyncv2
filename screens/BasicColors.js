@@ -20,11 +20,11 @@ const BasicColors = ({ navigation }) => {
   const { sound } = useContext(Context);
 
   const renderItem = ({ item, index }) => {
-    const isComplete = colors[index].complete;
+    const isComplete = colors[index]?.complete;
 
     const imageSource = images[index % images.length];
 
-    const newItem = { ...item, uid: colors[index].uid };
+    const newItem = { ...item, uid: colors[index]?.uid };
 
     const navigateToGame = () => {
       sound();
@@ -54,7 +54,7 @@ const BasicColors = ({ navigation }) => {
           data={colorsObj}
           renderItem={renderItem}
           keyExtractor={(item, i) => i}
-          numColumns={3}
+          numColumns={4}
           contentContainerStyle={styles.flatlist}
         />
       </View>
