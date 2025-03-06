@@ -16,18 +16,18 @@ const images = [
 ];
 
 const EmotionMatching = ({ navigation }) => {
-  const { emotionMatching } = useContext(EmotionContext);
+  const { emotionsMatching } = useContext(EmotionContext);
   const { sound } = useContext(Context);
 
   const renderItem = ({ item, index }) => {
-    const isComplete = emotionMatching[index].complete;
+    const isComplete = emotionsMatching[index].complete;
 
     const imageSource = images[index % images.length];
 
     const newItem = {
       ...item,
-      name: emotionMatching[index].name,
-      uid: emotionMatching[index].uid,
+      name: emotionsMatching[index].name,
+      uid: emotionsMatching[index].uid,
     };
 
     const navigateToGame = () => {

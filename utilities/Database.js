@@ -30,36 +30,6 @@ export const updateMatching = async (uid, key, setState, state) => {
   }
 };
 
-export const updateEmotionTypeComplete = async (uid) => {
-  // Reference to the user's data
-  const user = await getSavedUser();
-  const userRef = ref(db, `emotions/type/${user.uid}/${uid}`);
-
-  try {
-    // Update the specific field in the node
-    await update(userRef, {
-      complete: true,
-    });
-  } catch (error) {
-    console.error("Error updating data: ", error);
-  }
-};
-
-export const updateEmotionTypeMatching = async (uid) => {
-  // Reference to the user's data
-  const user = await getSavedUser();
-  const userRef = ref(db, `emotions/matching/${user.uid}/${uid}`);
-
-  try {
-    // Update the specific field in the node
-    await update(userRef, {
-      complete: true,
-    });
-  } catch (error) {
-    console.error("Error updating data: ", error);
-  }
-};
-
 export const updateUsername = async (name) => {
   // Reference to the user's data
   const user = await getSavedUser();

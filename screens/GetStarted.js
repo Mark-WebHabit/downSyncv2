@@ -19,7 +19,6 @@ import { db } from "../firebase";
 import { savePreference } from "../utilities/preferences";
 import {
   createGameInstance,
-  CreateEmotionMatchingINstance,
   createLoginDocument,
 } from "../utilities/CreateGameInstance";
 
@@ -97,7 +96,6 @@ const GetStarted = ({ navigation }) => {
       createLoginDocument(newUserRef.key);
 
       await createGameInstance();
-      await CreateEmotionMatchingINstance(newUserRef.key);
 
       setLoading(false);
       setIsModal(false);

@@ -14,8 +14,9 @@ import { generateTwoRandomNumbers } from "../utilities/Arrays";
 import { emotionSample } from "../assets/emotions_sample_flatfiledb_local";
 import useUserPreferences from "../customHooks/useUserPreference";
 import { feedbackSound } from "../customHooks/PlaySound";
-import { updateEmotionTypeMatching } from "../utilities/Database";
+import { updateMatching } from "../utilities/Database";
 import { Context } from "../DataContext";
+import { EmotionContext } from "../GroupContext/EmotionContext";
 
 const backgrounds = [
   require("../assets/images/buttonbluebox.png"),
@@ -30,6 +31,8 @@ const EmotionMatchingLevel = ({ navigation, route }) => {
 
   const [emotionsArray, setEmotionsArray] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const { emotionsMatching, setEmotionsMatching } = useContext(EmotionContext);
 
   useEffect(() => {
     const loadData = async () => {
@@ -69,7 +72,12 @@ const EmotionMatchingLevel = ({ navigation, route }) => {
   const hanldeCLick = async (el) => {
     if (item.name == el.index && el.emotion == item.emotion) {
       const id = item.uid;
-      await updateEmotionTypeMatching(id);
+      await updateMatching(
+        id,
+        "emotionsMatching",
+        setEmotionsMatching,
+        emotionsMatching
+      );
       feedbackSound(true);
       stop();
       navigation.goBack();

@@ -46,6 +46,7 @@ export const createGameInstance = async () => {
     const basicShapes = require("../assets/db/arts/basicShapes.json");
     const shapesMatching = require("../assets/db/arts/basicShapes.json");
     const emotionsType = require("../assets/db/emotions/typeEmotions.json");
+    const emotionsMatching = require("../assets/db/emotions/emotionMatching.json");
 
     storeData("easy", easyData);
     storeData("medium", mediumData);
@@ -57,31 +58,9 @@ export const createGameInstance = async () => {
     storeData("basicShapes", basicShapes);
     storeData("shapesMatching", shapesMatching);
     storeData("typeEmotions", emotionsType);
+    storeData("emotionsMatching", emotionsMatching);
   } catch (error) {
     console.error("Error in CreateGameInstance with push:", error);
-    throw error; // Re-throw the error for the caller to handle
-  }
-};
-
-export const CreateEmotionMatchingINstance = async (key) => {
-  try {
-    // Base reference for the game instance
-    const baseRef = sref(db, `emotions/matching/${key}`);
-
-    // Create an array of promises for all animal entries
-    const promises = emotionSample.map((_, i) => {
-      const newRef = push(baseRef); // Generate a unique key
-      return set(newRef, {
-        name: i,
-        complete: false,
-      });
-    });
-
-    // Wait for all promises to resolve
-    await Promise.all(promises);
-    return "All emotions are inserted";
-  } catch (error) {
-    console.error("Error in CreateEmotionMatchingINstance with push:", error);
     throw error; // Re-throw the error for the caller to handle
   }
 };

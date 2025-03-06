@@ -9,47 +9,20 @@ const EmotionContextProvider = ({ children }) => {
   const [fetching, setFetching] = useState(true);
   const [user, setUser] = useState(null);
   const [emotionTypes, setEmotionTypes] = useState(null);
-  const [emotionMatching, setEmotionMatching] = useState(null);
+  const [emotionsMatching, setEmotionsMatching] = useState(null);
   useEffect(() => {
     async function getUser() {
       const savedUser = await getSavedUser();
       setUser(savedUser);
 
       const typeEmotions = await getData("typeEmotions");
+      const emotionsMatchingData = await getData("emotionsMatching");
 
       if (savedUser?.uid) {
         setEmotionTypes(typeEmotions);
+        setEmotionsMatching(emotionsMatchingData);
 
-        const unsubscribeEmotionMatching = createListener(
-          `emotions/matching`,
-          savedUser.uid,
-          (data) => {
-            const result = [];
-
-            const keys = Object.keys(data);
-            keys.forEach((key) => {
-              const obj = {
-                uid: key,
-                ...data[key],
-              };
-
-              result.push(obj);
-            });
-
-            setEmotionMatching(result);
-          }
-        );
         setFetching(false);
-        // Add more listeners here as needed
-        // const unsubscribeAnother = createListener('another_path', savedUser.uid, (data) => { ... });
-
-        // Cleanup listeners when the component unmounts
-        return () => {
-          unsubscribeEmotionTypes();
-          unsubscribeEmotionMatching();
-
-          // unsubscribeAnother();
-        };
       }
     }
     getUser();
@@ -62,8 +35,8 @@ const EmotionContextProvider = ({ children }) => {
         user,
         emotionTypes,
         setEmotionTypes,
-        emotionMatching,
-        setEmotionMatching,
+        emotionsMatching,
+        setEmotionsMatching,
       }}
     >
       {children}
