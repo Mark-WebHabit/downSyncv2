@@ -7,7 +7,7 @@ const CollapsibleColors = ({ colors, showColors, user }) => {
   const completed = colors?.length
     ? colors.filter((el) => el.complete === true).length
     : 0;
-  const pending = colors?.length ? colors.length - completed : 49;
+  const pending = colors?.length ? colors.length - completed : 8;
 
   const data = [
     {

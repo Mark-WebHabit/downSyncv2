@@ -7,7 +7,7 @@ const CollapsibleGameMatching = ({ gameMatching, showGameMatching, user }) => {
   const completed = gameMatching?.length
     ? gameMatching.filter((el) => el.complete === true).length
     : 0;
-  const pending = gameMatching?.length ? gameMatching.length - completed : 49;
+  const pending = gameMatching?.length ? gameMatching.length - completed : 26;
 
   const data = [
     {

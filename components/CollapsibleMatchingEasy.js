@@ -7,7 +7,7 @@ const CollapsibleMatchingEasy = ({ matchingEasy, showMathingEasy, user }) => {
   const completed = matchingEasy?.length
     ? matchingEasy.filter((el) => el.complete === true).length
     : 0;
-  const pending = matchingEasy?.length ? matchingEasy.length - completed : 49;
+  const pending = matchingEasy?.length ? matchingEasy.length - completed : 24;
 
   const data = [
     {
@@ -50,8 +50,8 @@ const CollapsibleMatchingEasy = ({ matchingEasy, showMathingEasy, user }) => {
             absolute
           />
           <Text style={styles.info}>
-            {user.user} has completed {completed} out of {matchingEasy.length}{" "}
-            questions
+            {user.username} has completed {completed} out of{" "}
+            {matchingEasy.length} questions
           </Text>
         </>
       )}

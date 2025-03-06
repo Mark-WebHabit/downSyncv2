@@ -109,7 +109,7 @@ const Progress = ({ navigation }) => {
           />
         </TouchableOpacity>
         <Summary logins={logins} user={user} showSummary={showSummery} />
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.button}
           onPress={() => setShowRecentLogin(!showRecentLogin)}
         >
@@ -126,7 +126,7 @@ const Progress = ({ navigation }) => {
           filteredLogins={filteredLogins}
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
-        />
+        /> */}
         <TouchableOpacity
           style={styles.button}
           onPress={() => setShowGameMatching(!showGameMatching)}

@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { getSavedUser } from "../utilities/preferences";
 import { createListener } from "../utilities/CreateListener";
+import { getData } from "../utilities/LocalStorage";
 
 export const ProgressContext = createContext(null);
 const Dashboard = ({ children }) => {
@@ -26,7 +27,31 @@ const Dashboard = ({ children }) => {
       const savedUser = await getSavedUser();
       setUser(savedUser);
 
+      const matchingEasyData = await getData("easy");
+      const matchingMediumData = await getData("medium");
+      const matchingHardData = await getData("hard");
+      const objectMatchingData = await getData("objectMatching");
+      const lettersData = await getData("letters");
+      const dndData = await getData("dnd");
+      const colorsData = await getData("colors");
+      const basicShapesData = await getData("basicShapes");
+      const shapesMatchingData = await getData("shapesMatching");
+      const emotionTypesData = await getData("typeEmotions");
+      const emotionMatchingData = await getData("emotionsMatching");
+
       if (savedUser?.username) {
+        setMatchingEasy(matchingEasyData);
+        setMatchingMedium(matchingMediumData);
+        setMatchingHard(matchingHardData);
+        setGameMatching(objectMatchingData);
+        setLetters(lettersData);
+        setDndObjects(dndData);
+        setColors(colorsData);
+        setBasicShapes(basicShapesData);
+        setShapesMatching(shapesMatchingData);
+        setEmotionTypes(emotionTypesData);
+        setEmotionMatching(emotionMatchingData);
+
         const unsubscribeLoginDates = createListener(
           `logins`,
           savedUser.uid,
@@ -54,238 +79,11 @@ const Dashboard = ({ children }) => {
           }
         );
 
-        const unsubscribeEmotionTypes = createListener(
-          `emotions/type`,
-          savedUser.uid,
-          (data) => {
-            const result = [];
-
-            const keys = Object.keys(data);
-            keys.forEach((key) => {
-              const obj = {
-                uid: key,
-                ...data[key],
-              };
-
-              result.push(obj);
-            });
-
-            setEmotionTypes(result);
-          }
-        );
-        const unsubscribeEmotionMatching = createListener(
-          `emotions/matching`,
-          savedUser.uid,
-          (data) => {
-            const result = [];
-
-            const keys = Object.keys(data);
-            keys.forEach((key) => {
-              const obj = {
-                uid: key,
-                ...data[key],
-              };
-
-              result.push(obj);
-            });
-
-            setEmotionMatching(result);
-          }
-        );
-
-        const unsubscribeMatchingEasy = createListener(
-          `animals/matching/easy`,
-          savedUser.uid,
-          (data) => {
-            const result = [];
-
-            const keys = Object.keys(data);
-            keys.forEach((key) => {
-              const obj = {
-                uid: key,
-                ...data[key],
-              };
-
-              result.push(obj);
-            });
-
-            setMatchingEasy(result);
-          }
-        );
-
-        const unsubscribeMatchingMedium = createListener(
-          `animals/matching/medium`,
-          savedUser.uid,
-          (data) => {
-            const result = [];
-
-            const keys = Object.keys(data);
-            keys.forEach((key) => {
-              const obj = {
-                uid: key,
-                ...data[key],
-              };
-
-              result.push(obj);
-            });
-
-            setMatchingMedium(result);
-          }
-        );
-
-        const unsubscribeMatchingHard = createListener(
-          `animals/matching/hard`,
-          savedUser.uid,
-          (data) => {
-            const result = [];
-
-            const keys = Object.keys(data);
-            keys.forEach((key) => {
-              const obj = {
-                uid: key,
-                ...data[key],
-              };
-
-              result.push(obj);
-            });
-
-            setMatchingHard(result);
-          }
-        );
-
-        const unsubscribeLetters = createListener(
-          `words/letters`,
-          savedUser.uid,
-          (data) => {
-            const result = [];
-
-            const keys = Object.keys(data);
-            keys.forEach((key) => {
-              const obj = {
-                uid: key,
-                ...data[key],
-              };
-
-              result.push(obj);
-            });
-
-            setLetters(result);
-          }
-        );
-        const unsubscribeDndProgress = createListener(
-          `words/dnd`,
-          savedUser.uid,
-          (data) => {
-            const result = [];
-
-            const keys = Object.keys(data);
-            keys.forEach((key) => {
-              const obj = {
-                uid: key,
-                ...data[key],
-              };
-
-              result.push(obj);
-            });
-
-            setDndObjects(result);
-          }
-        );
-
-        const unsubscribeColors = createListener(
-          `arts/colors`,
-          savedUser.uid,
-          (data) => {
-            const result = [];
-
-            const keys = Object.keys(data);
-            keys.forEach((key) => {
-              const obj = {
-                uid: key,
-                ...data[key],
-              };
-
-              result.push(obj);
-            });
-
-            setColors(result);
-          }
-        );
-
-        const unsubscribeBasicShapes = createListener(
-          `arts/shapes/basic`,
-          savedUser.uid,
-          (data) => {
-            const result = [];
-
-            const keys = Object.keys(data);
-            keys.forEach((key) => {
-              const obj = {
-                uid: key,
-                ...data[key],
-              };
-
-              result.push(obj);
-            });
-
-            setBasicShapes(result);
-          }
-        );
-        const unsubscribeMatchingShapes = createListener(
-          `arts/shapes/matching`,
-          savedUser.uid,
-          (data) => {
-            const result = [];
-
-            const keys = Object.keys(data);
-            keys.forEach((key) => {
-              const obj = {
-                uid: key,
-                ...data[key],
-              };
-
-              result.push(obj);
-            });
-
-            setShapesMatching(result);
-          }
-        );
-        const unsubscribeGameMatching = createListener(
-          `games/matching`,
-          savedUser.uid,
-          (data) => {
-            const result = [];
-
-            const keys = Object.keys(data);
-            keys.forEach((key) => {
-              const obj = {
-                uid: key,
-                ...data[key],
-              };
-
-              result.push(obj);
-            });
-
-            setGameMatching(result);
-          }
-        );
-
         setFetching(false);
 
         // Cleanup listeners when the component unmounts
         return () => {
-          unsubscribeEmotionTypes();
-          unsubscribeEmotionMatching();
-          unsubscribeMatchingEasy();
-          unsubscribeMatchingMedium();
-          unsubscribeMatchingHard();
-          unsubscribeLetters();
-          unsubscribeDndProgress();
-          unsubscribeColors();
-          unsubscribeBasicShapes();
-          unsubscribeMatchingShapes();
           unsubscribeLoginDates();
-          unsubscribeGameMatching();
         };
       }
     }
