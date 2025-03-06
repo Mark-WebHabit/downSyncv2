@@ -2,16 +2,24 @@ import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
 import React, { useContext, useEffect } from "react";
 import MainContainer from "../components/MainContainer";
 import { Context } from "../DataContext";
-import { updateBasicShapes } from "../utilities/Database";
+import { updateBasicShapes, updateMatching } from "../utilities/Database";
+import { ArtContext } from "../GroupContext/ArtsContext";
 const ShapesBasicLevels = ({ navigation, route }) => {
   const { item } = route.params;
   const { speak } = useContext(Context);
+
+  const { basicShapes, setBasicShapes } = useContext(ArtContext);
 
   useEffect(() => {
     speak(`${item.shape}; ${item.description}`);
 
     (async function () {
-      await updateBasicShapes(item.uid);
+      await updateMatching(
+        item.uid,
+        "basicShapes",
+        setBasicShapes,
+        basicShapes
+      );
     })();
   }, []);
 

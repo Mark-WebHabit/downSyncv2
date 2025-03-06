@@ -21,7 +21,6 @@ import {
   createGameInstance,
   CreateEmotionTypeINstance,
   CreateEmotionMatchingINstance,
-  CreateArtColorsInstance,
   CreateArtShapesBasicInstance,
   CreateArtShapesBasicMatching,
   createLoginDocument,
@@ -103,7 +102,7 @@ const GetStarted = ({ navigation }) => {
       await createGameInstance();
       await CreateEmotionTypeINstance(newUserRef.key);
       await CreateEmotionMatchingINstance(newUserRef.key);
-      await CreateArtColorsInstance(newUserRef.key);
+
       await CreateArtShapesBasicInstance(newUserRef.key);
       await CreateArtShapesBasicMatching(newUserRef.key);
       setLoading(false);

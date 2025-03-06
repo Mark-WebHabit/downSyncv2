@@ -43,6 +43,8 @@ export const createGameInstance = async () => {
     const letters = require("../assets/db/words/letters.json");
     const dnd = require("../assets/db/words/dnd.json");
     const colors = require("../assets/db/arts/colors.json");
+    const basicShapes = require("../assets/db/arts/basicShapes.json");
+    const shapesMatching = require("../assets/db/arts/basicShapes.json");
 
     storeData("easy", easyData);
     storeData("medium", mediumData);
@@ -51,6 +53,8 @@ export const createGameInstance = async () => {
     storeData("letters", letters);
     storeData("dnd", dnd);
     storeData("colors", colors);
+    storeData("basicShapes", basicShapes);
+    storeData("shapesMatching", shapesMatching);
   } catch (error) {
     console.error("Error in CreateGameInstance with push:", error);
     throw error; // Re-throw the error for the caller to handle
@@ -101,28 +105,7 @@ export const CreateEmotionMatchingINstance = async (key) => {
     throw error; // Re-throw the error for the caller to handle
   }
 };
-export const CreateArtColorsInstance = async (key) => {
-  try {
-    // Base reference for the game instance
-    const baseRef = sref(db, `arts/colors/${key}`);
 
-    // Create an array of promises for all animal entries
-    const promises = colorsObj.map((_, i) => {
-      const newRef = push(baseRef); // Generate a unique key
-      return set(newRef, {
-        name: i,
-        complete: false,
-      });
-    });
-
-    // Wait for all promises to resolve
-    await Promise.all(promises);
-    return "All colors are inserted";
-  } catch (error) {
-    console.error("Error in CreateArtColorsInstance with push:", error);
-    throw error; // Re-throw the error for the caller to handle
-  }
-};
 export const CreateArtShapesBasicInstance = async (key) => {
   try {
     // Base reference for the game instance

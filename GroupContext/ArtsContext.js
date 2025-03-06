@@ -18,29 +18,12 @@ const ArtContextProvider = ({ children }) => {
       setUser(savedUser);
 
       const colorsData = await getData("colors");
+      const basicShapesData = await getData("basicShapes");
 
       if (savedUser?.uid) {
         setColors(colorsData);
+        setBasicShapes(basicShapesData);
 
-        const unsubscribeBasicShapes = createListener(
-          `arts/shapes/basic`,
-          savedUser.uid,
-          (data) => {
-            const result = [];
-
-            const keys = Object.keys(data);
-            keys.forEach((key) => {
-              const obj = {
-                uid: key,
-                ...data[key],
-              };
-
-              result.push(obj);
-            });
-
-            setBasicShapes(result);
-          }
-        );
         const unsubscribeMatchingShapes = createListener(
           `arts/shapes/matching`,
           savedUser.uid,
@@ -62,15 +45,9 @@ const ArtContextProvider = ({ children }) => {
         );
 
         setFetching(false);
-        // Add more listeners here as needed
-        // const unsubscribeAnother = createListener('another_path', savedUser.uid, (data) => { ... });
 
-        // Cleanup listeners when the component unmounts
         return () => {
-          unsubscribeColors();
-          unsubscribeBasicShapes();
           unsubscribeMatchingShapes();
-          // unsubscribeAnother();
         };
       }
     }
@@ -79,7 +56,16 @@ const ArtContextProvider = ({ children }) => {
 
   return (
     <ArtContext.Provider
-      value={{ fetching, user, colors, setColors, basicShapes, shapesMatching }}
+      value={{
+        fetching,
+        user,
+        colors,
+        setColors,
+        basicShapes,
+        setBasicShapes,
+        shapesMatching,
+        setShapesMatching,
+      }}
     >
       {children}
     </ArtContext.Provider>
