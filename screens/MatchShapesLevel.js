@@ -136,6 +136,11 @@ const styles = StyleSheet.create({
     width: "20%",
     aspectRatio: 1,
     padding: 10,
+    borderWidth: 5,
+    padding: 10,
+
+    borderRadius: "100%",
+    backgroundColor: "#E6EDEC",
   },
   image: {
     width: "100%",
