@@ -64,7 +64,7 @@ const GameModes = ({ navigation }) => {
               },
             ]}
           >
-            Sound
+            EASY
           </Text>
         </ImageBackground>
       </TouchableOpacity>
@@ -97,7 +97,7 @@ const GameModes = ({ navigation }) => {
               },
             ]}
           >
-            Name
+            Moderate
           </Text>
         </ImageBackground>
       </TouchableOpacity>
@@ -130,7 +130,7 @@ const GameModes = ({ navigation }) => {
               },
             ]}
           >
-            Description
+            HARD
           </Text>
         </ImageBackground>
       </TouchableOpacity>
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
   },
   button: {
-    width: 300,
+    width: 270,
     height: 70,
   },
   buttonWrapper: {
