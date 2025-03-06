@@ -19,8 +19,6 @@ export const generateTwoRandomNumbers = (excludeIndex, num = 49) => {
   // Push the excluded index to the array
   numbers.push(excludeIndex);
 
-  console.log(numbers);
-
   // Randomize the order of the array
   return randomizeOrder(numbers);
 };

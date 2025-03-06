@@ -20,8 +20,6 @@ export const updateMatching = async (uid, key, setState, state) => {
       return lvl;
     });
 
-    console.log(newState);
-
     storeData(key, newState);
 
     setState(newState);
