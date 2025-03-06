@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import { getSavedUser } from "../utilities/preferences";
 import { createListener } from "../utilities/CreateListener";
+import { getData } from "../utilities/LocalStorage";
 
 export const WordContext = createContext(null);
 
@@ -14,27 +15,10 @@ const WordContextProvider = ({ children }) => {
     async function getUser() {
       const savedUser = await getSavedUser();
       setUser(savedUser);
+      const lettersData = await getData("letters");
 
       if (savedUser?.uid) {
-        const unsubscribeLetters = createListener(
-          `words/letters`,
-          savedUser.uid,
-          (data) => {
-            const result = [];
-
-            const keys = Object.keys(data);
-            keys.forEach((key) => {
-              const obj = {
-                uid: key,
-                ...data[key],
-              };
-
-              result.push(obj);
-            });
-
-            setLetters(result);
-          }
-        );
+        setLetters(lettersData);
         const unsubscribeDndProgress = createListener(
           `words/dnd`,
           savedUser.uid,
@@ -71,7 +55,9 @@ const WordContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <WordContext.Provider value={{ fetching, user, letters, dndObjects }}>
+    <WordContext.Provider
+      value={{ fetching, user, letters, setLetters, dndObjects }}
+    >
       {children}
     </WordContext.Provider>
   );

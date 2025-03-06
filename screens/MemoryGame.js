@@ -11,11 +11,7 @@ import { randomizeOrder } from "../utilities/Arrays";
 import { objects } from "../assets/objects_flatfiledb";
 import { Image } from "expo-image";
 import MainContainer from "../components/MainContainer";
-import {
-  usePlayMp3,
-  usePlaySound,
-  feedbackSound,
-} from "../customHooks/PlaySound";
+import { usePlayMp3, feedbackSound } from "../customHooks/PlaySound";
 import { Context } from "../DataContext";
 
 const size = 6;

@@ -27,7 +27,6 @@ import {
   CreateArtShapesBasicInstance,
   CreateArtShapesBasicMatching,
   createLoginDocument,
-  CreateObjectMatching,
 } from "../utilities/CreateGameInstance";
 
 // components
@@ -104,14 +103,12 @@ const GetStarted = ({ navigation }) => {
       createLoginDocument(newUserRef.key);
 
       await createGameInstance();
-      await CreateWrodInstanceLetters(newUserRef.key);
       await CreateWrodInstanceDragAndDrop(newUserRef.key);
       await CreateEmotionTypeINstance(newUserRef.key);
       await CreateEmotionMatchingINstance(newUserRef.key);
       await CreateArtColorsInstance(newUserRef.key);
       await CreateArtShapesBasicInstance(newUserRef.key);
       await CreateArtShapesBasicMatching(newUserRef.key);
-      await CreateObjectMatching(newUserRef.key);
       setLoading(false);
       setIsModal(false);
       navigation.navigate("Home");

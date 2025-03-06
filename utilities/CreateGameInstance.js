@@ -1,11 +1,6 @@
 import { set, push, ref as sref, serverTimestamp } from "firebase/database";
 import { onDisconnect } from "firebase/database";
 import { db } from "../firebase";
-import {
-  animals,
-  animalsName,
-  animalsDescribe,
-} from "../assets/animal_flatfiledb";
 
 import { alphabetWords } from "../assets/letters_flatfiledb_local";
 import { objects } from "../assets/objects_flatfiledb";
@@ -14,10 +9,8 @@ import { emotionSample } from "../assets/emotions_sample_flatfiledb_local";
 import { colorsObj } from "../assets/colors_flatfiledb_local";
 import { shapes } from "../assets/shapes_flatfiledb_local";
 import { shapesObj } from "../assets/shapes_sample_flatfiledb_local";
-import { getSavedUser } from "./preferences";
 import { matching } from "../assets/matching_flatfiledb_local";
 import { getCurrentDate } from "../utilities/Date";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { storeData } from "../utilities/LocalStorage";
 
 // Function to create a new login document
@@ -48,39 +41,19 @@ export const createGameInstance = async () => {
     const mediumData = require("../assets/db/animals/medium.json");
     const hardData = require("../assets/db/animals/hard.json");
     const objectMatchingData = require("../assets/db/games/matching.json");
+    const letters = require("../assets/db/words/letters.json");
 
     storeData("easy", easyData);
     storeData("medium", mediumData);
     storeData("hard", hardData);
     storeData("objectMatching", objectMatchingData);
+    storeData("letters", letters);
   } catch (error) {
     console.error("Error in CreateGameInstance with push:", error);
     throw error; // Re-throw the error for the caller to handle
   }
 };
 
-export const CreateWrodInstanceLetters = async (key) => {
-  try {
-    // Base reference for the game instance
-    const baseRef = sref(db, `words/letters/${key}`);
-
-    // Create an array of promises for all animal entries
-    const promises = alphabetWords.map((_, i) => {
-      const newRef = push(baseRef); // Generate a unique key
-      return set(newRef, {
-        name: i,
-        complete: false,
-      });
-    });
-
-    // Wait for all promises to resolve
-    await Promise.all(promises);
-    return "All Letters are inserted";
-  } catch (error) {
-    console.error("Error in CreateWrodInstanceLetters with push:", error);
-    throw error; // Re-throw the error for the caller to handle
-  }
-};
 export const CreateWrodInstanceDragAndDrop = async (key) => {
   try {
     // Base reference for the game instance
@@ -210,29 +183,6 @@ export const CreateArtShapesBasicMatching = async (key) => {
     return "All shapes are inserted";
   } catch (error) {
     console.error("Error in CreateArtShapesBasicMatching with push:", error);
-    throw error; // Re-throw the error for the caller to handle
-  }
-};
-
-export const CreateObjectMatching = async (key) => {
-  try {
-    // Base reference for the game instance
-    const baseRef = sref(db, `games/matching/${key}`);
-
-    // Create an array of promises for all animal entries
-    const promises = matching.map((_, i) => {
-      const newRef = push(baseRef); // Generate a unique key
-      return set(newRef, {
-        name: i,
-        complete: false,
-      });
-    });
-
-    // Wait for all promises to resolve
-    await Promise.all(promises);
-    return "All objects are inserted";
-  } catch (error) {
-    console.error("Error in create matching objects with push:", error);
     throw error; // Re-throw the error for the caller to handle
   }
 };

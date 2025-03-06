@@ -3,13 +3,16 @@ import React, { useContext, useEffect, useState } from "react";
 
 import MainContainer from "../components/MainContainer";
 import { Image } from "expo-image";
-import { udapteLettersComplete } from "../utilities/Database";
+import { updateMatching } from "../utilities/Database";
 import { Context } from "../DataContext";
+import { WordContext } from "../GroupContext/WordsContext";
 
 const LetterExample = ({ navigation, route }) => {
   const { sound, speak } = useContext(Context);
   const [ndx, setNdx] = useState(0);
   const item = route.params;
+
+  const { letters, setLetters } = useContext(WordContext);
 
   const handleNext = () => {
     sound();
@@ -26,7 +29,7 @@ const LetterExample = ({ navigation, route }) => {
 
   useEffect(() => {
     if (ndx == item.images.length) {
-      udapteLettersComplete(item.uid);
+      updateMatching(item.uid, "letters", setLetters, letters);
     }
 
     if (ndx == 0) {
