@@ -46,7 +46,7 @@ const GameScreen = ({ navigation }) => {
               },
             ]}
           >
-            Matching
+            EASY
           </Text>
         </ImageBackground>
       </TouchableOpacity>
@@ -75,7 +75,7 @@ const GameScreen = ({ navigation }) => {
               },
             ]}
           >
-            TIC-TAC-TOE
+            FAIR
           </Text>
         </ImageBackground>
       </TouchableOpacity>
@@ -104,7 +104,7 @@ const GameScreen = ({ navigation }) => {
               },
             ]}
           >
-            Memory
+            HARD
           </Text>
         </ImageBackground>
       </TouchableOpacity>

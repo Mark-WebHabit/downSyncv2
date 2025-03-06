@@ -64,7 +64,7 @@ const GameModes = ({ navigation }) => {
               },
             ]}
           >
-            EASY
+            Sound
           </Text>
         </ImageBackground>
       </TouchableOpacity>
@@ -97,7 +97,7 @@ const GameModes = ({ navigation }) => {
               },
             ]}
           >
-            Moderate
+            Name
           </Text>
         </ImageBackground>
       </TouchableOpacity>
@@ -130,7 +130,7 @@ const GameModes = ({ navigation }) => {
               },
             ]}
           >
-            HARD
+            Description
           </Text>
         </ImageBackground>
       </TouchableOpacity>
