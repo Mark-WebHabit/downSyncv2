@@ -131,11 +131,7 @@ const EmotionMatchingLevel = ({ navigation, route }) => {
           style={styles.lowerBackground}
         >
           <TouchableOpacity
-            onPress={() =>
-              speak(
-                `Can you identify which image most closely represents the feelings of ${item.emotion}?`
-              )
-            }
+            onPress={() => speak(`Which image conveys ${item.emotion}?`)}
           >
             <Image
               source={require("../assets/images/speaker-black.png")}
@@ -146,13 +142,12 @@ const EmotionMatchingLevel = ({ navigation, route }) => {
             style={[
               styles.question,
               {
-                fontSize: bodyText,
+                fontSize: bodyText * 1.5,
                 fontWeight: "600",
               },
             ]}
           >
-            Can you identify which image most closely represents the feelings of
-            {" " + item.emotion}?
+            Which image conveys {" " + item.emotion}?
           </Text>
         </ImageBackground>
       </View>

@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
   },
   sample: {
-    fontSize: 25,
+    fontSize: 30,
     fontWeight: "bold",
     textTransform: "capitalize",
     textAlign: "center",
