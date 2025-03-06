@@ -27,19 +27,18 @@ const MathScreen = ({ navigation, route }) => {
   const generateQuestion = () => {
     let num1 = 0;
     let num2 = 0;
-    if (op == "minus" || op == "plus") {
-      num1 = Math.floor(Math.random() * 100) + 1;
-      num2 = Math.floor(Math.random() * 100) + 1;
 
-      while (num2 > num1) {
-        num2 = Math.floor(Math.random() * 100) + 1;
-      }
-    } else {
-      num1 = Math.floor(Math.random() * 100) + 1;
-      num2 = Math.floor(Math.random() * 10) + 1;
-      while (num2 > num1) {
+    if (op == "minus" || op == "plus") {
+      do {
+        num1 = Math.floor(Math.random() * 10) + 1;
         num2 = Math.floor(Math.random() * 10) + 1;
-      }
+      } while (
+        (op == "plus" && num1 + num2 > 30) ||
+        (op == "minus" && num1 - num2 > 30)
+      );
+    } else {
+      num1 = Math.floor(Math.random() * 9) + 1;
+      num2 = Math.floor(Math.random() * 9) + 1;
     }
 
     let correctAnswer = 0;
