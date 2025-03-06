@@ -20,11 +20,11 @@ const EmotionsType = ({ navigation }) => {
   const { sound, height, width } = useContext(Context);
 
   const renderItem = ({ item, index }) => {
-    const isComplete = emotionTypes[index].complete;
+    const isComplete = emotionTypes[index]?.complete;
 
     const imageSource = images[index % images.length];
 
-    const newItem = { ...item, uid: emotionTypes[index].uid };
+    const newItem = { ...item, uid: emotionTypes[index]?.uid };
 
     const navigateToGame = () => {
       sound();
@@ -56,7 +56,7 @@ const EmotionsType = ({ navigation }) => {
           data={emotions}
           renderItem={renderItem}
           keyExtractor={(item, i) => i}
-          numColumns={5}
+          numColumns={4}
           contentContainerStyle={styles.flatlist}
         />
       </View>

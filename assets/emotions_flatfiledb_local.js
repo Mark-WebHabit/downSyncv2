@@ -2,14 +2,8 @@ export const emotions = [
   {
     emotion: "happiness",
     s: "happy",
-    image: require("../assets/emotions/happy1.jpg"),
-    sampleImages: [
-      require(`../assets/emotions/happy1.jpg`),
-      require("../assets/emotions/happy2.jpg"),
-      require("../assets/emotions/happ3.jpg"),
-      require("../assets/emotions/happy4.jpg"),
-      require("../assets/emotions/happy5.jpg"),
-    ],
+    image: require("../assets/emoji/happiness.png"),
+
     examples: [
       "When we achieve a goal we've worked hard for",
       "Spending quality time with loved ones",
@@ -20,12 +14,8 @@ export const emotions = [
   },
   {
     emotion: "sadness",
-    image: require("../assets/emotions/sad1.jpg"),
-    sampleImages: [
-      require("../assets/emotions/sad1.jpg"),
-      require("../assets/emotions/sad2.jpg"),
-      require("../assets/emotions/sad3.jpg"),
-    ],
+    image: require("../assets/emoji/sadness.png"),
+
     examples: [
       "Losing someone we care about",
       "Experiencing failure or disappointment",
@@ -36,13 +26,8 @@ export const emotions = [
   },
   {
     emotion: "anger",
-    image: require("../assets/emotions/anger1.jpg"),
-    sampleImages: [
-      require("../assets/emotions/anger1.jpg"),
-      require("../assets/emotions/anger2.jpg"),
-      require("../assets/emotions/anger3.jpg"),
-      require("../assets/emotions/anger4.jpg"),
-    ],
+    image: require("../assets/emoji/anger.png"),
+
     examples: [
       "Facing injustice or unfair treatment",
       "Experiencing betrayal or hurt from someone we trust",
@@ -53,12 +38,8 @@ export const emotions = [
   },
   {
     emotion: "fear",
-    image: require("../assets/emotions/fear1.jpg"),
-    sampleImages: [
-      require("../assets/emotions/fear1.jpg"),
-      require("../assets/emotions/fear2.png"),
-      require("../assets/emotions/fear3.png"),
-    ],
+    image: require("../assets/emoji/fear.png"),
+
     examples: [
       "Facing a dangerous or threatening situation",
       "Anticipating potential harm or failure",
@@ -69,13 +50,8 @@ export const emotions = [
   },
   {
     emotion: "surprise",
-    image: require("../assets/emotions/surprise11.jpeg"),
-    sampleImages: [
-      require("../assets/emotions/surprise11.jpeg"),
-      require("../assets/emotions/surprise1.jpg"),
-      require("../assets/emotions/surprise2.jpg"),
-      require("../assets/emotions/surprise3.png"),
-    ],
+    image: require("../assets/emoji/surprised.png"),
+
     examples: [
       "Receiving unexpected news or gifts",
       "Witnessing something astonishing or out of the ordinary",
@@ -86,11 +62,8 @@ export const emotions = [
   },
   {
     emotion: "disgust",
-    image: require("../assets/emotions/disgust1.png"),
-    sampleImages: [
-      require("../assets/emotions/disgust1.png"),
-      require("../assets/emotions/disgust2.png"),
-    ],
+    image: require("../assets/emoji/disgusted.png"),
+
     examples: [
       "Seeing or smelling something unpleasant",
       "Encountering morally offensive behavior",
@@ -99,49 +72,11 @@ export const emotions = [
       "Reacting to unwanted or invasive physical contact",
     ],
   },
-  {
-    emotion: "anticipation",
-    image: require("../assets/emotions/anticipation1.png"),
-    sampleImages: [],
-    examples: [
-      "Looking forward to a future event or milestone",
-      "Waiting for the outcome of a significant decision",
-      "Preparing for a planned trip or activity",
-      "Awaiting the arrival of someone important",
-      "Experiencing a build-up of excitement before an event",
-    ],
-  },
-  {
-    emotion: "trust",
-    image: "",
-    sampleImages: [],
-    examples: [
-      "Building a strong relationship with someone over time",
-      "Experiencing consistent support from someone",
-      "Receiving honest communication and transparency",
-      "Sharing personal information and feeling secure",
-      "Relying on someone who has proven reliable in the past",
-    ],
-  },
-  {
-    emotion: "envy",
-    image: require("../assets/emotions/envy1.png"),
-    sampleImages: [],
-    examples: [
-      "Seeing others succeed where we want to",
-      "Comparing ourselves to others' achievements or possessions",
-      "Feeling overlooked or undervalued in comparison to others",
-      "Witnessing someone receive attention or praise",
-      "Desiring something we lack but see others have",
-    ],
-  },
+
   {
     emotion: "pride",
-    image: require("../assets/emotions/pride1.png"),
-    sampleImages: [
-      require("../assets/emotions/pride1.png"),
-      require("../assets/emotions/pride2.jpeg"),
-    ],
+    image: require("../assets/emoji/pride.png"),
+
     examples: [
       "Achieving personal or professional milestones",
       "Receiving recognition or awards",
@@ -150,26 +85,11 @@ export const emotions = [
       "Hearing praise from others for our achievements",
     ],
   },
-  {
-    emotion: "contentment",
-    image: require("../assets/emotions/content1.jpg"),
-    sampleImages: [],
-    examples: [
-      "Enjoying a peaceful moment in nature",
-      "Feeling fulfilled in personal or professional life",
-      "Having a relaxing day off from work",
-      "Spending time doing what we love",
-      "Feeling grateful for what we have",
-    ],
-  },
+
   {
     emotion: "boredom",
-    image: require("../assets/emotions/boredom1.jpg"),
-    sampleImages: [
-      require("../assets/emotions/boredom1.jpg"),
-      require("../assets/emotions/boredom2.jpg"),
-      require("../assets/emotions/boredom3.png"),
-    ],
+    image: require("../assets/emoji/bored.png"),
+
     examples: [
       "Having nothing to do or no tasks to complete",
       "Repeating the same activities over and over",
@@ -180,12 +100,8 @@ export const emotions = [
   },
   {
     emotion: "confusion",
-    image: require("../assets/emotions/confuse1.jpg"),
-    sampleImages: [
-      require("../assets/emotions/confuse1.jpg"),
-      require("../assets/emotions/confuse2.jpg"),
-      require("../assets/emotions/confuse3.jpeg"),
-    ],
+    image: require("../assets/emoji/confused.png"),
+
     examples: [
       "Encountering something complex or hard to understand",
       "Receiving unclear instructions or mixed signals",
@@ -196,8 +112,8 @@ export const emotions = [
   },
   {
     emotion: "shame",
-    image: require("../assets/emotions/shame1.jpg"),
-    sampleImages: [],
+    image: require("../assets/emoji/shy.png"),
+
     examples: [
       "Doing something we regret and feeling guilty",
       "Being criticized or judged by others",
@@ -208,8 +124,8 @@ export const emotions = [
   },
   {
     emotion: "relief",
-    image: require("../assets/emotions/relief1.png"),
-    sampleImages: [require("../assets/emotions/relief1.png")],
+    image: require("../assets/emoji/relief.png"),
+
     examples: [
       "Overcoming a stressful situation",
       "Completing a difficult task successfully",
