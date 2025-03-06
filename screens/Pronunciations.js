@@ -15,7 +15,7 @@ const images = [
 ];
 
 const Pronunciations = ({ navigation }) => {
-  const { sound } = useContext(Context);
+  const { sound, height, width } = useContext(Context);
 
   const renderItem = ({ item, index }) => {
     const isComplete = false;
@@ -35,6 +35,8 @@ const Pronunciations = ({ navigation }) => {
         imageSource={imageSource}
         navigateToGame={navigateToGame}
         isComplete={isComplete}
+        height={Math.floor(height / 4.2)}
+        width={Math.round(width / 7.5)}
       />
     );
   };
@@ -50,7 +52,7 @@ const Pronunciations = ({ navigation }) => {
           data={wordsWithPronunciations}
           renderItem={renderItem}
           keyExtractor={(_, i) => i}
-          numColumns={5}
+          numColumns={7}
           contentContainerStyle={styles.flatlist}
         />
       </View>
@@ -64,6 +66,7 @@ const styles = StyleSheet.create({
   levelContainer: {
     marginHorizontal: "auto",
     height: "100%",
+    paddingTop: 10,
   },
   flatlist: {
     justifyContent: "center",

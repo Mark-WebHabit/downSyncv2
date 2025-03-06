@@ -19,11 +19,11 @@ const DandDList = ({ navigation }) => {
   const { dndObjects } = useContext(WordContext);
 
   const renderItem = ({ item, index }) => {
-    const isComplete = dndObjects[index].complete;
+    const isComplete = dndObjects[index]?.complete;
 
     const imageSource = images[index % images.length];
 
-    const newItem = { ...item, uid: dndObjects[index].uid };
+    const newItem = { ...item, uid: dndObjects[index]?.uid };
 
     const navigateToGame = () => {
       sound();
@@ -50,7 +50,7 @@ const DandDList = ({ navigation }) => {
     >
       <View style={styles.levelContainer}>
         <FlatList
-          data={objects}
+          data={objects.slice(0, 24)}
           renderItem={renderItem}
           keyExtractor={(_, i) => i}
           numColumns={6}
