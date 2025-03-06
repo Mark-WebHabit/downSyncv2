@@ -1,4 +1,4 @@
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet, TouchableOpacity, Text } from "react-native";
 import React, { useContext } from "react";
 
 // component
@@ -16,7 +16,6 @@ const Home = ({ navigation }) => {
       addStyle={styles.container}
       navigation={navigation}
     >
-      {/* <View style={} */}
       <TouchableOpacity
         style={styles.imgCOntainer}
         onPress={() => {
@@ -29,6 +28,7 @@ const Home = ({ navigation }) => {
           style={styles.play}
           contentFit="fill"
         />
+        <Text style={styles.clickHere}>Click Here!</Text>
       </TouchableOpacity>
     </MainContainer>
   );
@@ -40,13 +40,22 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
+    position: "relative",
   },
   imgCOntainer: {
+    height: 300,
+    width: 300,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  play: {
     height: 100,
     width: 100,
   },
-  play: {
-    height: "100%",
-    width: "100%",
+  clickHere: {
+    fontSize: 30,
+    fontWeight: "bold",
+    color: "white",
   },
 });
