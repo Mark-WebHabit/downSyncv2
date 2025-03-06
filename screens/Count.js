@@ -23,7 +23,7 @@ const height =
   (Platform.OS === "android" ? StatusBar.currentHeight : 0);
 
 const Count = ({ navigation }) => {
-  const [number, setNumber] = useState(Math.floor(Math.random() * 50)); // Generate number only once
+  const [number, setNumber] = useState(Math.floor(Math.random() * 20)); // Generate number only once
   const [answer, setAnswer] = useState("");
   const [doneTyping, setDoneTyping] = useState(false);
   const [randomObjects, setRandomObjects] = useState([]);
@@ -92,18 +92,27 @@ const Count = ({ navigation }) => {
       <View style={styles.bg}>
         <View style={styles.objectContainer}>
           {randomObjects.map((object, i) => (
-            <Image
+            <View
               key={i}
-              source={object.image}
-              contentFit="contain"
-              style={[
-                styles.image,
-                {
-                  width: width / number, // Divide width by number to fit images
-                  height: height / number, // Divide height by number to fit images
-                },
-              ]}
-            />
+              style={{
+                borderWidth: 2,
+                padding: 5,
+                borderRadius: 10,
+                backgroundColor: "white",
+              }}
+            >
+              <Image
+                source={object.image}
+                contentFit="contain"
+                style={[
+                  styles.image,
+                  {
+                    width: width / number, // Divide width by number to fit images
+                    height: height / number, // Divide height by number to fit images
+                  },
+                ]}
+              />
+            </View>
           ))}
         </View>
       </View>
