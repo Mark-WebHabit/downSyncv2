@@ -30,36 +30,6 @@ export const updateMatching = async (uid, key, setState, state) => {
   }
 };
 
-export const udapteLettersComplete = async (uid) => {
-  // Reference to the user's data
-  const user = await getSavedUser();
-  const userRef = ref(db, `words/letters/${user.uid}/${uid}`);
-
-  try {
-    // Update the specific field in the node
-    await update(userRef, {
-      complete: true,
-    });
-  } catch (error) {
-    console.error("Error updating data: ", error);
-  }
-};
-
-export const updateDandDComplete = async (uid) => {
-  // Reference to the user's data
-  const user = await getSavedUser();
-  const userRef = ref(db, `words/dnd/${user.uid}/${uid}`);
-
-  try {
-    // Update the specific field in the node
-    await update(userRef, {
-      complete: true,
-    });
-  } catch (error) {
-    console.error("Error updating data: ", error);
-  }
-};
-
 export const updateEmotionTypeComplete = async (uid) => {
   // Reference to the user's data
   const user = await getSavedUser();
@@ -79,51 +49,6 @@ export const updateEmotionTypeMatching = async (uid) => {
   // Reference to the user's data
   const user = await getSavedUser();
   const userRef = ref(db, `emotions/matching/${user.uid}/${uid}`);
-
-  try {
-    // Update the specific field in the node
-    await update(userRef, {
-      complete: true,
-    });
-  } catch (error) {
-    console.error("Error updating data: ", error);
-  }
-};
-
-export const updateBasicColors = async (uid) => {
-  // Reference to the user's data
-  const user = await getSavedUser();
-  const userRef = ref(db, `arts/colors/${user.uid}/${uid}`);
-
-  try {
-    // Update the specific field in the node
-    await update(userRef, {
-      complete: true,
-    });
-  } catch (error) {
-    console.error("Error updating data: ", error);
-  }
-};
-
-export const updateBasicShapes = async (uid) => {
-  // Reference to the user's data
-  const user = await getSavedUser();
-  const userRef = ref(db, `arts/shapes/basic/${user.uid}/${uid}`);
-
-  try {
-    // Update the specific field in the node
-    await update(userRef, {
-      complete: true,
-    });
-  } catch (error) {
-    console.error("Error updating data: ", error);
-  }
-};
-
-export const updateMatchingShapes = async (uid) => {
-  // Reference to the user's data
-  const user = await getSavedUser();
-  const userRef = ref(db, `arts/shapes/matching/${user.uid}/${uid}`);
 
   try {
     // Update the specific field in the node
@@ -169,19 +94,4 @@ export const updateTodaysMathAlgebra = (op) => {
   }
 
   const currentDate = getCurrentDate();
-};
-
-export const updateMatchingObjects = async (uid) => {
-  // Reference to the user's data
-  const user = await getSavedUser();
-  const userRef = ref(db, `games/matching/${user.uid}/${uid}`);
-
-  try {
-    // Update the specific field in the node
-    await update(userRef, {
-      complete: true,
-    });
-  } catch (error) {
-    console.error("Error updating data: ", error);
-  }
 };

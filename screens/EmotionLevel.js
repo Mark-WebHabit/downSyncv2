@@ -3,13 +3,16 @@ import React, { useContext, useEffect, useState } from "react";
 
 import MainContainer from "../components/MainContainer";
 import { Image } from "expo-image";
-import { updateEmotionTypeComplete } from "../utilities/Database";
+import { updateMatching } from "../utilities/Database";
 import { Context } from "../DataContext";
+import { EmotionContext } from "../GroupContext/EmotionContext";
 
 const EmotionLevel = ({ navigation, route }) => {
   const { sound, speak } = useContext(Context);
   const [ndx, setNdx] = useState(0);
   const { item } = route.params;
+
+  const { emotionTypes, setEmotionTypes } = useContext(EmotionContext);
 
   const handleNext = () => {
     sound();
@@ -26,7 +29,7 @@ const EmotionLevel = ({ navigation, route }) => {
 
   useEffect(() => {
     if (ndx == item.examples.length) {
-      updateEmotionTypeComplete(item.uid);
+      updateMatching(item.uid, "typeEmotions", setEmotionTypes, emotionTypes);
     }
 
     if (ndx == 0) {

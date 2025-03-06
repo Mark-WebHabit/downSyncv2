@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import { getSavedUser } from "../utilities/preferences";
 import { createListener } from "../utilities/CreateListener";
+import { getData } from "../utilities/LocalStorage";
 
 export const EmotionContext = createContext(null);
 
@@ -14,26 +15,11 @@ const EmotionContextProvider = ({ children }) => {
       const savedUser = await getSavedUser();
       setUser(savedUser);
 
+      const typeEmotions = await getData("typeEmotions");
+
       if (savedUser?.uid) {
-        const unsubscribeEmotionTypes = createListener(
-          `emotions/type`,
-          savedUser.uid,
-          (data) => {
-            const result = [];
+        setEmotionTypes(typeEmotions);
 
-            const keys = Object.keys(data);
-            keys.forEach((key) => {
-              const obj = {
-                uid: key,
-                ...data[key],
-              };
-
-              result.push(obj);
-            });
-
-            setEmotionTypes(result);
-          }
-        );
         const unsubscribeEmotionMatching = createListener(
           `emotions/matching`,
           savedUser.uid,
@@ -71,7 +57,14 @@ const EmotionContextProvider = ({ children }) => {
 
   return (
     <EmotionContext.Provider
-      value={{ fetching, user, emotionTypes, emotionMatching }}
+      value={{
+        fetching,
+        user,
+        emotionTypes,
+        setEmotionTypes,
+        emotionMatching,
+        setEmotionMatching,
+      }}
     >
       {children}
     </EmotionContext.Provider>

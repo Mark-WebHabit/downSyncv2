@@ -19,10 +19,7 @@ import { db } from "../firebase";
 import { savePreference } from "../utilities/preferences";
 import {
   createGameInstance,
-  CreateEmotionTypeINstance,
   CreateEmotionMatchingINstance,
-  CreateArtShapesBasicInstance,
-  CreateArtShapesBasicMatching,
   createLoginDocument,
 } from "../utilities/CreateGameInstance";
 
@@ -100,11 +97,8 @@ const GetStarted = ({ navigation }) => {
       createLoginDocument(newUserRef.key);
 
       await createGameInstance();
-      await CreateEmotionTypeINstance(newUserRef.key);
       await CreateEmotionMatchingINstance(newUserRef.key);
 
-      await CreateArtShapesBasicInstance(newUserRef.key);
-      await CreateArtShapesBasicMatching(newUserRef.key);
       setLoading(false);
       setIsModal(false);
       navigation.navigate("Home");
