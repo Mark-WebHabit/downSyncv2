@@ -19,6 +19,8 @@ const MatchingName = ({ navigation }) => {
 
   const { sound } = useContext(Context);
 
+  const { height, width } = useContext(Context);
+
   const renderItem = ({ item, index }) => {
     const isComplete = item.complete;
 
@@ -37,6 +39,8 @@ const MatchingName = ({ navigation }) => {
         imageSource={imageSource}
         navigateToGame={navigateToGame}
         isComplete={isComplete}
+        height={Math.floor(height / 4.2)}
+        width={Math.round(width / 7.5)}
       />
     );
   };
@@ -52,7 +56,7 @@ const MatchingName = ({ navigation }) => {
           data={matchingMedium}
           renderItem={renderItem}
           keyExtractor={(item) => item.uid}
-          numColumns={3}
+          numColumns={6}
           contentContainerStyle={styles.flatlist}
         />
       </View>

@@ -17,17 +17,17 @@ const images = [
 
 const EmotionMatching = ({ navigation }) => {
   const { emotionsMatching } = useContext(EmotionContext);
-  const { sound } = useContext(Context);
+  const { sound, height, width } = useContext(Context);
 
   const renderItem = ({ item, index }) => {
-    const isComplete = emotionsMatching[index].complete;
+    const isComplete = emotionsMatching[index]?.complete;
 
     const imageSource = images[index % images.length];
 
     const newItem = {
       ...item,
-      name: emotionsMatching[index].name,
-      uid: emotionsMatching[index].uid,
+      name: emotionsMatching[index]?.name,
+      uid: emotionsMatching[index]?.uid,
     };
 
     const navigateToGame = () => {
@@ -43,6 +43,8 @@ const EmotionMatching = ({ navigation }) => {
         imageSource={imageSource}
         navigateToGame={navigateToGame}
         isComplete={isComplete}
+        height={Math.floor(height / 3.5)}
+        width={Math.round(width / 6)}
       />
     );
   };
@@ -58,7 +60,7 @@ const EmotionMatching = ({ navigation }) => {
           data={emotionSample}
           renderItem={renderItem}
           keyExtractor={(item, i) => i}
-          numColumns={3}
+          numColumns={5}
           contentContainerStyle={styles.flatlist}
         />
       </View>
@@ -72,8 +74,10 @@ const styles = StyleSheet.create({
   levelContainer: {
     marginHorizontal: "auto",
     height: "100%",
+    marginTop: 10,
   },
   flatlist: {
     justifyContent: "center",
+    gap: 7,
   },
 });

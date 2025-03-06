@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import preferenceEvents from "../utilities/EventEMitter";
 import { getPreference } from "../utilities/preferences";
 
 const useUserPreferences = () => {
@@ -18,7 +17,7 @@ const useUserPreferences = () => {
       setFontSize(() => {
         if (fs === "large") return 50;
         if (fs === "small") return 25;
-        return 40; // Default medium size 40
+        return 35; // Default medium size 40
       });
 
       setButtonFontColor(bfc || "#DD2525");

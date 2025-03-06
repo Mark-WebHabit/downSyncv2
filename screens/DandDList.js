@@ -15,7 +15,7 @@ const images = [
 ];
 
 const DandDList = ({ navigation }) => {
-  const { sound } = useContext(Context);
+  const { sound, height, width } = useContext(Context);
   const { dndObjects } = useContext(WordContext);
 
   const renderItem = ({ item, index }) => {
@@ -36,6 +36,8 @@ const DandDList = ({ navigation }) => {
         imageSource={imageSource}
         navigateToGame={navigateToGame}
         isComplete={isComplete}
+        height={Math.floor(height / 4)}
+        width={Math.round(width / 7)}
       />
     );
   };
@@ -51,7 +53,7 @@ const DandDList = ({ navigation }) => {
           data={objects}
           renderItem={renderItem}
           keyExtractor={(_, i) => i}
-          numColumns={3}
+          numColumns={6}
           contentContainerStyle={styles.flatlist}
         />
       </View>

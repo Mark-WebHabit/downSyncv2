@@ -3,11 +3,19 @@ import { usePlaySound } from "./customHooks/PlaySound";
 import * as Speech from "expo-speech";
 import { getSavedUser } from "./utilities/preferences";
 import { createLoginDocument } from "./utilities/CreateGameInstance";
+import { Dimensions } from "react-native";
 
 export const Context = createContext(null);
 
+const { width, height } = Dimensions.get("window");
+
 const DataContext = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [area, setArea] = useState(0);
+  useEffect(() => {
+    setArea(width * height);
+  }, [height, width]);
+
   const sound = usePlaySound();
 
   useEffect(() => {
@@ -42,7 +50,9 @@ const DataContext = ({ children }) => {
   };
 
   return (
-    <Context.Provider value={{ user, setUser, sound, speak, stop }}>
+    <Context.Provider
+      value={{ user, setUser, sound, speak, stop, width, height, area }}
+    >
       {children}
     </Context.Provider>
   );

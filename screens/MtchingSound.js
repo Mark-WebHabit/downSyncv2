@@ -18,6 +18,8 @@ const MatchingSound = ({ navigation }) => {
   const { matchingEasy } = useContext(AnimalsContext);
   const { sound } = useContext(Context);
 
+  const { height, width } = useContext(Context);
+
   const renderItem = ({ item, index }) => {
     const isComplete = item.complete;
 
@@ -36,6 +38,8 @@ const MatchingSound = ({ navigation }) => {
         imageSource={imageSource}
         navigateToGame={navigateToGame}
         isComplete={isComplete}
+        height={Math.floor(height / 4.2)}
+        width={Math.round(width / 7.5)}
       />
     );
   };
@@ -51,7 +55,7 @@ const MatchingSound = ({ navigation }) => {
           data={matchingEasy}
           renderItem={renderItem}
           keyExtractor={(item) => item.uid}
-          numColumns={3}
+          numColumns={6}
           contentContainerStyle={styles.flatlist}
         />
       </View>

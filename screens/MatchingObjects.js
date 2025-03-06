@@ -15,7 +15,7 @@ const images = [
 
 const MatchingObjects = ({ navigation }) => {
   const { matching } = useContext(GamesContext);
-  const { sound } = useContext(Context);
+  const { sound, height, width } = useContext(Context);
 
   const renderItem = ({ item, index }) => {
     const isComplete = item.complete;
@@ -37,6 +37,8 @@ const MatchingObjects = ({ navigation }) => {
         imageSource={imageSource}
         navigateToGame={navigateToGame}
         isComplete={isComplete}
+        height={Math.floor(height / 4.5)}
+        width={Math.round(width / 7)}
       />
     );
   };
@@ -52,7 +54,7 @@ const MatchingObjects = ({ navigation }) => {
           data={matching}
           renderItem={renderItem}
           keyExtractor={(item) => item.uid}
-          numColumns={3}
+          numColumns={5}
           contentContainerStyle={styles.flatlist}
         />
       </View>
@@ -63,6 +65,9 @@ const MatchingObjects = ({ navigation }) => {
 export default MatchingObjects;
 
 const styles = StyleSheet.create({
+  container: {
+    paddingVertical: 10,
+  },
   levelContainer: {
     marginHorizontal: "auto",
     height: "100%",

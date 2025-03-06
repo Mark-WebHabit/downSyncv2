@@ -16,6 +16,7 @@ const images = [
 const MatchingDescription = ({ navigation }) => {
   const { matchingHard } = useContext(AnimalsContext);
   const { sound } = useContext(Context);
+  const { height, width } = useContext(Context);
 
   const renderItem = ({ item, index }) => {
     const isComplete = item.complete;
@@ -35,6 +36,8 @@ const MatchingDescription = ({ navigation }) => {
         imageSource={imageSource}
         navigateToGame={navigateToGame}
         isComplete={isComplete}
+        height={Math.floor(height / 4.2)}
+        width={Math.round(width / 7.5)}
       />
     );
   };
@@ -50,7 +53,7 @@ const MatchingDescription = ({ navigation }) => {
           data={matchingHard}
           renderItem={renderItem}
           keyExtractor={(item) => item.uid}
-          numColumns={3}
+          numColumns={6}
           contentContainerStyle={styles.flatlist}
         />
       </View>

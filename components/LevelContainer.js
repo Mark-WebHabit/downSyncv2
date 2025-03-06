@@ -8,7 +8,14 @@ import {
 import React from "react";
 import useUserPreferences from "../customHooks/useUserPreference";
 
-const LevelContainer = ({ text, imageSource, navigateToGame, isComplete }) => {
+const LevelContainer = ({
+  text,
+  imageSource,
+  navigateToGame,
+  isComplete,
+  height = 120,
+  width = 120,
+}) => {
   const { fontSize, buttonFontColor, buttonSize } = useUserPreferences();
   return (
     <TouchableOpacity
@@ -16,6 +23,8 @@ const LevelContainer = ({ text, imageSource, navigateToGame, isComplete }) => {
         styles.container,
         {
           transform: [{ scale: buttonSize }],
+          height,
+          width,
         },
       ]}
       onPress={navigateToGame}
@@ -48,10 +57,8 @@ export default LevelContainer;
 
 const styles = StyleSheet.create({
   container: {
-    width: 120,
-    aspectRatio: 1,
     borderRadius: 20,
-    margin: 15,
+    margin: 1,
   },
   img: {
     height: "100%",

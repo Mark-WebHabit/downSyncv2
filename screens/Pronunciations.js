@@ -2,7 +2,6 @@ import { StyleSheet, View, FlatList } from "react-native";
 import React, { useContext, useEffect } from "react";
 
 import MainContainer from "../components/MainContainer";
-import { alphabetWords } from "../assets/letters_flatfiledb_local";
 import { wordsWithPronunciations } from "../assets/pronunciation_flatfiledb_local";
 
 import LevelContainer from "../components/LevelContainer";
@@ -51,7 +50,7 @@ const Pronunciations = ({ navigation }) => {
           data={wordsWithPronunciations}
           renderItem={renderItem}
           keyExtractor={(_, i) => i}
-          numColumns={3}
+          numColumns={5}
           contentContainerStyle={styles.flatlist}
         />
       </View>

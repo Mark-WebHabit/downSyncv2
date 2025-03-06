@@ -17,7 +17,7 @@ const images = [
 
 const MatchShapes = ({ navigation }) => {
   const { shapesMatching } = useContext(ArtContext);
-  const { sound } = useContext(Context);
+  const { sound, width, height } = useContext(Context);
 
   const renderItem = ({ item, index }) => {
     const isComplete = item.complete;
@@ -39,6 +39,8 @@ const MatchShapes = ({ navigation }) => {
         imageSource={imageSource}
         navigateToGame={navigateToGame}
         isComplete={isComplete}
+        height={Math.floor(height / 4.2)}
+        width={Math.round(width / 7.5)}
       />
     );
   };
@@ -54,7 +56,7 @@ const MatchShapes = ({ navigation }) => {
           data={shapesMatching}
           renderItem={renderItem}
           keyExtractor={(item) => item.uid}
-          numColumns={3}
+          numColumns={6}
           contentContainerStyle={styles.flatlist}
         />
       </View>
@@ -68,6 +70,7 @@ const styles = StyleSheet.create({
   levelContainer: {
     marginHorizontal: "auto",
     height: "100%",
+    paddingTop: 10,
   },
   flatlist: {
     justifyContent: "center",
