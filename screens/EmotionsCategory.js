@@ -63,7 +63,7 @@ const EmotionsCategory = ({ navigation }) => {
                 { fontSize: fontSize, color: buttonFontColor },
               ]}
             >
-              Types
+              Mood
             </Text>
           </ImageBackground>
         </TouchableOpacity>
@@ -91,7 +91,7 @@ const EmotionsCategory = ({ navigation }) => {
                 { fontSize: fontSize, color: buttonFontColor },
               ]}
             >
-              MATCHing
+              Mood Match
             </Text>
           </ImageBackground>
         </TouchableOpacity>
