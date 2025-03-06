@@ -16,34 +16,14 @@ const WordContextProvider = ({ children }) => {
       const savedUser = await getSavedUser();
       setUser(savedUser);
       const lettersData = await getData("letters");
+      const dnd = await getData("dnd");
 
       if (savedUser?.uid) {
         setLetters(lettersData);
-        const unsubscribeDndProgress = createListener(
-          `words/dnd`,
-          savedUser.uid,
-          (data) => {
-            const result = [];
-
-            const keys = Object.keys(data);
-            keys.forEach((key) => {
-              const obj = {
-                uid: key,
-                ...data[key],
-              };
-
-              result.push(obj);
-            });
-
-            setDndObjects(result);
-          }
-        );
+        setDndObjects(dnd);
 
         setFetching(false);
-        // Add more listeners here as needed
-        // const unsubscribeAnother = createListener('another_path', savedUser.uid, (data) => { ... });
 
-        // Cleanup listeners when the component unmounts
         return () => {
           unsubscribeLetters();
           unsubscribeDndProgress();
@@ -56,7 +36,7 @@ const WordContextProvider = ({ children }) => {
 
   return (
     <WordContext.Provider
-      value={{ fetching, user, letters, setLetters, dndObjects }}
+      value={{ fetching, user, letters, setLetters, dndObjects, setDndObjects }}
     >
       {children}
     </WordContext.Provider>

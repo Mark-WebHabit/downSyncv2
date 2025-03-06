@@ -19,7 +19,6 @@ import { db } from "../firebase";
 import { savePreference } from "../utilities/preferences";
 import {
   createGameInstance,
-  CreateWrodInstanceLetters,
   CreateWrodInstanceDragAndDrop,
   CreateEmotionTypeINstance,
   CreateEmotionMatchingINstance,

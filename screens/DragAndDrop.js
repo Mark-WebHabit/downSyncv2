@@ -14,11 +14,12 @@ import {
 } from "react-native";
 
 import MainContainer from "../components/MainContainer";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+
 import { Context } from "../DataContext";
 import NiceTryModal from "../components/NiceTryModal";
 import { usePlayMp3 } from "../customHooks/PlaySound";
-import { updateDandDComplete } from "../utilities/Database";
+import { updateMatching } from "../utilities/Database";
+import { WordContext } from "../GroupContext/WordsContext";
 
 const DragDrop = ({ navigation, route }) => {
   const item = route.params;
@@ -47,6 +48,8 @@ const DragDrop = ({ navigation, route }) => {
   const pan1 = useRef(new Animated.ValueXY(initialPositions[0])).current;
   const pan2 = useRef(new Animated.ValueXY(initialPositions[1])).current;
   const pan3 = useRef(new Animated.ValueXY(initialPositions[2])).current;
+
+  const { setDndObjects, dndObjects } = useContext(WordContext);
 
   useEffect(() => {
     const arr = [];
@@ -85,7 +88,7 @@ const DragDrop = ({ navigation, route }) => {
 
   useEffect(() => {
     if (isInBox) {
-      updateDandDComplete(item.uid);
+      updateMatching(item.uid, "dnd", setDndObjects, dndObjects);
       setDOne(true);
     }
   }, [isInBox]);

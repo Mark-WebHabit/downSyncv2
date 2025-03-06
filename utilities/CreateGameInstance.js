@@ -9,7 +9,6 @@ import { emotionSample } from "../assets/emotions_sample_flatfiledb_local";
 import { colorsObj } from "../assets/colors_flatfiledb_local";
 import { shapes } from "../assets/shapes_flatfiledb_local";
 import { shapesObj } from "../assets/shapes_sample_flatfiledb_local";
-import { matching } from "../assets/matching_flatfiledb_local";
 import { getCurrentDate } from "../utilities/Date";
 import { storeData } from "../utilities/LocalStorage";
 
@@ -42,40 +41,20 @@ export const createGameInstance = async () => {
     const hardData = require("../assets/db/animals/hard.json");
     const objectMatchingData = require("../assets/db/games/matching.json");
     const letters = require("../assets/db/words/letters.json");
+    const dnd = require("../assets/db/words/dnd.json");
 
     storeData("easy", easyData);
     storeData("medium", mediumData);
     storeData("hard", hardData);
     storeData("objectMatching", objectMatchingData);
     storeData("letters", letters);
+    storeData("dnd", dnd);
   } catch (error) {
     console.error("Error in CreateGameInstance with push:", error);
     throw error; // Re-throw the error for the caller to handle
   }
 };
 
-export const CreateWrodInstanceDragAndDrop = async (key) => {
-  try {
-    // Base reference for the game instance
-    const baseRef = sref(db, `words/dnd/${key}`);
-
-    // Create an array of promises for all animal entries
-    const promises = objects.map((_, i) => {
-      const newRef = push(baseRef); // Generate a unique key
-      return set(newRef, {
-        name: i,
-        complete: false,
-      });
-    });
-
-    // Wait for all promises to resolve
-    await Promise.all(promises);
-    return "All Objects are inserted";
-  } catch (error) {
-    console.error("Error in CreateWrodInstanceDragAndDrop with push:", error);
-    throw error; // Re-throw the error for the caller to handle
-  }
-};
 export const CreateEmotionTypeINstance = async (key) => {
   try {
     // Base reference for the game instance
