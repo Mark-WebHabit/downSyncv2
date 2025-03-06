@@ -1,14 +1,13 @@
 import { getDatabase, ref, update } from "firebase/database";
 import { getSavedUser } from "./preferences";
 import { getCurrentDate } from "./Date";
-import { useContext } from "react";
-import { AnimalsContext } from "../GroupContext/AnimalsContext";
+
 import { storeData } from "./LocalStorage";
 
 // Initialize the Realtime Database
 const db = getDatabase();
 
-export const updateMatchingEasyComplete = async (uid, setState, state) => {
+export const updateMatching = async (uid, key, setState, state) => {
   if (!state || state?.length <= 0) {
     return;
   }
@@ -21,41 +20,13 @@ export const updateMatchingEasyComplete = async (uid, setState, state) => {
       return lvl;
     });
 
-    storeData("easy", newState);
+    console.log(newState);
+
+    storeData(key, newState);
 
     setState(newState);
 
     // Reference to the user's data
-  } catch (error) {
-    console.error("Error updating data: ", error);
-  }
-};
-
-export const updateMatchingMediumComplete = async (uid) => {
-  // Reference to the user's data
-  const user = await getSavedUser();
-  const userRef = ref(db, `animals/matching/medium/${user.uid}/${uid}`);
-
-  try {
-    // Update the specific field in the node
-    await update(userRef, {
-      complete: true,
-    });
-  } catch (error) {
-    console.error("Error updating data: ", error);
-  }
-};
-
-export const updateMatchingHardComplete = async (uid) => {
-  // Reference to the user's data
-  const user = await getSavedUser();
-  const userRef = ref(db, `animals/matching/hard/${user.uid}/${uid}`);
-
-  try {
-    // Update the specific field in the node
-    await update(userRef, {
-      complete: true,
-    });
   } catch (error) {
     console.error("Error updating data: ", error);
   }

@@ -1,8 +1,8 @@
-import { StyleSheet, Text, View } from "react-native";
 import React, { createContext, useEffect, useState } from "react";
 import { getSavedUser } from "../utilities/preferences";
 import { createListener } from "../utilities/CreateListener";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { getData } from "../utilities/LocalStorage";
 
 export const AnimalsContext = createContext(null);
 
@@ -18,62 +18,16 @@ const AnimalsContextProvider = ({ children }) => {
       const savedUser = await getSavedUser();
       setUser(savedUser);
 
-      const easyData = await AsyncStorage.getItem("easy");
-      const easyJson = JSON.parse(easyData);
+      const easyData = await getData("easy");
+      const medium = await getData("medium");
+      const hard = await getData("hard");
 
       if (savedUser?.uid) {
-        setMatchingEasy(easyJson);
-        const unsubscribeMatchingMedium = createListener(
-          `animals/matching/medium`,
-          savedUser.uid,
-          (data) => {
-            const result = [];
-
-            const keys = Object.keys(data);
-            keys.forEach((key) => {
-              const obj = {
-                uid: key,
-                ...data[key],
-              };
-
-              result.push(obj);
-            });
-
-            setMatchingMedium(result);
-          }
-        );
-
-        const unsubscribeMatchingHard = createListener(
-          `animals/matching/hard`,
-          savedUser.uid,
-          (data) => {
-            const result = [];
-
-            const keys = Object.keys(data);
-            keys.forEach((key) => {
-              const obj = {
-                uid: key,
-                ...data[key],
-              };
-
-              result.push(obj);
-            });
-
-            setMatchingHard(result);
-          }
-        );
+        setMatchingEasy(easyData);
+        setMatchingMedium(medium);
+        setMatchingHard(hard);
 
         setFetching(false);
-        // Add more listeners here as needed
-        // const unsubscribeAnother = createListener('another_path', savedUser.uid, (data) => { ... });
-
-        // Cleanup listeners when the component unmounts
-        return () => {
-          unsubscribeMatchingEasy();
-          unsubscribeMatchingMedium();
-          unsubscribeMatchingHard();
-          // unsubscribeAnother();
-        };
       }
     }
     getUser();
@@ -88,6 +42,8 @@ const AnimalsContextProvider = ({ children }) => {
         matchingMedium,
         matchingHard,
         setMatchingEasy,
+        setMatchingMedium,
+        setMatchingHard,
       }}
     >
       {children}

@@ -42,51 +42,21 @@ export const createLoginDocument = async (uid) => {
   }
 };
 
-export const CreateGameInstanceMatchingEasy = async (key) => {
+export const createGameInstance = async () => {
   try {
     const easyData = require("../assets/db/animals/easy.json");
-
-    const jsonValue = JSON.stringify(easyData);
-
-    storeData("easy", jsonValue);
-
-    return true;
-  } catch (error) {
-    console.error("Error in CreateGameInstanceMatchingEasy with push:", error);
-    throw error; // Re-throw the error for the caller to handle
-  }
-};
-
-export const CreateGameInstanceMatchingMedium = async (key) => {
-  try {
     const mediumData = require("../assets/db/animals/medium.json");
-    const jsonValue = JSON.stringify(mediumData);
-
-    storeData("medium", jsonValue);
-
-    return true;
-  } catch (error) {
-    console.error(
-      "Error in CreateGameInstanceMatchingMedium with push:",
-      error
-    );
-    throw error; // Re-throw the error for the caller to handle
-  }
-};
-
-export const CreateGameInstanceMatchingHard = async (key) => {
-  try {
     const hardData = require("../assets/db/animals/hard.json");
-    const jsonValue = JSON.stringify(hardData);
 
-    storeData("hard", jsonValue);
-
-    return true;
+    storeData("easy", easyData);
+    storeData("medium", mediumData);
+    storeData("hard", hardData);
   } catch (error) {
-    console.error("Error in CreateGameInstanceMatchingHard with push:", error);
+    console.error("Error in CreateGameInstance with push:", error);
     throw error; // Re-throw the error for the caller to handle
   }
 };
+
 export const CreateWrodInstanceLetters = async (key) => {
   try {
     // Base reference for the game instance

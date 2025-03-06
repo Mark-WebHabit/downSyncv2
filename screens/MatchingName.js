@@ -16,6 +16,7 @@ const images = [
 
 const MatchingName = ({ navigation }) => {
   const { matchingMedium } = useContext(AnimalsContext);
+
   const { sound } = useContext(Context);
 
   const renderItem = ({ item, index }) => {

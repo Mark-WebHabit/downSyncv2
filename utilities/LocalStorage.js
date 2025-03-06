@@ -12,7 +12,16 @@ export const storeData = async (key, value) => {
 export const getData = async (key) => {
   try {
     const jsonValue = await AsyncStorage.getItem(key);
-    return jsonValue != null ? JSON.parse(jsonValue) : null;
+
+    let response = JSON.parse(jsonValue);
+
+    while (typeof response === "string") {
+      console.log("converting data to json");
+
+      response = JSON.parse(response);
+    }
+
+    return response;
   } catch (e) {
     console.error("Failed to fetch data", e);
   }

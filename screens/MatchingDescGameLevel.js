@@ -14,8 +14,9 @@ import { generateTwoRandomNumbers } from "../utilities/Arrays";
 import { animalsDescribe } from "../assets/animal_flatfiledb";
 import useUserPreferences from "../customHooks/useUserPreference";
 import { feedbackSound } from "../customHooks/PlaySound";
-import { updateMatchingHardComplete } from "../utilities/Database";
+import { updateMatching } from "../utilities/Database";
 import { Context } from "../DataContext";
+import { AnimalsContext } from "../GroupContext/AnimalsContext";
 
 const backgrounds = [
   require("../assets/images/buttonbluebox.png"),
@@ -30,6 +31,8 @@ const MatchingDescGameLevel = ({ navigation, route }) => {
 
   const [animalsArray, setAnimalsArray] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const { matchingHard, setMatchingHard } = useContext(AnimalsContext);
 
   useEffect(() => {
     const loadData = async () => {
@@ -88,7 +91,12 @@ const MatchingDescGameLevel = ({ navigation, route }) => {
                   feedbackSound(false);
                 } else {
                   const itemUid = item.uid;
-                  await updateMatchingHardComplete(itemUid);
+                  await updateMatching(
+                    itemUid,
+                    "hard",
+                    setMatchingHard,
+                    matchingHard
+                  );
                   navigation.goBack();
                   feedbackSound(true);
                 }

@@ -13,7 +13,7 @@ import { generateTwoRandomNumbers } from "../utilities/Arrays";
 import { animals } from "../assets/animal_flatfiledb";
 import useUserPreferences from "../customHooks/useUserPreference";
 import { feedbackSound, usePlayMp3 } from "../customHooks/PlaySound";
-import { updateMatchingEasyComplete } from "../utilities/Database";
+import { updateMatching } from "../utilities/Database";
 import { Context } from "../DataContext";
 import { AnimalsContext } from "../GroupContext/AnimalsContext";
 
@@ -26,9 +26,10 @@ const backgrounds = [
 const MatchingSoundGameLevel = ({ navigation, route }) => {
   const { buttonSize, bodyText } = useUserPreferences();
   const { item } = route.params;
+
   const [animalsArray, setAnimalsArray] = useState([]);
   const [loading, setLoading] = useState(true);
-  const playAnimalSound = usePlayMp3(animals[item.name].sound);
+  const playAnimalSound = usePlayMp3(animals[item.name]?.sound);
   const { speak, stop } = useContext(Context);
 
   const { matchingEasy, setMatchingEasy } = useContext(AnimalsContext);
@@ -92,8 +93,9 @@ const MatchingSoundGameLevel = ({ navigation, route }) => {
                   feedbackSound(false);
                 } else {
                   const itemUid = item.uid;
-                  await updateMatchingEasyComplete(
+                  await updateMatching(
                     itemUid,
+                    "easy",
                     setMatchingEasy,
                     matchingEasy
                   );

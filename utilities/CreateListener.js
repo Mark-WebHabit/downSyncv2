@@ -5,6 +5,8 @@ import { db } from "../firebase";
 const createListener = (path, uid, callback) => {
   const dbRef = ref(db, `${path}/${uid}`);
 
+  console.log(uid);
+
   const listener = onValue(
     dbRef,
     (snapshot) => {

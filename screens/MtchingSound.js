@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, FlatList } from "react-native";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import MainContainer from "../components/MainContainer";
 import { AnimalsContext } from "../GroupContext/AnimalsContext";
@@ -39,6 +39,7 @@ const MatchingSound = ({ navigation }) => {
       />
     );
   };
+
   return (
     <MainContainer
       navigation={navigation}

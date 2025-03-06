@@ -18,9 +18,7 @@ import { db } from "../firebase";
 
 import { savePreference } from "../utilities/preferences";
 import {
-  CreateGameInstanceMatchingEasy,
-  CreateGameInstanceMatchingMedium,
-  CreateGameInstanceMatchingHard,
+  createGameInstance,
   CreateWrodInstanceLetters,
   CreateWrodInstanceDragAndDrop,
   CreateEmotionTypeINstance,
@@ -104,9 +102,8 @@ const GetStarted = ({ navigation }) => {
 
       // // create the game instance here to make data in the database
       createLoginDocument(newUserRef.key);
-      await CreateGameInstanceMatchingEasy(newUserRef.key);
-      await CreateGameInstanceMatchingMedium(newUserRef.key);
-      await CreateGameInstanceMatchingHard(newUserRef.key);
+
+      await createGameInstance();
       await CreateWrodInstanceLetters(newUserRef.key);
       await CreateWrodInstanceDragAndDrop(newUserRef.key);
       await CreateEmotionTypeINstance(newUserRef.key);
