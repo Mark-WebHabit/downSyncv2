@@ -39,7 +39,6 @@ const MatchingSound = ({ navigation }) => {
       />
     );
   };
-
   return (
     <MainContainer
       navigation={navigation}

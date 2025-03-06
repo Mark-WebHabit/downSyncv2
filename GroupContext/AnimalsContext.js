@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import React, { createContext, useEffect, useState } from "react";
 import { getSavedUser } from "../utilities/preferences";
 import { createListener } from "../utilities/CreateListener";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const AnimalsContext = createContext(null);
 
@@ -17,27 +18,11 @@ const AnimalsContextProvider = ({ children }) => {
       const savedUser = await getSavedUser();
       setUser(savedUser);
 
+      const easyData = await AsyncStorage.getItem("easy");
+      const easyJson = JSON.parse(easyData);
+
       if (savedUser?.uid) {
-        const unsubscribeMatchingEasy = createListener(
-          `animals/matching/easy`,
-          savedUser.uid,
-          (data) => {
-            const result = [];
-
-            const keys = Object.keys(data);
-            keys.forEach((key) => {
-              const obj = {
-                uid: key,
-                ...data[key],
-              };
-
-              result.push(obj);
-            });
-
-            setMatchingEasy(result);
-          }
-        );
-
+        setMatchingEasy(easyJson);
         const unsubscribeMatchingMedium = createListener(
           `animals/matching/medium`,
           savedUser.uid,
@@ -96,7 +81,14 @@ const AnimalsContextProvider = ({ children }) => {
 
   return (
     <AnimalsContext.Provider
-      value={{ fetching, user, matchingEasy, matchingMedium, matchingHard }}
+      value={{
+        fetching,
+        user,
+        matchingEasy,
+        matchingMedium,
+        matchingHard,
+        setMatchingEasy,
+      }}
     >
       {children}
     </AnimalsContext.Provider>

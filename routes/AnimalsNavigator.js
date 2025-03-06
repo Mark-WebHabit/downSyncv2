@@ -6,7 +6,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 import MatchingSoundGameLevel from "../screens/MatchingSoundGameLevel";
 import MatchingNameGameLevel from "../screens/MatchingNameGameLevel";
 import MatchingDescGameLevel from "../screens/MatchingDescGameLevel";
-import GameScreen from "../screens/GameScreen";
 
 // easy
 import MatchingSound from "../screens/MtchingSound";

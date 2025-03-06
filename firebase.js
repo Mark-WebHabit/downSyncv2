@@ -12,7 +12,7 @@ const firebaseConfig = {
   projectId: "downsync-658dc",
   storageBucket: "downsync-658dc.firebasestorage.app",
   messagingSenderId: "407513212060",
-  appId: "1:407513212060:web:e2224f91d5bbe21672f959"
+  appId: "1:407513212060:web:e2224f91d5bbe21672f959",
 };
 
 // Initialize Firebase

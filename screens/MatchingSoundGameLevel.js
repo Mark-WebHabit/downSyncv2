@@ -8,7 +8,6 @@ import {
   Image,
   ActivityIndicator,
 } from "react-native";
-// import * as Speech from "expo-speech";
 import MainContainer from "../components/MainContainer";
 import { generateTwoRandomNumbers } from "../utilities/Arrays";
 import { animals } from "../assets/animal_flatfiledb";
@@ -16,6 +15,7 @@ import useUserPreferences from "../customHooks/useUserPreference";
 import { feedbackSound, usePlayMp3 } from "../customHooks/PlaySound";
 import { updateMatchingEasyComplete } from "../utilities/Database";
 import { Context } from "../DataContext";
+import { AnimalsContext } from "../GroupContext/AnimalsContext";
 
 const backgrounds = [
   require("../assets/images/buttonbluebox.png"),
@@ -28,9 +28,10 @@ const MatchingSoundGameLevel = ({ navigation, route }) => {
   const { item } = route.params;
   const [animalsArray, setAnimalsArray] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [isPlaying, setIsPlaying] = useState(false);
   const playAnimalSound = usePlayMp3(animals[item.name].sound);
   const { speak, stop } = useContext(Context);
+
+  const { matchingEasy, setMatchingEasy } = useContext(AnimalsContext);
 
   useEffect(() => {
     const loadData = async () => {
@@ -39,6 +40,7 @@ const MatchingSoundGameLevel = ({ navigation, route }) => {
       }
 
       const indeces = generateTwoRandomNumbers(item.name);
+
       const newAnimals = indeces.map((num) => {
         const obj = {
           ...animals[num],
@@ -68,7 +70,6 @@ const MatchingSoundGameLevel = ({ navigation, route }) => {
       </MainContainer>
     );
   }
-
   return (
     <MainContainer navigation={navigation} showSetting={false}>
       <View style={styles.imagesContainer}>
@@ -91,7 +92,11 @@ const MatchingSoundGameLevel = ({ navigation, route }) => {
                   feedbackSound(false);
                 } else {
                   const itemUid = item.uid;
-                  await updateMatchingEasyComplete(itemUid);
+                  await updateMatchingEasyComplete(
+                    itemUid,
+                    setMatchingEasy,
+                    matchingEasy
+                  );
                   navigation.goBack();
                   feedbackSound(true);
                 }

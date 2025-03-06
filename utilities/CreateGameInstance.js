@@ -6,6 +6,7 @@ import {
   animalsName,
   animalsDescribe,
 } from "../assets/animal_flatfiledb";
+
 import { alphabetWords } from "../assets/letters_flatfiledb_local";
 import { objects } from "../assets/objects_flatfiledb";
 import { emotions } from "../assets/emotions_flatfiledb_local";
@@ -16,6 +17,8 @@ import { shapesObj } from "../assets/shapes_sample_flatfiledb_local";
 import { getSavedUser } from "./preferences";
 import { matching } from "../assets/matching_flatfiledb_local";
 import { getCurrentDate } from "../utilities/Date";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { storeData } from "../utilities/LocalStorage";
 
 // Function to create a new login document
 export const createLoginDocument = async (uid) => {
@@ -41,21 +44,13 @@ export const createLoginDocument = async (uid) => {
 
 export const CreateGameInstanceMatchingEasy = async (key) => {
   try {
-    // Base reference for the game instance
-    const baseRef = sref(db, `animals/matching/easy/${key}`);
+    const easyData = require("../assets/db/animals/easy.json");
 
-    // Create an array of promises for all animal entries
-    const promises = animals.map((_, i) => {
-      const newRef = push(baseRef); // Generate a unique key
-      return set(newRef, {
-        name: i,
-        complete: false,
-      });
-    });
+    const jsonValue = JSON.stringify(easyData);
 
-    // Wait for all promises to resolve
-    await Promise.all(promises);
-    return "All animals inserted successfully";
+    storeData("easy", jsonValue);
+
+    return true;
   } catch (error) {
     console.error("Error in CreateGameInstanceMatchingEasy with push:", error);
     throw error; // Re-throw the error for the caller to handle
@@ -64,21 +59,12 @@ export const CreateGameInstanceMatchingEasy = async (key) => {
 
 export const CreateGameInstanceMatchingMedium = async (key) => {
   try {
-    // Base reference for the game instance
-    const baseRef = sref(db, `animals/matching/medium/${key}`);
+    const mediumData = require("../assets/db/animals/medium.json");
+    const jsonValue = JSON.stringify(mediumData);
 
-    // Create an array of promises for all animal entries
-    const promises = animalsName.map((_, i) => {
-      const newRef = push(baseRef); // Generate a unique key
-      return set(newRef, {
-        name: i,
-        complete: false,
-      });
-    });
+    storeData("medium", jsonValue);
 
-    // Wait for all promises to resolve
-    await Promise.all(promises);
-    return "All animals inserted successfully";
+    return true;
   } catch (error) {
     console.error(
       "Error in CreateGameInstanceMatchingMedium with push:",
@@ -90,21 +76,12 @@ export const CreateGameInstanceMatchingMedium = async (key) => {
 
 export const CreateGameInstanceMatchingHard = async (key) => {
   try {
-    // Base reference for the game instance
-    const baseRef = sref(db, `animals/matching/hard/${key}`);
+    const hardData = require("../assets/db/animals/hard.json");
+    const jsonValue = JSON.stringify(hardData);
 
-    // Create an array of promises for all animal entries
-    const promises = animalsDescribe.map((_, i) => {
-      const newRef = push(baseRef); // Generate a unique key
-      return set(newRef, {
-        name: i,
-        complete: false,
-      });
-    });
+    storeData("hard", jsonValue);
 
-    // Wait for all promises to resolve
-    await Promise.all(promises);
-    return "All animals inserted successfully";
+    return true;
   } catch (error) {
     console.error("Error in CreateGameInstanceMatchingHard with push:", error);
     throw error; // Re-throw the error for the caller to handle

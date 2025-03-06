@@ -22,6 +22,7 @@ import BodyParts from "./screens/BodyParts";
 import { usePlayBg } from "./customHooks/PlaySound";
 import Setting from "./screens/Setting";
 import { StatusBar } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Stack = createStackNavigator();
 
