@@ -19,36 +19,14 @@ const ArtContextProvider = ({ children }) => {
 
       const colorsData = await getData("colors");
       const basicShapesData = await getData("basicShapes");
+      const shapesMatchingData = await getData("shapesMatching");
 
       if (savedUser?.uid) {
         setColors(colorsData);
         setBasicShapes(basicShapesData);
-
-        const unsubscribeMatchingShapes = createListener(
-          `arts/shapes/matching`,
-          savedUser.uid,
-          (data) => {
-            const result = [];
-
-            const keys = Object.keys(data);
-            keys.forEach((key) => {
-              const obj = {
-                uid: key,
-                ...data[key],
-              };
-
-              result.push(obj);
-            });
-
-            setShapesMatching(result);
-          }
-        );
+        setShapesMatching(shapesMatchingData);
 
         setFetching(false);
-
-        return () => {
-          unsubscribeMatchingShapes();
-        };
       }
     }
     getUser();

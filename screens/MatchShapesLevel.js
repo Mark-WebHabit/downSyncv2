@@ -11,7 +11,8 @@ import MainContainer from "../components/MainContainer";
 import { shapesObj } from "../assets/shapes_sample_flatfiledb_local";
 import { Context } from "../DataContext";
 import { feedbackSound } from "../customHooks/PlaySound";
-import { updateMatchingShapes } from "../utilities/Database";
+import { updateMatching } from "../utilities/Database";
+import { ArtContext } from "../GroupContext/ArtsContext";
 
 const MatchShapesLevel = ({ navigation, route }) => {
   const { item } = route.params;
@@ -19,6 +20,8 @@ const MatchShapesLevel = ({ navigation, route }) => {
   const [items, setItems] = useState([item]);
   const [correct, setCorrect] = useState(false);
   const { speak } = useContext(Context);
+
+  const { shapesMatching, setShapesMatching } = useContext(ArtContext);
 
   useEffect(() => {
     let indexA = Math.floor(Math.random() * 3);
@@ -60,7 +63,12 @@ const MatchShapesLevel = ({ navigation, route }) => {
   useEffect(() => {
     if (correct) {
       (async function () {
-        await updateMatchingShapes(item.uid);
+        await updateMatching(
+          item.uid,
+          "shapesMatching",
+          setShapesMatching,
+          shapesMatching
+        );
         navigation.goBack();
       })();
     }
