@@ -1,122 +1,128 @@
 export const emotionSample = [
   {
     emotion: "happiness",
-    image: require(`../assets/emotions/happy1.jpg`),
+    image: require(`../assets/emoji/happiness.png`),
   },
   {
     emotion: "happiness",
-    image: require(`../assets/emotions/happy2.jpg`),
+    image: require(`../assets/emoji/happiness.png`),
   },
   {
     emotion: "happiness",
-    image: require(`../assets/emotions/happ3.jpg`),
+    image: require(`../assets/emoji/happiness.png`),
   },
+
   {
-    emotion: "happiness",
-    image: require(`../assets/emotions/happy4.jpg`),
-  },
-  {
-    emotion: "happiness",
-    image: require(`../assets/emotions/happy5.jpg`),
+    emotion: "sadness",
+    image: require(`../assets/emoji/sadness.png`),
   },
   {
     emotion: "sadness",
-    image: require(`../assets/emotions/sad1.jpg`),
+    image: require(`../assets/emoji/sadness.png`),
   },
   {
     emotion: "sadness",
-    image: require(`../assets/emotions/sad2.jpg`),
-  },
-  {
-    emotion: "sadness",
-    image: require(`../assets/emotions/sad3.jpg`),
+    image: require(`../assets/emoji/sadness.png`),
   },
   {
     emotion: "anger",
-    image: require(`../assets/emotions/anger1.jpg`),
+    image: require(`../assets/emoji/anger.png`),
   },
   {
     emotion: "anger",
-    image: require(`../assets/emotions/anger2.jpg`),
+    image: require(`../assets/emoji/anger.png`),
   },
   {
     emotion: "anger",
-    image: require(`../assets/emotions/anger3.jpg`),
-  },
-  {
-    emotion: "anger",
-    image: require(`../assets/emotions/anger4.jpg`),
+    image: require(`../assets/emoji/anger.png`),
   },
   {
     emotion: "fear",
-    image: require(`../assets/emotions/fear1.jpg`),
+    image: require(`../assets/emoji/fear.png`),
   },
   {
     emotion: "fear",
-    image: require(`../assets/emotions/fear2.png`),
+    image: require(`../assets/emoji/fear.png`),
   },
   {
     emotion: "fear",
-    image: require(`../assets/emotions/fear3.png`),
+    image: require(`../assets/emoji/fear.png`),
+  },
+
+  {
+    emotion: "surprise",
+    image: require(`../assets/emoji/surprised.png`),
   },
   {
     emotion: "surprise",
-    image: require(`../assets/emotions/surprise11.jpeg`),
+    image: require(`../assets/emoji/surprised.png`),
   },
   {
     emotion: "surprise",
-    image: require(`../assets/emotions/surprise1.jpg`),
-  },
-  {
-    emotion: "surprise",
-    image: require(`../assets/emotions/surprise2.jpg`),
-  },
-  {
-    emotion: "surprise",
-    image: require(`../assets/emotions/surprise3.png`),
+    image: require(`../assets/emoji/surprised.png`),
   },
   {
     emotion: "disgust",
-    image: require(`../assets/emotions/disgust1.png`),
+    image: require(`../assets/emoji/disgusted.png`),
   },
   {
     emotion: "disgust",
-    image: require(`../assets/emotions/disgust2.png`),
+    image: require(`../assets/emoji/disgusted.png`),
   },
+  {
+    emotion: "disgust",
+    image: require(`../assets/emoji/disgusted.png`),
+  },
+
   {
     emotion: "pride",
-    image: require(`../assets/emotions/pride1.png`),
+    image: require(`../assets/emoji/pride.png`),
   },
+
   {
     emotion: "pride",
-    image: require(`../assets/emotions/pride2.jpeg`),
+    image: require(`../assets/emoji/pride.png`),
+  },
+
+  {
+    emotion: "pride",
+    image: require(`../assets/emoji/pride.png`),
+  },
+
+  {
+    emotion: "boredom",
+    image: require(`../assets/emoji/bored.png`),
   },
   {
     emotion: "boredom",
-    image: require(`../assets/emotions/boredom1.jpg`),
+    image: require(`../assets/emoji/bored.png`),
   },
   {
     emotion: "boredom",
-    image: require(`../assets/emotions/boredom2.jpg`),
-  },
-  {
-    emotion: "boredom",
-    image: require(`../assets/emotions/boredom3.png`),
+    image: require(`../assets/emoji/bored.png`),
   },
   {
     emotion: "confusion",
-    image: require(`../assets/emotions/confuse1.jpg`),
+    image: require(`../assets/emoji/confused.png`),
   },
   {
     emotion: "confusion",
-    image: require(`../assets/emotions/confuse2.jpg`),
+    image: require(`../assets/emoji/confused.png`),
   },
   {
     emotion: "confusion",
-    image: require(`../assets/emotions/confuse3.jpeg`),
+    image: require(`../assets/emoji/confused.png`),
   },
   {
     emotion: "relief",
-    image: require(`../assets/emotions/relief1.png`),
+    image: require(`../assets/emoji/relief.png`),
+  },
+  {
+    emotion: "relief",
+    image: require(`../assets/emoji/relief.png`),
+  },
+  {
+    emotion: "relief",
+    image: require(`../assets/emoji/relief.png`),
   },
 ];
