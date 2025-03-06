@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import React, { createContext, useEffect, useState } from "react";
 import { getSavedUser } from "../utilities/preferences";
 import { createListener } from "../utilities/CreateListener";
+import { getData } from "../utilities/LocalStorage";
 
 export const GamesContext = createContext(null);
 
@@ -15,43 +16,20 @@ const GameContextProvider = ({ children }) => {
       const savedUser = await getSavedUser();
       setUser(savedUser);
 
+      const objectMatching = await getData("objectMatching");
+
       if (savedUser?.uid) {
-        const unsubscribeMatching = createListener(
-          `games/matching`,
-          savedUser.uid,
-          (data) => {
-            const result = [];
-
-            const keys = Object.keys(data);
-            keys.forEach((key) => {
-              const obj = {
-                uid: key,
-                ...data[key],
-              };
-
-              result.push(obj);
-            });
-
-            setMatching(result);
-          }
-        );
+        setMatching(objectMatching);
 
         setFetching(false);
-        // Add more listeners here as needed
-        // const unsubscribeAnother = createListener('another_path', savedUser.uid, (data) => { ... });
-
-        // Cleanup listeners when the component unmounts
-        return () => {
-          unsubscribeMatching;
-          // unsubscribeAnother();
-        };
+        return () => {};
       }
     }
     getUser();
   }, []);
 
   return (
-    <GamesContext.Provider value={{ fetching, user, matching }}>
+    <GamesContext.Provider value={{ fetching, user, matching, setMatching }}>
       {children}
     </GamesContext.Provider>
   );

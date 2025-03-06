@@ -2,10 +2,7 @@ import { StyleSheet, View, FlatList } from "react-native";
 import React, { useContext } from "react";
 
 import MainContainer from "../components/MainContainer";
-import { shapesObj } from "../assets/shapes_sample_flatfiledb_local";
-import { ArtContext } from "../GroupContext/ArtsContext";
 import { GamesContext } from "../GroupContext/GameContext";
-import { matching } from "../assets/matching_flatfiledb_local";
 import LevelContainer from "../components/LevelContainer";
 import { Context } from "../DataContext";
 

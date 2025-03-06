@@ -4,7 +4,6 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Alert,
   Pressable,
   Dimensions,
 } from "react-native";
@@ -17,8 +16,10 @@ import { Context } from "../DataContext";
 import IncorrectMatchModal from "../components/IncorrctMacth";
 import CorrectMatchModal from "../components/CorrctMactch";
 import { feedbackSound } from "../customHooks/PlaySound";
-import { updateMatchingObjects } from "../utilities/Database";
+import { updateMatchingObjects, updateMatching } from "../utilities/Database";
 import HelpModal from "../components/HelpModalForObjects";
+import { GamesContext } from "../GroupContext/GameContext";
+
 const getRandomOrder = (array) => {
   return array
     .map((item) => ({ item, sort: Math.random() }))
@@ -29,6 +30,8 @@ const getRandomOrder = (array) => {
 const MatchingLevel = ({ navigation, route }) => {
   const { item } = route.params;
   const [level, setLevel] = useState(matching[item["name"]]);
+
+  const { matching: matchingObject, setMatching } = useContext(GamesContext);
 
   // const level = matching[0]; // Using the first index for demonstration
   const [images, setImages] = useState([]);
@@ -100,7 +103,12 @@ const MatchingLevel = ({ navigation, route }) => {
           if (connecteds.length == 2) {
             feedbackSound(true);
             setCorrectMatchVisible(true);
-            await updateMatchingObjects(item.uid);
+            await updateMatching(
+              item.uid,
+              "objectMatching",
+              setMatching,
+              matchingObject
+            );
           }
           setConnecteds((old) => [...old, i]);
         } else {
