@@ -18,7 +18,7 @@ const EmotionContextProvider = ({ children }) => {
       const typeEmotions = await getData("typeEmotions");
       const emotionsMatchingData = await getData("emotionsMatching");
 
-      if (savedUser?.uid) {
+      if (savedUser?.username) {
         setEmotionTypes(typeEmotions);
         setEmotionsMatching(emotionsMatchingData);
 

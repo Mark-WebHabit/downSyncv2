@@ -18,7 +18,7 @@ const GameContextProvider = ({ children }) => {
 
       const objectMatching = await getData("objectMatching");
 
-      if (savedUser?.uid) {
+      if (savedUser?.username) {
         setMatching(objectMatching);
 
         setFetching(false);

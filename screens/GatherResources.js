@@ -4,11 +4,7 @@ import * as SplashScreen from "expo-splash-screen";
 
 import Container from "../components/Container.js";
 import Loading from "../components/Loading.js";
-import {
-  getSavedUser,
-  checkFirstLaunch,
-  removePreference,
-} from "../utilities/preferences.js";
+import { getSavedUser, checkFirstLaunch } from "../utilities/preferences.js";
 const Letter = ({ path, delay }) => {
   const translateY = useRef(new Animated.Value(-1000)).current;
 
@@ -29,10 +25,6 @@ const Letter = ({ path, delay }) => {
 };
 
 const GatherResources = ({ navigation }) => {
-  const [fetching, setFetching] = useState(true);
-  const [delay, setDelay] = useState(true);
-  const [firstRun, setFirstRun] = useState(false);
-
   useEffect(() => {
     (async () => {
       const run = await checkFirstLaunch();
@@ -43,24 +35,18 @@ const GatherResources = ({ navigation }) => {
   }, []);
 
   useEffect(() => {
-    setTimeout(() => {
-      setDelay(false);
-    }, 3000);
-  }, [fetching]);
-
-  useEffect(() => {
     async function fetch() {
-      const { uid } = await getSavedUser();
+      const userInfo = await getSavedUser();
 
-      if (!delay && !uid && firstRun) {
-        navigation.navigate("Start");
-      } else if (!delay && uid) {
+      if (userInfo && userInfo?.username) {
         navigation.navigate("Home");
+      } else {
+        navigation.navigate("Start");
       }
     }
 
     fetch();
-  }, [delay]);
+  }, []);
 
   return (
     <Container addStyle={styles.container}>

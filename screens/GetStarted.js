@@ -25,6 +25,7 @@ import {
 // components
 import Container from "../components/Container";
 import { Context } from "../DataContext";
+import { storeData } from "../utilities/LocalStorage";
 
 const GetStarted = ({ navigation }) => {
   const [username, setUsername] = useState("");
@@ -81,19 +82,15 @@ const GetStarted = ({ navigation }) => {
 
       setLoading(true);
 
-      const userRef = ref(db, "users");
-      const newUserRef = push(userRef);
-      await set(newUserRef, {
-        username: username,
+      const userInfo = {
+        username,
         createdAt: new Date().toISOString(),
-      });
+      };
 
-      await savePreference("user", username);
-
-      await savePreference("uid", newUserRef.key);
+      await storeData("userInfo", userInfo);
 
       // // create the game instance here to make data in the database
-      createLoginDocument(newUserRef.key);
+      createLoginDocument(username);
 
       await createGameInstance();
 

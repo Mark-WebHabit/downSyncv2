@@ -1,36 +1,22 @@
-import { set, push, ref as sref, serverTimestamp } from "firebase/database";
-import { onDisconnect } from "firebase/database";
-import { db } from "../firebase";
-
-import { alphabetWords } from "../assets/letters_flatfiledb_local";
-import { objects } from "../assets/objects_flatfiledb";
-import { emotions } from "../assets/emotions_flatfiledb_local";
-import { emotionSample } from "../assets/emotions_sample_flatfiledb_local";
-import { colorsObj } from "../assets/colors_flatfiledb_local";
-import { shapes } from "../assets/shapes_flatfiledb_local";
-import { shapesObj } from "../assets/shapes_sample_flatfiledb_local";
-import { getCurrentDate } from "../utilities/Date";
 import { storeData } from "../utilities/LocalStorage";
 
 // Function to create a new login document
-export const createLoginDocument = async (uid) => {
-  if (uid) {
-    const currentDate = getCurrentDate();
-    const userLoginsRef = sref(db, `logins/${uid}/${currentDate}`);
+export const createLoginDocument = async (username) => {
+  if (username) {
+    const logins = [
+      {
+        login: new Date().toISOString(),
+        current: true,
+        logout: "",
+      },
+    ];
 
-    // Create a new document with a unique ID
-    const newLoginRef = await push(userLoginsRef, {
-      loginTime: serverTimestamp(),
-    });
-
-    // Set up onDisconnect to log the logout time
-    onDisconnect(newLoginRef)
-      .update({
-        logoutTime: serverTimestamp(),
-      })
-      .catch((error) => {
-        console.error("Error setting onDisconnect:", error);
-      });
+    try {
+      // Store login time
+      await storeData("logins", logins);
+    } catch (error) {
+      console.error("Error setting login time:", error);
+    }
   }
 };
 

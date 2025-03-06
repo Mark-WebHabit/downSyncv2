@@ -21,7 +21,7 @@ const ArtContextProvider = ({ children }) => {
       const basicShapesData = await getData("basicShapes");
       const shapesMatchingData = await getData("shapesMatching");
 
-      if (savedUser?.uid) {
+      if (savedUser?.username) {
         setColors(colorsData);
         setBasicShapes(basicShapesData);
         setShapesMatching(shapesMatchingData);

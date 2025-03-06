@@ -26,7 +26,7 @@ const Dashboard = ({ children }) => {
       const savedUser = await getSavedUser();
       setUser(savedUser);
 
-      if (savedUser?.uid) {
+      if (savedUser?.username) {
         const unsubscribeLoginDates = createListener(
           `logins`,
           savedUser.uid,

@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { getData } from "./LocalStorage";
 // import { emitPreferenceChange } from "./EventEMitter";
 
 // Function to get a preference
@@ -36,10 +37,12 @@ export const removePreference = async (key) => {
 
 export const getSavedUser = async () => {
   try {
-    const user = await AsyncStorage.getItem("user");
-    const uid = await AsyncStorage.getItem("uid");
+    const userInfo = await getData("userInfo");
 
-    return { user: user, uid };
+    if (userInfo?.username) {
+      return { username: userInfo.username, createdAt: userInfo.createdAt };
+    }
+    return null;
   } catch (error) {
     console.log(error);
   }
@@ -47,12 +50,9 @@ export const getSavedUser = async () => {
 
 export const checkFirstLaunch = async () => {
   try {
-    const alphav1 = await AsyncStorage.getItem("alphav1.6");
-    if (alphav1 === null) {
-      // This is the first launch
-      removePreference("uid");
-      removePreference("user");
-      await AsyncStorage.setItem("alphav1.6", "false");
+    const userInfo = await getData("userInfo");
+
+    if (userInfo === null) {
       return true;
     }
     return false;

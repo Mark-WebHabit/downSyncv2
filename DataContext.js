@@ -23,8 +23,8 @@ const DataContext = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (user) {
-      createLoginDocument(user.uid);
+    if (user && user?.username) {
+      createLoginDocument(user?.username);
     }
   }, [user]);
 

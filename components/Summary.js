@@ -121,7 +121,7 @@ const Summary = ({ logins, user, showSummary }) => {
         </Text>
       )}
 
-      <Text style={styles.desc}>{user.user} Overall Progress</Text>
+      <Text style={styles.desc}>{user.username} Overall Progress</Text>
       <Text style={styles.percent}>
         {((totalCompleted / totalGAme) * 100).toFixed(2)}%
       </Text>

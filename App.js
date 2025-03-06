@@ -22,7 +22,8 @@ import BodyParts from "./screens/BodyParts";
 import { usePlayBg } from "./customHooks/PlaySound";
 import Setting from "./screens/Setting";
 import { StatusBar } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+
+import { AppState } from "react-native";
 
 const Stack = createStackNavigator();
 
@@ -31,9 +32,39 @@ SplashScreen.preventAutoHideAsync();
 export default function App() {
   const bgSound = usePlayBg(0.07);
 
+  // Function to handle app state changes
+  const handleAppStateChange = async (nextAppState) => {
+    // const username = "user123"; // Replace with actual username
+    // const currentDate = getCurrentDate();
+    // const loginKey = `logins_${username}_${currentDate}`;
+
+    // if (nextAppState === "background" || nextAppState === "inactive") {
+    //   try {
+    //     const loginData = JSON.parse(await AsyncStorage.getItem(loginKey));
+    //     loginData.logoutTime = new Date().toISOString();
+    //     await AsyncStorage.setItem(loginKey, JSON.stringify(loginData));
+    //   } catch (error) {
+    //     console.error("Error setting logout time:", error);
+    //   }
+    // }
+
+    console.log(nextAppState);
+  };
+
   useEffect(() => {
     bgSound();
   }, [bgSound]);
+
+  useEffect(() => {
+    const subscription = AppState.addEventListener(
+      "change",
+      handleAppStateChange
+    );
+
+    return () => {
+      subscription.remove();
+    };
+  }, []);
 
   useEffect(() => {
     async function prepare() {

@@ -22,7 +22,7 @@ const AnimalsContextProvider = ({ children }) => {
       const medium = await getData("medium");
       const hard = await getData("hard");
 
-      if (savedUser?.uid) {
+      if (savedUser?.username) {
         setMatchingEasy(easyData);
         setMatchingMedium(medium);
         setMatchingHard(hard);

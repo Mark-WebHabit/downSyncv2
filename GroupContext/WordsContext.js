@@ -17,7 +17,7 @@ const WordContextProvider = ({ children }) => {
       const lettersData = await getData("letters");
       const dnd = await getData("dnd");
 
-      if (savedUser?.uid) {
+      if (savedUser?.username) {
         setLetters(lettersData);
         setDndObjects(dnd);
 
