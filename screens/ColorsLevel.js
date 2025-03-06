@@ -1,14 +1,16 @@
 import { StyleSheet, Text, View } from "react-native";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import MainContainer from "../components/MainContainer";
-import { updateBasicColors } from "../utilities/Database";
+import { updateMatching } from "../utilities/Database";
+import { ArtContext } from "../GroupContext/ArtsContext";
 
 const ColorsLevel = ({ navigation, route }) => {
   const { item } = route.params;
+  const { colors, setColors } = useContext(ArtContext);
 
   useEffect(() => {
     (async function () {
-      await updateBasicColors(item.uid);
+      await updateMatching(item.uid, "colors", setColors, colors);
     })();
   }, []);
 

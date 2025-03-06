@@ -1,6 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
 import { getSavedUser } from "../utilities/preferences";
-import { createListener } from "../utilities/CreateListener";
 import { getData } from "../utilities/LocalStorage";
 
 export const WordContext = createContext(null);
@@ -23,12 +22,6 @@ const WordContextProvider = ({ children }) => {
         setDndObjects(dnd);
 
         setFetching(false);
-
-        return () => {
-          unsubscribeLetters();
-          unsubscribeDndProgress();
-          // unsubscribeAnother();
-        };
       }
     }
     getUser();

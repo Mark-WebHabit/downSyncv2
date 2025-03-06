@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import { getSavedUser } from "../utilities/preferences";
 import { createListener } from "../utilities/CreateListener";
+import { getData } from "../utilities/LocalStorage";
 
 export const ArtContext = createContext(null);
 
@@ -16,26 +17,10 @@ const ArtContextProvider = ({ children }) => {
       const savedUser = await getSavedUser();
       setUser(savedUser);
 
+      const colorsData = await getData("colors");
+
       if (savedUser?.uid) {
-        const unsubscribeColors = createListener(
-          `arts/colors`,
-          savedUser.uid,
-          (data) => {
-            const result = [];
-
-            const keys = Object.keys(data);
-            keys.forEach((key) => {
-              const obj = {
-                uid: key,
-                ...data[key],
-              };
-
-              result.push(obj);
-            });
-
-            setColors(result);
-          }
-        );
+        setColors(colorsData);
 
         const unsubscribeBasicShapes = createListener(
           `arts/shapes/basic`,
@@ -94,7 +79,7 @@ const ArtContextProvider = ({ children }) => {
 
   return (
     <ArtContext.Provider
-      value={{ fetching, user, colors, basicShapes, shapesMatching }}
+      value={{ fetching, user, colors, setColors, basicShapes, shapesMatching }}
     >
       {children}
     </ArtContext.Provider>

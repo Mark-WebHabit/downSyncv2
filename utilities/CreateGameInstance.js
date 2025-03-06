@@ -42,6 +42,7 @@ export const createGameInstance = async () => {
     const objectMatchingData = require("../assets/db/games/matching.json");
     const letters = require("../assets/db/words/letters.json");
     const dnd = require("../assets/db/words/dnd.json");
+    const colors = require("../assets/db/arts/colors.json");
 
     storeData("easy", easyData);
     storeData("medium", mediumData);
@@ -49,6 +50,7 @@ export const createGameInstance = async () => {
     storeData("objectMatching", objectMatchingData);
     storeData("letters", letters);
     storeData("dnd", dnd);
+    storeData("colors", colors);
   } catch (error) {
     console.error("Error in CreateGameInstance with push:", error);
     throw error; // Re-throw the error for the caller to handle

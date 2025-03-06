@@ -19,7 +19,6 @@ import { db } from "../firebase";
 import { savePreference } from "../utilities/preferences";
 import {
   createGameInstance,
-  CreateWrodInstanceDragAndDrop,
   CreateEmotionTypeINstance,
   CreateEmotionMatchingINstance,
   CreateArtColorsInstance,
@@ -102,7 +101,6 @@ const GetStarted = ({ navigation }) => {
       createLoginDocument(newUserRef.key);
 
       await createGameInstance();
-      await CreateWrodInstanceDragAndDrop(newUserRef.key);
       await CreateEmotionTypeINstance(newUserRef.key);
       await CreateEmotionMatchingINstance(newUserRef.key);
       await CreateArtColorsInstance(newUserRef.key);
