@@ -4,9 +4,10 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { putBorderRadius } from "../utilities/Border";
 import MainContainer from "../components/MainContainer";
+
 import { areAllElementPresent } from "../utilities/Arrays";
 
 import ModalTieXox from "../components/ModelTieXox";
@@ -69,7 +70,7 @@ const XOX = ({ navigation }) => {
     });
   }, [oMove]);
 
-  // watch availble block, if no element left ano no winner then tie
+  // watch available block, if no element left and no winner then tie
   useEffect(() => {
     if (availableBlock.length == 0 && !winner && !showWinner) {
       setIsTie(true);
@@ -96,6 +97,17 @@ const XOX = ({ navigation }) => {
 
       setAvailableBlock(remainingMove);
     }
+  };
+
+  const tryAgain = () => {
+    setItems(Array(9).fill(false));
+    setAvailableBlock([0, 1, 2, 3, 4, 5, 6, 7, 8]);
+    setXMove([]);
+    setOMove([]);
+    setTurn("x");
+    setWinner(null);
+    setIsTie(false);
+    setShowWinner(false);
   };
 
   const Box = ({ index, el }) => {
@@ -152,7 +164,8 @@ const XOX = ({ navigation }) => {
       <ModelWinnerXox
         showWinner={showWinner}
         winner={winner}
-        close={() => setShowWinner(!showWinner)}
+        close={() => navigation.goBack()}
+        tryAgain={tryAgain}
       />
     </MainContainer>
   );
@@ -164,6 +177,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
+    zIndex: -2,
   },
   board: {
     width: "50%",
@@ -183,7 +197,6 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
     width: "80%",
   },
-
   turnInfo: {
     position: "absolute",
     top: 10,

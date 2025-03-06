@@ -95,7 +95,7 @@ export default MainContainer;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    zIndex: 2,
+    zIndex: -2,
   },
   wrapper: {
     flex: 1,
