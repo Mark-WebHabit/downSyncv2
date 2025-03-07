@@ -75,7 +75,7 @@ const GamesList = ({ navigation }) => {
             style={[
               styles.button,
               {
-                transform: [{ scale: buttonSize }],
+                transform: [{ scale: buttonSize * 0.8 }],
                 width: width / 3,
                 height: height / 4.5,
               },
