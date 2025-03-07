@@ -37,7 +37,7 @@ const MatchingObjects = ({ navigation }) => {
         imageSource={imageSource}
         navigateToGame={navigateToGame}
         isComplete={isComplete}
-        height={Math.floor(height / 4.5)}
+        height={Math.floor(height / 4)}
         width={Math.round(width / 7)}
       />
     );
@@ -54,7 +54,7 @@ const MatchingObjects = ({ navigation }) => {
           data={matching}
           renderItem={renderItem}
           keyExtractor={(item) => item.uid}
-          numColumns={5}
+          numColumns={3}
           contentContainerStyle={styles.flatlist}
         />
       </View>
@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   flatlist: {
-    justifyContent: "center",
+    justifyContent: "space-between",
+    height: "100%",
   },
 });

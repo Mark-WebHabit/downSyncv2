@@ -7,7 +7,6 @@ import Loading from "../components/Loading.js";
 import { getSavedUser, checkFirstLaunch } from "../utilities/preferences.js";
 const Letter = ({ path, delay }) => {
   const translateY = useRef(new Animated.Value(-1000)).current;
-  console.log("jo");
 
   useEffect(() => {
     Animated.timing(translateY, {
