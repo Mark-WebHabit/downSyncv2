@@ -17,7 +17,7 @@ import { Image } from "expo-image";
 import { usePlayMp3 } from "../customHooks/PlaySound";
 import { Context } from "../DataContext";
 
-const width = Dimensions.get("window").width - 130;
+const width = Dimensions.get("window").width;
 const height =
   Dimensions.get("window").height -
   (Platform.OS === "android" ? StatusBar.currentHeight : 0);
@@ -53,7 +53,7 @@ const Count = ({ navigation }) => {
   }, [answer, doneTyping, number]);
 
   const resetGame = () => {
-    setNumber(Math.floor(Math.random() * 50));
+    setNumber(Math.floor(Math.random() * 20));
     setAnswer("");
     setGuessed(false);
   };

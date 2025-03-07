@@ -38,7 +38,7 @@ const Letter = ({ navigation }) => {
         navigateToGame={navigateToGame}
         isComplete={isComplete}
         height={Math.floor(height / 4.5)}
-        width={Math.round(width / 7.5)}
+        width={Math.round(width / 9)}
       />
     );
   };

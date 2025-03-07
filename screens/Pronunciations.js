@@ -35,8 +35,8 @@ const Pronunciations = ({ navigation }) => {
         imageSource={imageSource}
         navigateToGame={navigateToGame}
         isComplete={isComplete}
-        height={Math.floor(height / 4.2)}
-        width={Math.round(width / 7.5)}
+        height={Math.floor(height / 4.5)}
+        width={Math.round(width / 9)}
       />
     );
   };
@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   flatlist: {
-    justifyContent: "center",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
 });
