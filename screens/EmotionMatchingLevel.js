@@ -27,6 +27,7 @@ const backgrounds = [
 const EmotionMatchingLevel = ({ navigation, route }) => {
   const { buttonSize, bodyText } = useUserPreferences();
   const { item } = route.params;
+
   const { speak, stop } = useContext(Context);
 
   const [emotionsArray, setEmotionsArray] = useState([]);
@@ -40,7 +41,7 @@ const EmotionMatchingLevel = ({ navigation, route }) => {
         return;
       }
 
-      let indeces = generateTwoRandomNumbers(item.name, 14);
+      let indeces = generateTwoRandomNumbers(item.name, 10);
 
       let duplicateEmote = indeces.filter(
         (indx) => emotionSample[indx].emotion == item.emotion
@@ -67,7 +68,7 @@ const EmotionMatchingLevel = ({ navigation, route }) => {
 
     loadData();
     setLoading(false);
-  }, []);
+  }, [item]);
 
   const hanldeCLick = async (el) => {
     if (item.name == el.index && el.emotion == item.emotion) {
@@ -118,7 +119,7 @@ const EmotionMatchingLevel = ({ navigation, route }) => {
               }}
             >
               <ImageBackground source={backgrounds[index]} style={styles.btnBg}>
-                <Image source={emoteItem.image} style={styles.img} />
+                <Image source={emoteItem?.image} style={styles.img} />
               </ImageBackground>
             </TouchableOpacity>
           );
@@ -187,8 +188,8 @@ const styles = StyleSheet.create({
   },
   img: {
     resizeMode: "stretch",
-    width: "100%",
-    height: "100%",
+    height: "75%",
+    aspectRatio: 1,
     zIndex: 2,
   },
 

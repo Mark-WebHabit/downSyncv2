@@ -15,14 +15,7 @@ export const emotionSample = [
     emotion: "surprise",
     image: require(`../assets/emoji/surprised.png`),
   },
-  {
-    emotion: "relief",
-    image: require(`../assets/emoji/relief.png`),
-  },
-  {
-    emotion: "confusion",
-    image: require(`../assets/emoji/confused.png`),
-  },
+
   {
     emotion: "sadness",
     image: require(`../assets/emoji/sadness.png`),
@@ -35,18 +28,12 @@ export const emotionSample = [
     emotion: "fear",
     image: require(`../assets/emoji/fear.png`),
   },
-  {
-    emotion: "pride",
-    image: require(`../assets/emoji/pride.png`),
-  },
+
   {
     emotion: "disgust",
     image: require(`../assets/emoji/disgusted.png`),
   },
-  {
-    emotion: "fear",
-    image: require(`../assets/emoji/fear.png`),
-  },
+
   {
     emotion: "relief",
     image: require(`../assets/emoji/relief.png`),
@@ -56,7 +43,7 @@ export const emotionSample = [
     image: require(`../assets/emoji/confused.png`),
   },
   {
-    emotion: "surprise",
-    image: require(`../assets/emoji/surprised.png`),
+    emotion: "love",
+    image: require(`../assets/emoji/love.png`),
   },
 ];

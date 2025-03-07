@@ -115,7 +115,8 @@ const styles = StyleSheet.create({
   },
   image: {
     overflow: "hidden",
-    height: "100%",
+    height: 200,
+    marginTop: 20,
     aspectRatio: 1,
   },
   textContainer: {

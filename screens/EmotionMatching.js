@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, FlatList } from "react-native";
+import { StyleSheet, View, FlatList } from "react-native";
 import React, { useContext } from "react";
 
 import MainContainer from "../components/MainContainer";
@@ -43,8 +43,8 @@ const EmotionMatching = ({ navigation }) => {
         imageSource={imageSource}
         navigateToGame={navigateToGame}
         isComplete={isComplete}
-        height={Math.floor(height / 3.5)}
-        width={Math.round(width / 6)}
+        height={Math.floor(height / 4.2)}
+        width={Math.round(width / 7.5)}
       />
     );
   };
@@ -60,7 +60,7 @@ const EmotionMatching = ({ navigation }) => {
           data={emotionSample}
           renderItem={renderItem}
           keyExtractor={(item, i) => i}
-          numColumns={5}
+          numColumns={4}
           contentContainerStyle={styles.flatlist}
         />
       </View>
@@ -74,10 +74,12 @@ const styles = StyleSheet.create({
   levelContainer: {
     marginHorizontal: "auto",
     height: "100%",
-    marginTop: 10,
+    width: "70%",
   },
   flatlist: {
-    justifyContent: "center",
-    gap: 7,
+    paddingVertical: 20,
+    justifyContent: "space-between",
+    alignItems: "center",
+    height: "100%",
   },
 });

@@ -39,8 +39,8 @@ const EmotionsType = ({ navigation }) => {
         imageSource={imageSource}
         navigateToGame={navigateToGame}
         isComplete={isComplete}
-        width={Math.round(width / 5.5)}
-        height={Math.floor(height / 3.2)}
+        width={Math.round(width / 7)}
+        height={Math.floor(height / 4)}
       />
     );
   };
@@ -70,8 +70,12 @@ const styles = StyleSheet.create({
   levelContainer: {
     marginHorizontal: "auto",
     height: "100%",
+    width: "70%",
   },
   flatlist: {
-    justifyContent: "center",
+    paddingVertical: 20,
+    justifyContent: "space-between",
+    alignItems: "center",
+    height: "100%",
   },
 });
