@@ -54,7 +54,7 @@ const MainContainer = ({
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={bg ? { uri: bg } : require("../assets/images/farm.jpg")}
+        source={bg ? { uri: bg } : require("../assets/images/rainbow.jpg")}
         style={[styles.wrapper, addStyle]}
       >
         {/* main body */}
@@ -65,11 +65,11 @@ const MainContainer = ({
           goBack={goBack}
           navigation={navigation}
         />
-        <Img
+        {/* <Img
           source={require("../assets/images/panda.gif")}
           style={styles.panda}
           contentFit="fill"
-        />
+        /> */}
         {children}
       </ImageBackground>
 
