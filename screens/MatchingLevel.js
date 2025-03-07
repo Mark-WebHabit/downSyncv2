@@ -29,6 +29,8 @@ const getRandomOrder = (array) => {
 
 const MatchingLevel = ({ navigation, route }) => {
   const { item } = route.params;
+  const { matching: matchingData } = useContext(GamesContext);
+
   const [level, setLevel] = useState(matching[item["name"]]);
 
   const { matching: matchingObject, setMatching } = useContext(GamesContext);
@@ -266,7 +268,15 @@ const MatchingLevel = ({ navigation, route }) => {
         visible={correctMatchVisible}
         onClose={() => {
           setCorrectMatchVisible(false);
-          navigation.goBack();
+
+          if (item?.name < matchingData.length - 1) {
+            const newItem = { ...matchingData[item.name + 1] };
+            navigation.replace("Matching", {
+              item: newItem,
+            });
+          } else {
+            navigation.goBack();
+          }
         }}
       />
       <HelpModal visible={helpVisible} onClose={() => setHelpVisible(false)} />
