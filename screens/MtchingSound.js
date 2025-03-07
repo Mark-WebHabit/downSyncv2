@@ -38,7 +38,7 @@ const MatchingSound = ({ navigation }) => {
         imageSource={imageSource}
         navigateToGame={navigateToGame}
         isComplete={isComplete}
-        height={Math.floor(height / 4.2)}
+        height={Math.floor(height / 4.5)}
         width={Math.round(width / 7.5)}
       />
     );
@@ -55,7 +55,7 @@ const MatchingSound = ({ navigation }) => {
           data={matchingEasy}
           renderItem={renderItem}
           keyExtractor={(item) => item.uid}
-          numColumns={6}
+          numColumns={4}
           contentContainerStyle={styles.flatlist}
         />
       </View>
@@ -69,8 +69,12 @@ const styles = StyleSheet.create({
   levelContainer: {
     marginHorizontal: "auto",
     height: "100%",
+    width: "70%",
   },
   flatlist: {
-    justifyContent: "center",
+    paddingVertical: 20,
+    justifyContent: "space-between",
+    alignItems: "center",
+    height: "100%",
   },
 });
