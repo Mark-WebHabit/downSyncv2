@@ -90,7 +90,7 @@ const MatchShapesLevel = ({ navigation, route }) => {
             <TouchableOpacity
               style={styles.imageTouch}
               onPress={() => {
-                speak(el.name);
+                speak(el.shape);
 
                 if (el.shape == item.shape) {
                   setCorrect(true);
@@ -114,7 +114,7 @@ const MatchShapesLevel = ({ navigation, route }) => {
           source={require("../assets/images/buttonwhite.png")}
         >
           <Text style={styles.text}>
-            Select the image that represent {item.shape} shape
+            Select the image that shows {item.shape} shape
           </Text>
         </ImageBackground>
       </View>
@@ -138,13 +138,14 @@ const styles = StyleSheet.create({
     padding: 10,
     borderWidth: 5,
     padding: 10,
-
+    justifyContent: "center",
+    alignItems: "center",
     borderRadius: "100%",
     backgroundColor: "#E6EDEC",
   },
   image: {
-    width: "100%",
-    height: "100%",
+    aspectRatio: 1,
+    height: "80%",
   },
   textContainer: {
     height: "35%",

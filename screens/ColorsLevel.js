@@ -1,12 +1,14 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useContext, useEffect } from "react";
 import MainContainer from "../components/MainContainer";
 import { updateMatching } from "../utilities/Database";
 import { ArtContext } from "../GroupContext/ArtsContext";
+import { Context } from "../DataContext";
 
 const ColorsLevel = ({ navigation, route }) => {
   const { item } = route.params;
   const { colors, setColors } = useContext(ArtContext);
+  const { speak } = useContext(Context);
 
   useEffect(() => {
     (async function () {
@@ -17,14 +19,16 @@ const ColorsLevel = ({ navigation, route }) => {
   return (
     <MainContainer navigation={navigation} showSetting={false}>
       <View style={styles.container}>
-        <View
-          style={[
-            styles.box,
-            {
-              backgroundColor: item.hex,
-            },
-          ]}
-        ></View>
+        <TouchableOpacity onPress={() => speak(item.name)}>
+          <View
+            style={[
+              styles.box,
+              {
+                backgroundColor: item.hex,
+              },
+            ]}
+          ></View>
+        </TouchableOpacity>
         <Text
           style={[
             styles.small,
@@ -35,8 +39,12 @@ const ColorsLevel = ({ navigation, route }) => {
         >
           {item.hex}
         </Text>
-        <Text style={styles.name}>{item.name}</Text>
-        <Text style={styles.description}>{item.description}</Text>
+        <TouchableOpacity onPress={() => speak(item.name)}>
+          <Text style={styles.name}>{item.name}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => speak(item.description)}>
+          <Text style={styles.description}>{item.description}</Text>
+        </TouchableOpacity>
       </View>
     </MainContainer>
   );

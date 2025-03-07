@@ -17,7 +17,7 @@ const images = [
 
 const BasicColors = ({ navigation }) => {
   const { colors } = useContext(ArtContext);
-  const { sound } = useContext(Context);
+  const { sound, height, width } = useContext(Context);
 
   const renderItem = ({ item, index }) => {
     const isComplete = colors[index]?.complete;
@@ -39,6 +39,8 @@ const BasicColors = ({ navigation }) => {
         imageSource={imageSource}
         navigateToGame={navigateToGame}
         isComplete={isComplete}
+        height={Math.floor(height / 4.2)}
+        width={Math.round(width / 7.5)}
       />
     );
   };
@@ -68,8 +70,12 @@ const styles = StyleSheet.create({
   levelContainer: {
     marginHorizontal: "auto",
     height: "100%",
+    width: "70%",
   },
   flatlist: {
-    justifyContent: "center",
+    paddingVertical: 10,
+    justifyContent: "space-between",
+    alignItems: "center",
+    height: "100%",
   },
 });

@@ -29,6 +29,7 @@ const ShapesBasicLevels = ({ navigation, route }) => {
       navigation={navigation}
       addStyle={styles.container}
     >
+      <View style={styles.absolute} />
       <View style={styles.imageContainer}>
         <Image source={item.image} style={styles.image} resizeMode="stretch" />
       </View>
@@ -52,6 +53,13 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
+  },
+  absolute: {
+    position: "absolute",
+    backgroundColor: "black",
+    height: "100%",
+    width: "100%",
+    opacity: 0.3,
   },
   imageContainer: {
     width: "80%",

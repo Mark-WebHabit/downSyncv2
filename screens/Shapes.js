@@ -27,7 +27,7 @@ const Shapes = ({ navigation }) => {
           style={[
             styles.button,
             {
-              transform: [{ scale: buttonSize }],
+              transform: [{ scale: buttonSize * 0.8 }],
             },
           ]}
           onPress={() => {
@@ -55,7 +55,7 @@ const Shapes = ({ navigation }) => {
           style={[
             styles.button,
             {
-              transform: [{ scale: buttonSize }],
+              transform: [{ scale: buttonSize * 0.8 }],
             },
           ]}
           onPress={() => {
