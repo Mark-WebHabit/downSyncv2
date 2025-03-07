@@ -97,8 +97,17 @@ const MatchingNameGameLevel = ({ navigation, route }) => {
                     setMatchingMedium,
                     matchingMedium
                   );
-                  navigation.goBack();
                   feedbackSound(true);
+
+                  if (item.name < matchingMedium.length - 1) {
+                    const newItem = matchingMedium[item.name + 1];
+
+                    navigation.replace("MatchingMediumGame", {
+                      item: newItem,
+                    });
+                  } else {
+                    navigation.goBack();
+                  }
                 }
               }}
             >

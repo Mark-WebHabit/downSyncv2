@@ -99,8 +99,17 @@ const MatchingSoundGameLevel = ({ navigation, route }) => {
                     setMatchingEasy,
                     matchingEasy
                   );
-                  navigation.goBack();
                   feedbackSound(true);
+
+                  if (item.name < matchingEasy.length - 1) {
+                    const newItem = matchingEasy[item.name + 1];
+
+                    navigation.replace("MatchingEasyGame", {
+                      item: newItem,
+                    });
+                  } else {
+                    navigation.goBack();
+                  }
                 }
               }}
             >
@@ -162,7 +171,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   loadingText: {
-    marginTop: 10,
     fontSize: 18,
   },
   imagesContainer: {

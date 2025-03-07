@@ -97,8 +97,16 @@ const MatchingDescGameLevel = ({ navigation, route }) => {
                     setMatchingHard,
                     matchingHard
                   );
-                  navigation.goBack();
                   feedbackSound(true);
+
+                  if (item.name < matchingHard.length - 1) {
+                    const newItem = matchingHard[item.name + 1];
+                    navigation.replace("MatchingHardGame", {
+                      item: newItem,
+                    });
+                  } else {
+                    navigation.goBack();
+                  }
                 }
               }}
             >
