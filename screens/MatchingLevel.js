@@ -16,9 +16,10 @@ import { Context } from "../DataContext";
 import IncorrectMatchModal from "../components/IncorrctMacth";
 import CorrectMatchModal from "../components/CorrctMactch";
 import { feedbackSound } from "../customHooks/PlaySound";
-import { updateMatchingObjects, updateMatching } from "../utilities/Database";
+import { updateMatching } from "../utilities/Database";
 import HelpModal from "../components/HelpModalForObjects";
 import { GamesContext } from "../GroupContext/GameContext";
+import Lottie from "../components/Lottie";
 
 const getRandomOrder = (array) => {
   return array
@@ -142,6 +143,7 @@ const MatchingLevel = ({ navigation, route }) => {
 
   return (
     <View style={styles.container}>
+      {correctMatchVisible && <Lottie />}
       <Svg style={StyleSheet.absoluteFill}>
         {lines.map((line, index) => (
           <Line
