@@ -1,8 +1,10 @@
 import { StyleSheet, Text, View, Modal, TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
-import React from "react";
+import React, { useState } from "react";
 
-const NiceTryModal = ({ show = true, hide }) => {
+const NiceTryModal = ({ show = true, hide, next }) => {
+  const [modalSize, setModalSize] = useState(0);
+
   return (
     <Modal
       style={styles.container}
@@ -10,7 +12,10 @@ const NiceTryModal = ({ show = true, hide }) => {
       animationType="fade"
       visible={show}
     >
-      <View style={styles.container}>
+      <View
+        onLayout={(event) => setModalSize(event.nativeEvent.layout.width)}
+        style={styles.container}
+      >
         <Image
           style={styles.clapping}
           source={require("../assets/images/clapping.gif")}
@@ -28,6 +33,27 @@ const NiceTryModal = ({ show = true, hide }) => {
             contentFit="fill"
           />
         </TouchableOpacity>
+        <View
+          style={[
+            styles.div,
+            {
+              width: modalSize,
+            },
+          ]}
+        >
+          <TouchableOpacity style={styles.nextContainer} onPress={next}>
+            <Text
+              style={[
+                styles.next,
+                {
+                  width: 200,
+                },
+              ]}
+            >
+              NEXT
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </Modal>
   );
@@ -43,9 +69,12 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 20,
     flexDirection: "row",
+    flexWrap: "wrap",
     justifyContent: "center",
     alignItems: "center",
     position: "relative",
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
   },
   clapping: {
     height: "80%",
@@ -55,5 +84,25 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontWeight: "bold",
     textAlign: "center",
+  },
+
+  div: {
+    backgroundColor: "white",
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+  },
+  nextContainer: {
+    alignItems: "flex-end",
+  },
+  next: {
+    marginRight: 30,
+    textAlign: "center",
+    paddingVertical: 10,
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 10,
+    backgroundColor: "red",
+    borderRadius: 20,
+    color: "white",
   },
 });

@@ -27,12 +27,15 @@ const DragDrop = ({ navigation, route }) => {
   const [ndx, setNdx] = useState(Math.floor(Math.random() * 3));
   const [items, setItems] = useState([item]);
   const clap = usePlayMp3(require("../assets/sounds/clapping.mp3"));
-  const { speak, stop } = useContext(Context);
   const [showHint, setSHowHint] = useState(false);
   const [done, setDOne] = useState(false);
   const screenWidth = Dimensions.get("window").width;
   const screenHeight = Dimensions.get("window").height;
   const [isInBox, setIsInBox] = useState(false);
+  const { speak, stop } = useContext(Context);
+
+  const objs = objects.slice(0, 12);
+
   const initialPositions = [
     { x: getRandomPosition(screenWidth), y: getRandomPosition(screenHeight) },
     { x: getRandomPosition(screenWidth), y: getRandomPosition(screenHeight) },
@@ -163,7 +166,27 @@ const DragDrop = ({ navigation, route }) => {
 
   return (
     <MainContainer navigation={navigation} showSetting={false}>
-      <NiceTryModal show={done} hide={() => setDOne(false)} />
+      <View style={styles.absolute} />
+      <NiceTryModal
+        show={done}
+        hide={() => {
+          setDOne(false);
+          navigation.goBack();
+        }}
+        next={() => {
+          if (item.index < objs.length - 1) {
+            const newItem = {
+              ...objs[item.index + 1],
+              uid: dndObjects[item.index]?.uid,
+              index: item.index + 1,
+            };
+
+            navigation.replace("DandD", newItem);
+          } else {
+            navigation.goBack();
+          }
+        }}
+      />
       {items.length && items.length > 0 && (
         <View style={styles.container}>
           <Modal visible={showHint} transparent animationType="fade">
@@ -235,6 +258,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     position: "relative",
+  },
+  absolute: {
+    width: "100%",
+    height: "100%",
+    backgroundColor: "black",
+    position: "absolute",
+    opacity: 0.4,
   },
   dropBox: {
     justifyContent: "center",

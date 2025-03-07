@@ -23,7 +23,7 @@ const DandDList = ({ navigation }) => {
 
     const imageSource = images[index % images.length];
 
-    const newItem = { ...item, uid: dndObjects[index]?.uid };
+    const newItem = { ...item, uid: dndObjects[index]?.uid, index };
 
     const navigateToGame = () => {
       sound();
