@@ -13,8 +13,8 @@ import { Context } from "../DataContext";
 import ButtonSvg from "../components/ButtonSvg";
 
 const GamesList = ({ navigation }) => {
-  const { fontSize, buttonFontColor, buttonSize } = useUserPreferences();
-  const { sound, width, height } = useContext(Context);
+  const { buttonSize } = useUserPreferences();
+  const { sound, height } = useContext(Context);
 
   const buttons = [
     {
@@ -87,6 +87,9 @@ const GamesList = ({ navigation }) => {
               justifyContent: "center",
               alignItems: "center",
               transform: [
+                {
+                  scale: buttonSize * 1,
+                },
                 {
                   scaleX: index % 2 == 1 ? -1 : 1,
                 },

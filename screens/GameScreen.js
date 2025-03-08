@@ -10,104 +10,59 @@ import MainContainer from "../components/MainContainer";
 import useUserPreferences from "../customHooks/useUserPreference";
 
 import { Context } from "../DataContext";
+import ButtonSvg from "../components/ButtonSvg";
 const GameScreen = ({ navigation }) => {
-  const { fontSize, buttonFontColor, buttonSize, bodyText } =
-    useUserPreferences();
+  const { buttonSize } = useUserPreferences();
 
-  const { sound } = useContext(Context);
+  const { height, sound } = useContext(Context);
+
+  const buttons = [
+    {
+      title: "Easy",
+      image: require("../assets/images/difficulty/easy.png"),
+      screen: "MatchingObjects",
+      color: "#32CD32",
+    },
+    {
+      title: "Fair",
+      image: require("../assets/images/difficulty/fair.png"),
+      screen: "xox",
+      color: "#40E0D0",
+    },
+    {
+      title: "Hard",
+      image: require("../assets/images/difficulty/hard.png"),
+      screen: "Memory",
+      color: "#FF7F50",
+    },
+  ];
+
   return (
     <MainContainer
       navigation={navigation}
       showSetting={false}
       addStyle={styles.container}
     >
-      <TouchableOpacity
-        style={[
-          styles.buttonContainer,
-          {
-            transform: [{ scale: buttonSize }],
-          },
-        ]}
-        onPress={() => {
-          sound();
-          navigation.navigate("MatchingObjects");
-        }}
-      >
-        <ImageBackground
-          style={styles.buttonBg}
-          source={require("../assets/images/buttonblue.png")}
+      {buttons.map((button, index) => (
+        <TouchableOpacity
+          key={index}
+          onPress={() => {
+            sound();
+            navigation.navigate(button.screen);
+          }}
         >
-          <Text
-            style={[
-              styles.text,
-              {
-                fontSize: fontSize,
-                color: buttonFontColor,
-              },
-            ]}
-          >
-            EASY
-          </Text>
-        </ImageBackground>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={[
-          styles.buttonContainer,
-          {
-            transform: [{ scale: buttonSize }],
-          },
-        ]}
-        onPress={() => {
-          sound();
-          navigation.navigate("xox");
-        }}
-      >
-        <ImageBackground
-          style={styles.buttonBg}
-          source={require("../assets/images/buttonmint.png")}
-        >
-          <Text
-            style={[
-              styles.text,
-              {
-                fontSize: fontSize,
-                color: buttonFontColor,
-              },
-            ]}
-          >
-            FAIR
-          </Text>
-        </ImageBackground>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={[
-          styles.buttonContainer,
-          {
-            transform: [{ scale: buttonSize }],
-          },
-        ]}
-        onPress={() => {
-          sound();
-          navigation.navigate("Memory");
-        }}
-      >
-        <ImageBackground
-          style={styles.buttonBg}
-          source={require("../assets/images/buttongreen.png")}
-        >
-          <Text
-            style={[
-              styles.text,
-              {
-                fontSize: fontSize,
-                color: buttonFontColor,
-              },
-            ]}
-          >
-            HARD
-          </Text>
-        </ImageBackground>
-      </TouchableOpacity>
+          <ButtonSvg
+            style={{
+              transform: [{ scale: buttonSize }],
+              height: height / 4,
+              width: (height / 4) * 3,
+            }}
+            img={button.image}
+            bgColor={button.color}
+            text={button.title}
+          />
+        </TouchableOpacity>
+      ))}
     </MainContainer>
   );
 };
@@ -116,6 +71,7 @@ export default GameScreen;
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     justifyContent: "space-evenly",
     alignItems: "center",
   },
