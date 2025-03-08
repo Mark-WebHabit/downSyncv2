@@ -4,12 +4,13 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
 } from "react-native";
 import React, { useContext } from "react";
 import MainContainer from "../components/MainContainer";
 import useUserPreferences from "../customHooks/useUserPreference";
 import { Context } from "../DataContext";
+
+import ButtonSvg from "../components/ButtonSvg";
 
 const GamesList = ({ navigation }) => {
   const { fontSize, buttonFontColor, buttonSize } = useUserPreferences();
@@ -18,43 +19,51 @@ const GamesList = ({ navigation }) => {
   const buttons = [
     {
       title: "Games",
-      image: require("../assets/images/buttonwhite.png"),
+      image: require("../assets/images/gameslist/games.png"),
       screen: "Games",
+      color: "#FF0000",
     },
     {
       title: "Animals",
-      image: require("../assets/images/buttonmint.png"),
+      image: require("../assets/images/gameslist/animals.png"),
       screen: "Animals",
+      color: "#0000FF",
     },
     {
       title: "Numbers",
-      image: require("../assets/images/buttonblue.png"),
+      image: require("../assets/images/gameslist/numbers.png"),
       screen: "Numbers",
+      color: "#FF69B4",
     },
     {
       title: "Words",
-      image: require("../assets/images/buttongreen.png"),
+      image: require("../assets/images/gameslist/words.png"),
       screen: "Words",
+      color: "#FFA500",
     },
     {
       title: "Body",
-      image: require("../assets/images/buttonwhite.png"),
+      image: require("../assets/images/gameslist/body.png"),
       screen: "BodyParts",
+      color: "#8A2BE2",
     },
     {
       title: "Things",
-      image: require("../assets/images/buttonmint.png"),
+      image: require("../assets/images/gameslist/things.png"),
       screen: "Things",
+      color: "#00FFFF",
     },
     {
       title: "Emotions",
-      image: require("../assets/images/buttonblue.png"),
+      image: require("../assets/images/gameslist/emotions.png"),
       screen: "Emotions",
+      color: "#FF00FF",
     },
     {
       title: "Arts",
-      image: require("../assets/images/buttongreen.png"),
+      image: require("../assets/images/gameslist/arts.png"),
       screen: "Arts",
+      color: "#FF00FF",
     },
   ];
 
@@ -70,35 +79,35 @@ const GamesList = ({ navigation }) => {
         keyExtractor={(item) => item.screen}
         numColumns={2}
         contentContainerStyle={styles.flatListContainer}
-        renderItem={({ item }) => (
+        style={{ width: "80%" }}
+        renderItem={({ item, index }) => (
           <TouchableOpacity
-            style={[
-              styles.button,
-              {
-                transform: [{ scale: buttonSize * 0.8 }],
-                width: width / 3,
-                height: height / 4.5,
-              },
-            ]}
+            style={{
+              width: "50%",
+              justifyContent: "center",
+              alignItems: "center",
+              transform: [
+                {
+                  scaleX: index % 2 == 1 ? -1 : 1,
+                },
+              ],
+            }}
             onPress={() => {
               sound();
               navigation.navigate(item.screen);
             }}
           >
-            <ImageBackground
-              source={item.image}
-              resizeMode="stretch"
-              style={styles.buttonContainer}
-            >
-              <Text
-                style={[
-                  styles.text,
-                  { fontSize: fontSize, color: buttonFontColor },
-                ]}
-              >
-                {item.title}
-              </Text>
-            </ImageBackground>
+            <ButtonSvg
+              style={{
+                height: height / 4,
+                width: (height / 5) * 3,
+              }}
+              img={item.image}
+              bgColor={item.color}
+              text={item.title}
+              index={index}
+              isBlack={item.title === "Things"}
+            />
           </TouchableOpacity>
         )}
       />
@@ -113,25 +122,15 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    gap: 0,
+    paddin: 0,
+    margin: 0,
   },
   flatListContainer: {
-    padding: 20,
     justifyContent: "space-between",
     alignItems: "center",
     height: "100%",
   },
-  button: {
-    height: 80,
-  },
-  buttonContainer: {
-    width: "100%",
-    height: "100%",
-    justifyContent: "center",
-  },
-  text: {
-    width: "100%",
-    textAlign: "center",
-    fontWeight: "700",
-    textTransform: "uppercase",
-  },
+
+  buttonSvg: {},
 });

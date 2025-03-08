@@ -1,19 +1,62 @@
 import {
   ImageBackground,
-  ScrollView,
+  FlatList,
   StyleSheet,
   Text,
   TouchableOpacity,
+  View,
 } from "react-native";
 import React, { useContext } from "react";
 import MainContainer from "../components/MainContainer";
-
 import useUserPreferences from "../customHooks/useUserPreference";
 import { Context } from "../DataContext";
 
 const GamesList = ({ navigation }) => {
   const { fontSize, buttonFontColor, buttonSize } = useUserPreferences();
-  const { sound } = useContext(Context);
+  const { sound, width, height } = useContext(Context);
+
+  const buttons = [
+    {
+      title: "Games",
+      image: require("../assets/images/buttonwhite.png"),
+      screen: "Games",
+    },
+    {
+      title: "Animals",
+      image: require("../assets/images/buttonmint.png"),
+      screen: "Animals",
+    },
+    {
+      title: "Numbers",
+      image: require("../assets/images/buttonblue.png"),
+      screen: "Numbers",
+    },
+    {
+      title: "Words",
+      image: require("../assets/images/buttongreen.png"),
+      screen: "Words",
+    },
+    {
+      title: "Body",
+      image: require("../assets/images/buttonwhite.png"),
+      screen: "BodyParts",
+    },
+    {
+      title: "Things",
+      image: require("../assets/images/buttonmint.png"),
+      screen: "Things",
+    },
+    {
+      title: "Emotions",
+      image: require("../assets/images/buttonblue.png"),
+      screen: "Emotions",
+    },
+    {
+      title: "Arts",
+      image: require("../assets/images/buttongreen.png"),
+      screen: "Arts",
+    },
+  ];
 
   return (
     <MainContainer
@@ -22,231 +65,43 @@ const GamesList = ({ navigation }) => {
       addStyle={styles.container}
       navigation={navigation}
     >
-      <ScrollView contentContainerStyle={styles.scroll}>
-        {/* buttons */}
-        <TouchableOpacity
-          style={[
-            styles.button,
-            {
-              transform: [{ scale: buttonSize }],
-            },
-          ]}
-          onPress={() => {
-            sound();
-
-            navigation.navigate("Games");
-          }}
-        >
-          <ImageBackground
-            source={require("../assets/images/buttonwhite.png")}
-            resizeMode="stretch"
-            style={styles.buttonContainer}
+      <FlatList
+        data={buttons}
+        keyExtractor={(item) => item.screen}
+        numColumns={2}
+        contentContainerStyle={styles.flatListContainer}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            style={[
+              styles.button,
+              {
+                transform: [{ scale: buttonSize * 0.8 }],
+                width: width / 3,
+                height: height / 4.5,
+              },
+            ]}
+            onPress={() => {
+              sound();
+              navigation.navigate(item.screen);
+            }}
           >
-            <Text
-              style={[
-                styles.text,
-                { fontSize: fontSize, color: buttonFontColor },
-              ]}
+            <ImageBackground
+              source={item.image}
+              resizeMode="stretch"
+              style={styles.buttonContainer}
             >
-              Games
-            </Text>
-          </ImageBackground>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={[
-            styles.button,
-            {
-              transform: [{ scale: buttonSize }],
-            },
-          ]}
-          onPress={() => {
-            sound();
-
-            navigation.navigate("Animals");
-          }}
-        >
-          <ImageBackground
-            source={require("../assets/images/buttonmint.png")}
-            resizeMode="stretch"
-            style={styles.buttonContainer}
-          >
-            <Text
-              style={[
-                styles.text,
-                { fontSize: fontSize, color: buttonFontColor },
-              ]}
-            >
-              Animals
-            </Text>
-          </ImageBackground>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={[
-            styles.button,
-            {
-              transform: [{ scale: buttonSize }],
-            },
-          ]}
-          onPress={() => {
-            sound();
-            navigation.navigate("Numbers");
-          }}
-        >
-          <ImageBackground
-            source={require("../assets/images/buttonblue.png")}
-            resizeMode="stretch"
-            style={styles.buttonContainer}
-          >
-            <Text
-              style={[
-                styles.text,
-                { fontSize: fontSize, color: buttonFontColor },
-              ]}
-            >
-              Numbers
-            </Text>
-          </ImageBackground>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={[
-            styles.button,
-            {
-              transform: [{ scale: buttonSize }],
-            },
-          ]}
-          onPress={() => {
-            sound();
-            navigation.navigate("Words");
-          }}
-        >
-          <ImageBackground
-            source={require("../assets/images/buttongreen.png")}
-            resizeMode="stretch"
-            style={styles.buttonContainer}
-          >
-            <Text
-              style={[
-                styles.text,
-                { fontSize: fontSize, color: buttonFontColor },
-              ]}
-            >
-              Words
-            </Text>
-          </ImageBackground>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            styles.button,
-            {
-              transform: [{ scale: buttonSize }],
-            },
-          ]}
-          onPress={() => {
-            sound();
-            navigation.navigate("BodyParts");
-          }}
-        >
-          <ImageBackground
-            source={require("../assets/images/buttonwhite.png")}
-            resizeMode="stretch"
-            style={styles.buttonContainer}
-          >
-            <Text
-              style={[
-                styles.text,
-                { fontSize: fontSize, color: buttonFontColor },
-              ]}
-            >
-              Body
-            </Text>
-          </ImageBackground>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            styles.button,
-            {
-              transform: [{ scale: buttonSize }],
-            },
-          ]}
-          onPress={() => {
-            sound();
-            navigation.navigate("Things");
-          }}
-        >
-          <ImageBackground
-            source={require("../assets/images/buttonmint.png")}
-            resizeMode="stretch"
-            style={styles.buttonContainer}
-          >
-            <Text
-              style={[
-                styles.text,
-                { fontSize: fontSize, color: buttonFontColor },
-              ]}
-            >
-              Things
-            </Text>
-          </ImageBackground>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={[
-            styles.button,
-            {
-              transform: [{ scale: buttonSize }],
-            },
-          ]}
-          onPress={() => {
-            sound();
-            navigation.navigate("Emotions");
-          }}
-        >
-          <ImageBackground
-            source={require("../assets/images/buttonblue.png")}
-            resizeMode="stretch"
-            style={styles.buttonContainer}
-          >
-            <Text
-              style={[
-                styles.text,
-                { fontSize: fontSize, color: buttonFontColor },
-              ]}
-            >
-              Emotions
-            </Text>
-          </ImageBackground>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            styles.button,
-            {
-              transform: [{ scale: buttonSize }],
-            },
-          ]}
-          onPress={() => {
-            sound();
-            navigation.navigate("Arts");
-          }}
-        >
-          <ImageBackground
-            source={require("../assets/images/buttongreen.png")}
-            resizeMode="stretch"
-            style={styles.buttonContainer}
-          >
-            <Text
-              style={[
-                styles.text,
-                { fontSize: fontSize, color: buttonFontColor },
-              ]}
-            >
-              Arts
-            </Text>
-          </ImageBackground>
-        </TouchableOpacity>
-      </ScrollView>
+              <Text
+                style={[
+                  styles.text,
+                  { fontSize: fontSize, color: buttonFontColor },
+                ]}
+              >
+                {item.title}
+              </Text>
+            </ImageBackground>
+          </TouchableOpacity>
+        )}
+      />
     </MainContainer>
   );
 };
@@ -255,18 +110,18 @@ export default GamesList;
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
-  scroll: {
-    justifyContent: "center",
+  flatListContainer: {
+    padding: 20,
+    justifyContent: "space-between",
     alignItems: "center",
-    paddingBottom: 30,
+    height: "100%",
   },
   button: {
-    width: 300,
     height: 80,
-    marginVertical: 10,
   },
   buttonContainer: {
     width: "100%",
