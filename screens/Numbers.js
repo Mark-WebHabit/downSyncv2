@@ -6,105 +6,61 @@ import { ImageBackground } from "expo-image";
 import useUserPreferences from "../customHooks/useUserPreference";
 import { Context } from "../DataContext";
 
+import ButtonSvg from "../components/ButtonSvg";
+
 const Numbers = ({ navigation }) => {
   const { fontSize, buttonFontColor, buttonSize, bodyText } =
     useUserPreferences();
-  const { sound } = useContext(Context);
+  const { sound, height } = useContext(Context);
+
+  const buttons = [
+    {
+      title: "Numbers",
+      image: require("../assets/images/numbers/numbers.png"),
+      screen: "NumberGif",
+      color: "#FF6EC7",
+    },
+    {
+      title: "Count",
+      image: require("../assets/images/numbers/count.png"),
+      screen: "Count",
+      color: "#00CED1",
+    },
+    {
+      title: "Operations",
+      image: require("../assets/images/numbers/math.png"),
+      screen: "Math",
+      color: "#E6E6FA",
+    },
+  ];
+
   return (
     <MainContainer
       addStyle={[styles.container]}
       showSetting={false}
       navigation={navigation}
     >
-      <TouchableOpacity
-        style={[
-          styles.button,
-          {
-            transform: [{ scale: buttonSize }],
-          },
-        ]}
-        onPress={() => {
-          sound();
-          navigation.navigate("NumberGif");
-        }}
-      >
-        <ImageBackground
-          style={styles.buttonImage}
-          source={require("../assets/images/buttonblue.png")}
+      {buttons.map((button, index) => (
+        <TouchableOpacity
+          key={index}
+          onPress={() => {
+            sound();
+            navigation.navigate(button.screen);
+          }}
         >
-          <Text
-            style={[
-              styles.Text,
-              {
-                color: buttonFontColor,
-                fontSize: fontSize,
-              },
-            ]}
-          >
-            Numbers
-          </Text>
-        </ImageBackground>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        style={[
-          styles.button,
-          {
-            transform: [{ scale: buttonSize }],
-          },
-        ]}
-        onPress={() => {
-          sound();
-          navigation.navigate("Count");
-        }}
-      >
-        <ImageBackground
-          style={styles.buttonImage}
-          source={require("../assets/images/buttonmint.png")}
-        >
-          <Text
-            style={[
-              styles.Text,
-              {
-                color: buttonFontColor,
-                fontSize: fontSize,
-              },
-            ]}
-          >
-            Count
-          </Text>
-        </ImageBackground>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        style={[
-          styles.button,
-          {
-            transform: [{ scale: buttonSize }],
-          },
-        ]}
-        onPress={() => {
-          sound();
-          navigation.navigate("Math");
-        }}
-      >
-        <ImageBackground
-          style={styles.buttonImage}
-          source={require("../assets/images/buttongreen.png")}
-        >
-          <Text
-            style={[
-              styles.Text,
-              {
-                color: buttonFontColor,
-                fontSize: fontSize,
-              },
-            ]}
-          >
-            Math
-          </Text>
-        </ImageBackground>
-      </TouchableOpacity>
+          <ButtonSvg
+            style={{
+              transform: [{ scale: buttonSize }],
+              height: height / 4,
+              width: (height / 4) * 3,
+            }}
+            img={button.image}
+            bgColor={button.color}
+            text={button.title}
+            isBlack={button.title === "Operations"}
+          />
+        </TouchableOpacity>
+      ))}
     </MainContainer>
   );
 };
