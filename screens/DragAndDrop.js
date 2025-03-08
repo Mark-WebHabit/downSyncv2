@@ -20,6 +20,7 @@ import NiceTryModal from "../components/NiceTryModal";
 import { usePlayMp3 } from "../customHooks/PlaySound";
 import { updateMatching } from "../utilities/Database";
 import { WordContext } from "../GroupContext/WordsContext";
+import Lottie from "../components/Lottie";
 
 const DragDrop = ({ navigation, route }) => {
   const item = route.params;
@@ -167,6 +168,7 @@ const DragDrop = ({ navigation, route }) => {
   return (
     <MainContainer navigation={navigation} showSetting={false}>
       <View style={styles.absolute} />
+      {done && <Lottie />}
       <NiceTryModal
         show={done}
         hide={() => {
