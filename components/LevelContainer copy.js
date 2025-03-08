@@ -7,24 +7,24 @@ import {
 } from "react-native";
 import React from "react";
 import useUserPreferences from "../customHooks/useUserPreference";
-import ButtonBox1 from "../components/ButtonBox1";
 
 const LevelContainer = ({
   text,
+  imageSource,
   navigateToGame,
   isComplete,
   height = 120,
-  color = "red",
+  width = 120,
 }) => {
   const { fontSize, buttonFontColor, buttonSize } = useUserPreferences();
-
   return (
     <TouchableOpacity
       style={[
         styles.container,
         {
           transform: [{ scale: buttonSize }],
-          maxHeight: height,
+          height,
+          width,
         },
       ]}
       onPress={navigateToGame}
@@ -36,12 +36,19 @@ const LevelContainer = ({
           resizeMode="stretch"
         />
       )}
-      <ButtonBox1
-        color={color}
-        textColor={buttonFontColor}
-        text={text}
-        fontSize={fontSize * 3.5}
-      />
+      <ImageBackground style={styles.img} source={imageSource}>
+        <Text
+          style={[
+            styles.text,
+            {
+              fontSize: fontSize,
+              color: buttonFontColor,
+            },
+          ]}
+        >
+          {text}
+        </Text>
+      </ImageBackground>
     </TouchableOpacity>
   );
 };
@@ -50,18 +57,25 @@ export default LevelContainer;
 
 const styles = StyleSheet.create({
   container: {
-    aspectRatio: 1,
+    borderRadius: 20,
+    margin: 1,
+  },
+  img: {
     height: "100%",
-    flex: 1,
-    position: "relative",
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  text: {
+    textAlign: "center",
+    fontWeight: "700",
   },
   star: {
     position: "absolute",
-    bottom: -10,
-    left: "50%",
-    transform: [{ translateX: -20 }],
-    height: 40,
-    width: 40,
+    top: 0,
+    right: 0,
+    height: 25,
+    width: 25,
     zIndex: 1,
   },
 });

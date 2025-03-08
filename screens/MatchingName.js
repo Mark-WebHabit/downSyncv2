@@ -39,8 +39,7 @@ const MatchingName = ({ navigation }) => {
         imageSource={imageSource}
         navigateToGame={navigateToGame}
         isComplete={isComplete}
-        height={Math.floor(height / 4.5)}
-        width={Math.round(width / 7.5)}
+        height={Math.floor(height / 4)}
       />
     );
   };
@@ -73,9 +72,7 @@ const styles = StyleSheet.create({
     width: "70%",
   },
   flatlist: {
-    paddingVertical: 20,
     justifyContent: "space-between",
-    alignItems: "center",
-    height: "100%",
+    flexGrow: 1,
   },
 });

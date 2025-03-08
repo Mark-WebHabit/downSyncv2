@@ -35,7 +35,7 @@ const Pronunciations = ({ navigation }) => {
         imageSource={imageSource}
         navigateToGame={navigateToGame}
         isComplete={isComplete}
-        height={Math.floor(height / 4.5)}
+        height={Math.floor(height / 4.7)}
         width={Math.round(width / 9)}
       />
     );
@@ -66,10 +66,11 @@ const styles = StyleSheet.create({
   levelContainer: {
     marginHorizontal: "auto",
     height: "100%",
-    paddingTop: 10,
+    flex: 1,
+    width: "90%",
   },
   flatlist: {
     justifyContent: "space-between",
-    alignItems: "center",
+    flexGrow: 1,
   },
 });

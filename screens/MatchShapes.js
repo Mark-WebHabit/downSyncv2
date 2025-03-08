@@ -70,12 +70,11 @@ const styles = StyleSheet.create({
   levelContainer: {
     marginHorizontal: "auto",
     height: "100%",
+    flex: 1,
     width: "70%",
   },
   flatlist: {
-    paddingVertical: 10,
     justifyContent: "space-between",
-    alignItems: "center",
-    height: "100%",
+    flexGrow: 1,
   },
 });

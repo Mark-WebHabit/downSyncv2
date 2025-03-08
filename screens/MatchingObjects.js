@@ -37,8 +37,7 @@ const MatchingObjects = ({ navigation }) => {
         imageSource={imageSource}
         navigateToGame={navigateToGame}
         isComplete={isComplete}
-        height={Math.floor(height / 4)}
-        width={Math.round(width / 7)}
+        height={Math.floor(height / 3.5)}
       />
     );
   };
@@ -54,8 +53,9 @@ const MatchingObjects = ({ navigation }) => {
           data={matching}
           renderItem={renderItem}
           keyExtractor={(item) => item.uid}
+          style={styles.flatlist}
           numColumns={3}
-          contentContainerStyle={styles.flatlist}
+          contentContainerStyle={styles.flatlistContent}
         />
       </View>
     </MainContainer>
@@ -66,14 +66,19 @@ export default MatchingObjects;
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 10,
+    flex: 1,
   },
   levelContainer: {
-    marginHorizontal: "auto",
-    height: "100%",
+    flex: 1,
+    width: "100%",
   },
   flatlist: {
+    flex: 1,
+    width: "60%",
+    marginHorizontal: "auto",
+  },
+  flatlistContent: {
     justifyContent: "space-between",
-    height: "100%",
+    flexGrow: 1,
   },
 });

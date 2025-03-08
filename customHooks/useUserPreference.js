@@ -3,7 +3,7 @@ import { getPreference } from "../utilities/preferences";
 
 const useUserPreferences = () => {
   const [fontSize, setFontSize] = useState(40); // Default medium size 40
-  const [buttonFontColor, setButtonFontColor] = useState("#DD2525");
+  const [buttonFontColor, setButtonFontColor] = useState("#FFFFFF");
   const [buttonSize, setButtonSize] = useState(1); // Default medium scale 1
   const [bodyText, setBodyText] = useState(20);
 
@@ -20,7 +20,7 @@ const useUserPreferences = () => {
         return 35; // Default medium size 40
       });
 
-      setButtonFontColor(bfc || "#DD2525");
+      setButtonFontColor(bfc || "#FFFFFF");
 
       setButtonSize(() => {
         if (bs === "large") return 1.2;
