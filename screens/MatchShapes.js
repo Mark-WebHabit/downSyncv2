@@ -24,7 +24,7 @@ const MatchShapes = ({ navigation }) => {
 
     const imageSource = images[index % images.length];
 
-    const newItem = { ...item, ...shapesObj[item.name] };
+    const newItem = { ...item, ...shapesObj[item.name], index: item?.name };
 
     const navigateToGame = () => {
       sound();

@@ -13,6 +13,7 @@ import { Context } from "../DataContext";
 import { feedbackSound } from "../customHooks/PlaySound";
 import { updateMatching } from "../utilities/Database";
 import { ArtContext } from "../GroupContext/ArtsContext";
+import Lottie from "../components/Lottie";
 
 const MatchShapesLevel = ({ navigation, route }) => {
   const { item } = route.params;
@@ -20,8 +21,20 @@ const MatchShapesLevel = ({ navigation, route }) => {
   const [items, setItems] = useState([item]);
   const [correct, setCorrect] = useState(false);
   const { speak } = useContext(Context);
+  const [nextItem, setNextItem] = useState(null);
 
   const { shapesMatching, setShapesMatching } = useContext(ArtContext);
+
+  useEffect(() => {
+    if (item?.index < shapesMatching?.length - 1) {
+      const newItem = {
+        ...shapesMatching[item.index + 1],
+        ...shapesObj[item.index + 1],
+        index: item.index + 1,
+      };
+      setNextItem(newItem);
+    }
+  }, [item, correct]);
 
   useEffect(() => {
     let indexA = Math.floor(Math.random() * 3);
@@ -61,7 +74,23 @@ const MatchShapesLevel = ({ navigation, route }) => {
   }, []);
 
   useEffect(() => {
-    if (correct) {
+    console.log(nextItem);
+
+    if (correct && nextItem) {
+      setTimeout(() => {
+        (async function () {
+          await updateMatching(
+            item.uid,
+            "shapesMatching",
+            setShapesMatching,
+            shapesMatching
+          );
+          navigation.replace("MatchShapesLevel", {
+            item: nextItem,
+          });
+        })();
+      }, 1500);
+    } else if (correct && !nextItem) {
       (async function () {
         await updateMatching(
           item.uid,
@@ -84,6 +113,7 @@ const MatchShapesLevel = ({ navigation, route }) => {
 
   return (
     <MainContainer navigation={navigation} showSetting={false}>
+      {correct && <Lottie />}
       <View style={styles.imagesContainer}>
         {items.length >= 3 &&
           items.map((el, i) => (
