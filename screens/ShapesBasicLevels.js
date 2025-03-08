@@ -1,12 +1,21 @@
-import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
-import React, { useContext, useEffect } from "react";
+import {
+  Image,
+  ImageBackground,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import React, { useContext, useEffect, useState } from "react";
 import MainContainer from "../components/MainContainer";
 import { Context } from "../DataContext";
 import { updateBasicShapes, updateMatching } from "../utilities/Database";
 import { ArtContext } from "../GroupContext/ArtsContext";
+import { shapes } from "../assets/shapes_flatfiledb_local";
 const ShapesBasicLevels = ({ navigation, route }) => {
   const { item } = route.params;
-  const { speak } = useContext(Context);
+  const { speak, sound } = useContext(Context);
+  const [nextItem, setNextItem] = useState(null);
 
   const { basicShapes, setBasicShapes } = useContext(ArtContext);
 
@@ -23,12 +32,35 @@ const ShapesBasicLevels = ({ navigation, route }) => {
     })();
   }, []);
 
+  useEffect(() => {
+    if (item?.name < basicShapes?.length - 1) {
+      const newItem = {
+        ...basicShapes[item.name + 1],
+        ...shapes[item.name + 1],
+      };
+      setNextItem(newItem);
+    }
+  }, [item]);
+
   return (
     <MainContainer
       showSetting={false}
       navigation={navigation}
       addStyle={styles.container}
     >
+      {nextItem && (
+        <TouchableOpacity
+          style={styles.nextItemContainer}
+          onPress={() => {
+            sound();
+            navigation.replace("ShapesBasicLevels", {
+              item: nextItem,
+            });
+          }}
+        >
+          <Image source={nextItem.image} style={styles.nextItem} />
+        </TouchableOpacity>
+      )}
       <View style={styles.absolute} />
       <View style={styles.imageContainer}>
         <Image source={item.image} style={styles.image} resizeMode="stretch" />
@@ -53,6 +85,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
+    position: "relative",
   },
   absolute: {
     position: "absolute",
@@ -69,7 +102,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   image: {
-    height: "100%",
+    height: "75%",
     aspectRatio: 1,
   },
   textContainer: {
@@ -92,5 +125,22 @@ const styles = StyleSheet.create({
     textAlign: "center",
     width: "90%",
     fontSize: 20,
+  },
+  nextItemContainer: {
+    borderWidth: 2,
+    position: "absolute",
+    top: 20,
+    right: 50,
+    height: 50,
+    width: 50,
+    backgroundColor: "white",
+    zIndex: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,
+  },
+  nextItem: {
+    height: 40,
+    width: 40,
   },
 });
