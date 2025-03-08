@@ -45,6 +45,10 @@ const Home = ({ navigation }) => {
       addStyle={styles.container}
       navigation={navigation}
     >
+      <Image
+        source={require("../assets/images/kdsapp.png")}
+        style={styles.app}
+      />
       <TouchableOpacity
         style={styles.imgContainer}
         onPress={() => {
@@ -96,5 +100,11 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 5,
     marginTop: 10,
+  },
+  app: {
+    width: 300,
+    aspectRatio: 547 / 110,
+    position: "absolute",
+    top: 30,
   },
 });
