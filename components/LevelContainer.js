@@ -8,7 +8,8 @@ import {
 import React from "react";
 import useUserPreferences from "../customHooks/useUserPreference";
 import ButtonBox1 from "../components/ButtonBox1";
-
+import ButtonBox2 from "./ButtonBox2";
+import ButtonBox3 from "./ButtonBox3";
 const LevelContainer = ({
   text,
   navigateToGame,
@@ -36,7 +37,7 @@ const LevelContainer = ({
           resizeMode="stretch"
         />
       )}
-      <ButtonBox1
+      <ButtonBox3
         color={color}
         textColor={buttonFontColor}
         text={text}

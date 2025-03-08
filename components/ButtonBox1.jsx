@@ -59,7 +59,7 @@ const ButtonBox1 = (props) => {
       </G>
       <Text
         x={362.54 / 2} // Half of the viewBox width
-        y="50%" // Maintain vertical position
+        y="45%" // Maintain vertical position
         fill={props.textColor} // Text color
         fontSize={props.fontSize} // Font size
         textAnchor="middle" // Ensures the text aligns relative to its center point
@@ -68,6 +68,13 @@ const ButtonBox1 = (props) => {
       >
         {props.text}
       </Text>
+
+      <Path
+        id="shadow"
+        d="M261.53,3.49h72.19h11.24c0,0,12.08-2,12.08,11.41s0,13.41,0,13.41V222.2
+        c0,0-7.37-229.63-141.96-218.81L261.53,3.49z"
+        opacity="0.2"
+      />
     </Svg>
   );
 };
