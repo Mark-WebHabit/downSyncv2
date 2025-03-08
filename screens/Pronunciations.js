@@ -22,7 +22,8 @@ const Pronunciations = ({ navigation }) => {
 
     const imageSource = images[index % images.length];
 
-    const newItem = { item: wordsWithPronunciations[index] };
+    const newItem = { item: wordsWithPronunciations[index], index: index };
+    console.log(newItem);
 
     const navigateToGame = () => {
       sound();
