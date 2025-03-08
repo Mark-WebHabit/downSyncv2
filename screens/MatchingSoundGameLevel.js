@@ -16,6 +16,7 @@ import { feedbackSound, usePlayMp3 } from "../customHooks/PlaySound";
 import { updateMatching } from "../utilities/Database";
 import { Context } from "../DataContext";
 import { AnimalsContext } from "../GroupContext/AnimalsContext";
+import Lottie from "../components/Lottie";
 
 const backgrounds = [
   require("../assets/images/buttonbluebox.png"),
@@ -26,6 +27,7 @@ const backgrounds = [
 const MatchingSoundGameLevel = ({ navigation, route }) => {
   const { buttonSize, bodyText } = useUserPreferences();
   const { item } = route.params;
+  const [isMatch, setIsMatch] = useState(false);
 
   const [animalsArray, setAnimalsArray] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -57,6 +59,22 @@ const MatchingSoundGameLevel = ({ navigation, route }) => {
     loadData();
   }, []);
 
+  useEffect(() => {
+    if (isMatch) {
+      setTimeout(() => {
+        if (item.name < matchingEasy.length - 1) {
+          const newItem = matchingEasy[item.name + 1];
+
+          navigation.replace("MatchingEasyGame", {
+            item: newItem,
+          });
+        } else {
+          navigation.goBack();
+        }
+      }, 1500);
+    }
+  }, [isMatch]);
+
   if (loading) {
     return (
       <MainContainer
@@ -73,6 +91,7 @@ const MatchingSoundGameLevel = ({ navigation, route }) => {
   }
   return (
     <MainContainer navigation={navigation} showSetting={false}>
+      {isMatch && <Lottie />}
       <View style={styles.imagesContainer}>
         {animalsArray.map((animal, index) => {
           if (index > 2) {
@@ -101,15 +120,7 @@ const MatchingSoundGameLevel = ({ navigation, route }) => {
                   );
                   feedbackSound(true);
 
-                  if (item.name < matchingEasy.length - 1) {
-                    const newItem = matchingEasy[item.name + 1];
-
-                    navigation.replace("MatchingEasyGame", {
-                      item: newItem,
-                    });
-                  } else {
-                    navigation.goBack();
-                  }
+                  setIsMatch(true);
                 }
               }}
             >

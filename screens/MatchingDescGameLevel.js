@@ -17,6 +17,7 @@ import { feedbackSound } from "../customHooks/PlaySound";
 import { updateMatching } from "../utilities/Database";
 import { Context } from "../DataContext";
 import { AnimalsContext } from "../GroupContext/AnimalsContext";
+import Lottie from "../components/Lottie";
 
 const backgrounds = [
   require("../assets/images/buttonbluebox.png"),
@@ -28,6 +29,7 @@ const MatchingDescGameLevel = ({ navigation, route }) => {
   const { buttonSize, bodyText } = useUserPreferences();
   const { item } = route.params;
   const { speak } = useContext(Context);
+  const [isMatch, setIsMatch] = useState(false);
 
   const [animalsArray, setAnimalsArray] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -58,6 +60,21 @@ const MatchingDescGameLevel = ({ navigation, route }) => {
     setLoading(false);
   }, []);
 
+  useEffect(() => {
+    if (isMatch) {
+      setTimeout(() => {
+        if (item.name < matchingHard.length - 1) {
+          const newItem = matchingHard[item.name + 1];
+          navigation.replace("MatchingHardGame", {
+            item: newItem,
+          });
+        } else {
+          navigation.goBack();
+        }
+      }, 1500);
+    }
+  }, [isMatch]);
+
   if (loading) {
     return (
       <MainContainer navigation={navigation} showSetting={false}>
@@ -71,6 +88,7 @@ const MatchingDescGameLevel = ({ navigation, route }) => {
 
   return (
     <MainContainer navigation={navigation} showSetting={false}>
+      {isMatch && <Lottie />}
       <View style={styles.imagesContainer}>
         {animalsArray.map((animal, index) => {
           if (index > 2) {
@@ -98,15 +116,7 @@ const MatchingDescGameLevel = ({ navigation, route }) => {
                     matchingHard
                   );
                   feedbackSound(true);
-
-                  if (item.name < matchingHard.length - 1) {
-                    const newItem = matchingHard[item.name + 1];
-                    navigation.replace("MatchingHardGame", {
-                      item: newItem,
-                    });
-                  } else {
-                    navigation.goBack();
-                  }
+                  setIsMatch(true);
                 }
               }}
             >
