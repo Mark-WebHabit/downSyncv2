@@ -16,6 +16,7 @@ import { objects } from "../assets/objects_flatfiledb";
 import { Image } from "expo-image";
 import { usePlayMp3 } from "../customHooks/PlaySound";
 import { Context } from "../DataContext";
+import Lottie from "../components/Lottie";
 
 const width = Dimensions.get("window").width;
 const height =
@@ -64,6 +65,7 @@ const Count = ({ navigation }) => {
       showSetting={false}
       navigation={navigation}
     >
+      {guessed && <Lottie />}
       <TouchableOpacity
         style={styles.chat}
         onPress={() => {
@@ -129,12 +131,26 @@ const Count = ({ navigation }) => {
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
             <Text style={styles.modalText}>Yay! You guessed it right!</Text>
-            <TouchableOpacity
-              style={styles.modalButton}
-              onPress={() => resetGame()}
+            <View
+              style={{
+                flexDirection: "row",
+                gap: 50,
+                justifyContent: "space-between",
+              }}
             >
-              <Text style={styles.modalButtonText}>Try Again</Text>
-            </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.modalButton}
+                onPress={() => resetGame()}
+              >
+                <Text style={styles.modalButtonText}>Retry</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.modalButton}
+                onPress={() => navigation.goBack()}
+              >
+                <Text style={styles.modalButtonText}>Close</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       </Modal>
