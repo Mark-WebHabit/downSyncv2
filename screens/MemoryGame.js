@@ -13,12 +13,14 @@ import { Image } from "expo-image";
 import MainContainer from "../components/MainContainer";
 import { usePlayMp3, feedbackSound } from "../customHooks/PlaySound";
 import { Context } from "../DataContext";
+import Lottie from "../components/Lottie";
 
-const size = 6;
+const size = 4;
 const widthAndHeight = 100 / size;
 
 const MemoryGame = ({ navigation }) => {
   const randomArray = randomizeOrder(objects).slice(0, (size * size) / 2);
+
   const duplicate = [...randomArray];
   const images = useRef(
     randomizeOrder(randomArray.concat(duplicate)).map((el) => ({
@@ -145,12 +147,39 @@ const MemoryGame = ({ navigation }) => {
     }
   }, [gameDone]);
 
+  const restartGame = () => {
+    const newRandomArray = randomizeOrder(objects).slice(0, (size * size) / 2);
+    const newDuplicate = [...newRandomArray];
+    const newImages = randomizeOrder(newRandomArray.concat(newDuplicate)).map(
+      (el) => ({
+        ...el,
+        matched: false,
+      })
+    );
+
+    images.splice(0, images.length, ...newImages); // Reset images with new set
+    animatedValues.forEach((value) => value.setValue(0)); // Reset animation states
+    setFirstSelected(null);
+    setSecondSelected(null);
+    setAnnalyzing(false);
+    setOpenIndex([]);
+    setGameStart(false);
+    setGameDone(false);
+    setShowDOne(false);
+
+    setTimeout(() => {
+      images.forEach((_, i) => close(i));
+      setGameStart(true);
+    }, 2000);
+  };
+
   return (
     <MainContainer
       addStyle={styles.container}
       navigation={navigation}
       showSetting={false}
     >
+      {showDone && <Lottie />}
       <View style={styles.board}>
         {images.map((image, index) => {
           const frontInterpolate = animatedValues[index].interpolate({
@@ -201,8 +230,19 @@ const MemoryGame = ({ navigation }) => {
               style={styles.clap}
             />
             <Text style={styles.clapText}>Well Done!</Text>
+
+            {/* Try Again Button */}
             <TouchableOpacity
-              onPress={() => setShowDOne(false)}
+              onPress={restartGame}
+              style={styles.tryAgainButton}
+            >
+              <Text style={styles.tryAgainText}>Try Again</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={() => {
+                navigation.goBack();
+              }}
               style={styles.closeContainer}
             >
               <Image
@@ -224,6 +264,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
+    zIndex: 10,
   },
   board: {
     width: "60%",
@@ -235,8 +276,6 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   imageContainer: {
-    // width: "16.66%", // 100% / 6 to create 6 columns
-    // height: "16.66%", // 100% / 6 to create 6 rows
     width: `${widthAndHeight}%`,
     height: `${widthAndHeight}%`,
     justifyContent: "center",
@@ -266,7 +305,6 @@ const styles = StyleSheet.create({
   },
   Modal: {
     flex: 1,
-    backgroundColor: "rgba(0,0,0,0.3)",
     justifyContent: "center",
     alignItems: "center",
   },
@@ -298,5 +336,20 @@ const styles = StyleSheet.create({
   close: {
     height: 30,
     width: 30,
+  },
+  tryAgainButton: {
+    position: "absolute",
+    bottom: 10,
+    right: 10,
+    backgroundColor: "#4CAF50",
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 20,
+  },
+
+  tryAgainText: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 18,
   },
 });

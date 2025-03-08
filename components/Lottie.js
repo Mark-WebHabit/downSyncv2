@@ -20,5 +20,6 @@ const styles = StyleSheet.create({
     height: "300%",
     top: -300,
     position: "absolute",
+    zIndex: 10,
   },
 });
