@@ -24,7 +24,7 @@ const Letter = ({ navigation }) => {
 
     const imageSource = images[index % images.length];
 
-    const newItem = { ...item, uid: letters[index]?.uid };
+    const newItem = { ...item, uid: letters[index]?.uid, index };
 
     const navigateToGame = () => {
       sound();

@@ -6,6 +6,7 @@ import { Image } from "expo-image";
 import { updateMatching } from "../utilities/Database";
 import { Context } from "../DataContext";
 import { WordContext } from "../GroupContext/WordsContext";
+import { alphabetWords } from "../assets/letters_flatfiledb_local";
 
 const LetterExample = ({ navigation, route }) => {
   const { sound, speak } = useContext(Context);
@@ -13,6 +14,19 @@ const LetterExample = ({ navigation, route }) => {
   const item = route.params;
 
   const { letters, setLetters } = useContext(WordContext);
+  const [nextItem, setNextItem] = useState(null);
+
+  useEffect(() => {
+    if (item?.index < letters?.length - 1) {
+      const newItem = {
+        ...alphabetWords[item.index + 1],
+        uid: letters[item.index + 1]?.uid,
+        index: item.index + 1,
+      };
+
+      setNextItem(newItem);
+    }
+  }, [item]);
 
   const handleNext = () => {
     sound();
@@ -44,6 +58,17 @@ const LetterExample = ({ navigation, route }) => {
   return (
     <MainContainer navigation={navigation} showSetting={false}>
       <View style={styles.container}>
+        {item?.index < letters?.length - 1 && nextItem && (
+          <TouchableOpacity
+            style={styles.nextItemContainer}
+            onPress={() => {
+              sound();
+              navigation.replace("LetterSample", nextItem);
+            }}
+          >
+            <Image source={nextItem.icon} style={styles.newItem} />
+          </TouchableOpacity>
+        )}
         <View style={styles.imageConatiner}>
           {ndx <= 0 ? (
             <Image
@@ -138,5 +163,16 @@ const styles = StyleSheet.create({
   arrowImg: {
     height: 60,
     width: 60,
+  },
+  nextItemContainer: {
+    width: 60,
+    height: 60,
+    position: "absolute",
+    top: 20,
+    right: 50,
+  },
+  newItem: {
+    width: "100%",
+    height: "100%",
   },
 });
