@@ -10,6 +10,7 @@ import useUserPreferences from "../customHooks/useUserPreference";
 import ButtonBox1 from "../components/ButtonBox1";
 import ButtonBox2 from "./ButtonBox2";
 import ButtonBox3 from "./ButtonBox3";
+import ButtonBox4 from "./ButtonBox4";
 const LevelContainer = ({
   text,
   navigateToGame,
@@ -37,7 +38,7 @@ const LevelContainer = ({
           resizeMode="stretch"
         />
       )}
-      <ButtonBox3
+      <ButtonBox4
         color={color}
         textColor={buttonFontColor}
         text={text}
