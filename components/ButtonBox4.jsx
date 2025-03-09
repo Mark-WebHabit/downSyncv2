@@ -82,13 +82,13 @@ const ButtonBox4 = (props) => {
       </G>
       <Text
         x={362.54 / 2} // Center horizontally
-        y="40%" // Center vertically
+        y="27%" // Center vertically
         dy=".35em" // Adjust vertical alignment
-        fill={props.textColor} // Text color
         fontSize={props.fontSize} // Font size
         textAnchor="middle" // Ensures the text aligns relative to its center point
         alignmentBaseline="middle" // Helps vertically align text better
         fontWeight={900}
+        fill={props.textColor}
       >
         {props.text}
       </Text>

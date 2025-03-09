@@ -38,6 +38,8 @@ const Letter = ({ navigation }) => {
         navigateToGame={navigateToGame}
         isComplete={isComplete}
         height={Math.floor(height / 4.7)}
+        index={index}
+        dataArray={alphabetWords}
       />
     );
   };

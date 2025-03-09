@@ -35,7 +35,7 @@ const ButtonBox2 = (props) => {
         <Rect
           id="table"
           x="10.61"
-          y="287.77"
+          y="280.77"
           fill="#603813"
           width="343.06"
           height="74.27"
@@ -71,13 +71,13 @@ const ButtonBox2 = (props) => {
       </G>
       <Text
         x={362.54 / 2} // Center horizontally
-        y="40%" // Center vertically
+        y="29%" // Center vertically
         dy=".35em" // Adjust vertical alignment
-        fill={props.textColor} // Text color
         fontSize={props.fontSize} // Font size
         textAnchor="middle" // Ensures the text aligns relative to its center point
         alignmentBaseline="middle" // Helps vertically align text better
         fontWeight={900}
+        fill={props.textColor}
       >
         {props.text}
       </Text>

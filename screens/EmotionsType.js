@@ -8,24 +8,14 @@ import { emotions } from "../assets/emotions_flatfiledb_local";
 import LevelContainer from "../components/LevelContainer";
 import { Context } from "../DataContext";
 
-const images = [
-  require("../assets/images/buttonbluebox.png"),
-  require("../assets/images/buttonwhitebox.png"),
-  require("../assets/images/buttonmintbox.png"),
-  require("../assets/images/buttongreenbox.png"),
-];
-
 const EmotionsType = ({ navigation }) => {
   const { emotionTypes } = useContext(EmotionContext);
-  const { sound, height, width } = useContext(Context);
+  const { sound, height } = useContext(Context);
 
   const renderItem = ({ item, index }) => {
     const isComplete = emotionTypes[index]?.complete;
 
-    const imageSource = images[index % images.length];
-
     const newItem = { ...item, uid: emotionTypes[index]?.uid };
-    console.log(newItem);
 
     const navigateToGame = () => {
       sound();
@@ -37,10 +27,11 @@ const EmotionsType = ({ navigation }) => {
     return (
       <LevelContainer
         text={index + 1}
-        imageSource={imageSource}
         navigateToGame={navigateToGame}
         isComplete={isComplete}
         height={Math.floor(height / 4)}
+        index={index}
+        emotions={emotions}
       />
     );
   };

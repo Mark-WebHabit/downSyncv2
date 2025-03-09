@@ -8,21 +8,12 @@ import { ArtContext } from "../GroupContext/ArtsContext";
 import LevelContainer from "../components/LevelContainer";
 import { Context } from "../DataContext";
 
-const images = [
-  require("../assets/images/buttonbluebox.png"),
-  require("../assets/images/buttonwhitebox.png"),
-  require("../assets/images/buttonmintbox.png"),
-  require("../assets/images/buttongreenbox.png"),
-];
-
 const MatchShapes = ({ navigation }) => {
   const { shapesMatching } = useContext(ArtContext);
   const { sound, width, height } = useContext(Context);
 
   const renderItem = ({ item, index }) => {
     const isComplete = item.complete;
-
-    const imageSource = images[index % images.length];
 
     const newItem = { ...item, ...shapesObj[item.name], index: item?.name };
 
@@ -36,11 +27,12 @@ const MatchShapes = ({ navigation }) => {
     return (
       <LevelContainer
         text={index + 1}
-        imageSource={imageSource}
         navigateToGame={navigateToGame}
         isComplete={isComplete}
         height={Math.floor(height / 4.5)}
         width={Math.round(width / 7.5)}
+        index={index}
+        dataArray={shapesMatching}
       />
     );
   };

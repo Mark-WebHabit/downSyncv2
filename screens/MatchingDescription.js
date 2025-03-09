@@ -6,22 +6,13 @@ import { AnimalsContext } from "../GroupContext/AnimalsContext";
 import LevelContainer from "../components/LevelContainer";
 import { Context } from "../DataContext";
 
-const images = [
-  require("../assets/images/buttonbluebox.png"),
-  require("../assets/images/buttonwhitebox.png"),
-  require("../assets/images/buttonmintbox.png"),
-  require("../assets/images/buttongreenbox.png"),
-];
-
 const MatchingDescription = ({ navigation }) => {
   const { matchingHard } = useContext(AnimalsContext);
   const { sound } = useContext(Context);
-  const { height, width } = useContext(Context);
+  const { height } = useContext(Context);
 
   const renderItem = ({ item, index }) => {
     const isComplete = item.complete;
-
-    const imageSource = images[index % images.length];
 
     const navigateToGame = () => {
       sound();
@@ -33,10 +24,11 @@ const MatchingDescription = ({ navigation }) => {
     return (
       <LevelContainer
         text={index + 1}
-        imageSource={imageSource}
         navigateToGame={navigateToGame}
         isComplete={isComplete}
         height={Math.floor(height / 4)}
+        index={index}
+        dataArray={matchingHard}
       />
     );
   };

@@ -2,8 +2,6 @@ import * as React from "react";
 import { Svg, Path, G, Image, Text } from "react-native-svg";
 
 const ButtonBox1 = (props) => {
-  console.log(props?.text?.toString()?.length, props.text);
-
   return (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
@@ -59,12 +57,12 @@ const ButtonBox1 = (props) => {
       </G>
       <Text
         x={362.54 / 2} // Half of the viewBox width
-        y="45%" // Maintain vertical position
-        fill={props.textColor} // Text color
+        y="40%" // Maintain vertical position
         fontSize={props.fontSize} // Font size
         textAnchor="middle" // Ensures the text aligns relative to its center point
         alignmentBaseline="middle" // Helps vertically align text better
         fontWeight={900}
+        fill={props.textColor}
       >
         {props.text}
       </Text>

@@ -7,21 +7,12 @@ import LevelContainer from "../components/LevelContainer";
 import { Context } from "../DataContext";
 import { WordContext } from "../GroupContext/WordsContext";
 
-const images = [
-  require("../assets/images/buttonbluebox.png"),
-  require("../assets/images/buttonwhitebox.png"),
-  require("../assets/images/buttonmintbox.png"),
-  require("../assets/images/buttongreenbox.png"),
-];
-
 const DandDList = ({ navigation }) => {
   const { sound, height, width } = useContext(Context);
   const { dndObjects } = useContext(WordContext);
 
   const renderItem = ({ item, index }) => {
     const isComplete = dndObjects[index]?.complete;
-
-    const imageSource = images[index % images.length];
 
     const newItem = { ...item, uid: dndObjects[index]?.uid, index };
 
@@ -33,11 +24,12 @@ const DandDList = ({ navigation }) => {
     return (
       <LevelContainer
         text={index + 1}
-        imageSource={imageSource}
         navigateToGame={navigateToGame}
         isComplete={isComplete}
         height={Math.floor(height / 4)}
         width={Math.round(width / 7.5)}
+        index={index}
+        dataArray={objects.slice(0, 12)}
       />
     );
   };

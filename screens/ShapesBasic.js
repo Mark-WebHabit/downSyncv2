@@ -8,21 +8,12 @@ import { ArtContext } from "../GroupContext/ArtsContext";
 import LevelContainer from "../components/LevelContainer";
 import { Context } from "../DataContext";
 
-const images = [
-  require("../assets/images/buttonbluebox.png"),
-  require("../assets/images/buttonwhitebox.png"),
-  require("../assets/images/buttonmintbox.png"),
-  require("../assets/images/buttongreenbox.png"),
-];
-
 const ShapesBasic = ({ navigation }) => {
   const { basicShapes } = useContext(ArtContext);
   const { sound, height, width } = useContext(Context);
 
   const renderItem = ({ item, index }) => {
     const isComplete = item.complete;
-
-    const imageSource = images[index % images.length];
 
     const newItem = { ...item, ...shapes[item.name] };
 
@@ -36,11 +27,12 @@ const ShapesBasic = ({ navigation }) => {
     return (
       <LevelContainer
         text={index + 1}
-        imageSource={imageSource}
         navigateToGame={navigateToGame}
         isComplete={isComplete}
         height={Math.floor(height / 4)}
         width={Math.round(width / 7.5)}
+        index={index}
+        dataArray={basicShapes}
       />
     );
   };

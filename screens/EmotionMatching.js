@@ -44,6 +44,8 @@ const EmotionMatching = ({ navigation }) => {
         navigateToGame={navigateToGame}
         isComplete={isComplete}
         height={Math.floor(height / 4)}
+        index={index}
+        dataArray={emotionSample}
       />
     );
   };

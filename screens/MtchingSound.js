@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, FlatList } from "react-native";
-import React, { useContext, useEffect, useState } from "react";
+import { StyleSheet, View, FlatList } from "react-native";
+import React, { useContext } from "react";
 
 import MainContainer from "../components/MainContainer";
 import { AnimalsContext } from "../GroupContext/AnimalsContext";
@@ -7,23 +7,14 @@ import { AnimalsContext } from "../GroupContext/AnimalsContext";
 import LevelContainer from "../components/LevelContainer";
 import { Context } from "../DataContext";
 
-const images = [
-  require("../assets/images/buttonbluebox.png"),
-  require("../assets/images/buttonwhitebox.png"),
-  require("../assets/images/buttonmintbox.png"),
-  require("../assets/images/buttongreenbox.png"),
-];
-
 const MatchingSound = ({ navigation }) => {
   const { matchingEasy } = useContext(AnimalsContext);
   const { sound } = useContext(Context);
 
-  const { height, width } = useContext(Context);
+  const { height } = useContext(Context);
 
   const renderItem = ({ item, index }) => {
     const isComplete = item.complete;
-
-    const imageSource = images[index % images.length];
 
     const navigateToGame = () => {
       sound();
@@ -35,10 +26,11 @@ const MatchingSound = ({ navigation }) => {
     return (
       <LevelContainer
         text={index + 1}
-        imageSource={imageSource}
         navigateToGame={navigateToGame}
         isComplete={isComplete}
         height={Math.floor(height / 4)}
+        index={index}
+        dataArray={matchingEasy}
       />
     );
   };

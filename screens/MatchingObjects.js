@@ -38,6 +38,8 @@ const MatchingObjects = ({ navigation }) => {
         navigateToGame={navigateToGame}
         isComplete={isComplete}
         height={Math.floor(height / 3.5)}
+        dataArray={matching}
+        index={index}
       />
     );
   };
