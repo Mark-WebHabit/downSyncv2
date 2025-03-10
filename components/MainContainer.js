@@ -2,11 +2,7 @@ import {
   Image,
   ImageBackground,
   Modal,
-  Platform,
-  StatusBar,
   StyleSheet,
-  Text,
-  TouchableOpacity,
   TouchableWithoutFeedback,
   View,
 } from "react-native";

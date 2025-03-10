@@ -9,7 +9,7 @@ import { Context } from "../DataContext";
 
 const buttons = [
   {
-    title: "Additioon",
+    title: "Addition",
     image: require("../assets/images/math/plus.png"),
     color: "#FFA500",
     op: "plus",
