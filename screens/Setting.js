@@ -43,7 +43,8 @@ const Setting = ({ navigation }) => {
   useEffect(() => {
     (async function () {
       const currentUser = await getSavedUser();
-      setUser(currentUser.user);
+
+      setUser(currentUser.username);
     })();
 
     (async function () {

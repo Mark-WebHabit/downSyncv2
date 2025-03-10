@@ -1,6 +1,6 @@
 import { getCurrentDate } from "./Date";
 
-import { storeData } from "./LocalStorage";
+import { getData, storeData } from "./LocalStorage";
 
 // Initialize the Realtime Database
 
@@ -28,17 +28,11 @@ export const updateMatching = async (uid, key, setState, state) => {
 };
 
 export const updateUsername = async (name) => {
-  // // Reference to the user's data
-  // const user = await getSavedUser();
-  // const userRef = ref(db, `users/${user.uid}`);
-  // try {
-  //   // Update the specific field in the node
-  //   await update(userRef, {
-  //     username: name,
-  //   });
-  // } catch (error) {
-  //   console.error("Error updating data: ", error);
-  // }
+  const userInfo = await getData("userInfo");
+
+  const newUserData = { ...userInfo, username: name };
+
+  await storeData("userInfo", newUserData);
 };
 
 export const updateTodaysMathAlgebra = (op) => {
