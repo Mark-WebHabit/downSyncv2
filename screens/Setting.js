@@ -219,7 +219,7 @@ const Setting = ({ navigation }) => {
             handleButtonSizeChange={handleButtonSizeChange}
           />
 
-          <TouchableOpacity
+          {/* <TouchableOpacity
             onPress={() => setColorPickerVisible(!colorPickerVisible)}
             style={[
               styles.colorPickerToggle,
@@ -235,7 +235,7 @@ const Setting = ({ navigation }) => {
               buttonColor={buttonColor}
               setButtonColor={setButtonColor}
             />
-          )}
+          )} */}
 
           {/* Add Image Picker Button */}
           <TouchableOpacity
