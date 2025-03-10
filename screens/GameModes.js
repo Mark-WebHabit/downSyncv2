@@ -36,16 +36,7 @@ const GameModes = ({ navigation }) => {
   const { fetching } = useContext(AnimalsContext);
   const { sound, height } = useContext(Context);
 
-  //   if done fetching add another second of dealy
-  useEffect(() => {
-    if (!fetching) {
-      setTimeout(() => {
-        setDoneFetching(true);
-      }, 1500);
-    }
-  }, [fetching]);
-
-  if (!doneFetching) return <SplashScreem navigation={navigation} />;
+  if (fetching) return <SplashScreem navigation={navigation} />;
 
   return (
     <MainContainer

@@ -65,11 +65,7 @@ const MainContainer = ({
           goBack={goBack}
           navigation={navigation}
         />
-        {/* <Img
-          source={require("../assets/images/panda.gif")}
-          style={styles.panda}
-          contentFit="fill"
-        /> */}
+
         {children}
       </ImageBackground>
 

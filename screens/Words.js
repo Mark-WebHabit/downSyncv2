@@ -36,21 +36,11 @@ const buttons = [
 ];
 
 const Words = ({ navigation }) => {
-  const [doneFetching, setDoneFetching] = useState(false);
   const { fetching } = useContext(WordContext);
-  const { fontSize, buttonFontColor, buttonSize } = useUserPreferences();
+  const { buttonSize } = useUserPreferences();
   const { sound, height } = useContext(Context);
 
-  //   if done fetching add another second of dealy
-  useEffect(() => {
-    if (!fetching) {
-      setTimeout(() => {
-        setDoneFetching(true);
-      }, 1500);
-    }
-  }, [fetching]); //   if done fetching add another second of dealy
-
-  if (!doneFetching) return <SplashScreen navigation={navigation} />;
+  if (fetching) return <SplashScreen navigation={navigation} />;
 
   return (
     <MainContainer

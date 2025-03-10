@@ -25,7 +25,6 @@ const Letter = ({ navigation }) => {
     return (
       <LevelContainer
         text={item.letter}
-        imageSource={imageSource}
         navigateToGame={navigateToGame}
         isComplete={isComplete}
         height={Math.floor(height / 4.7)}

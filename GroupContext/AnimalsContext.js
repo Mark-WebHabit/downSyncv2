@@ -6,27 +6,21 @@ export const AnimalsContext = createContext(null);
 
 const AnimalsContextProvider = ({ children }) => {
   const [fetching, setFetching] = useState(true);
-  const [user, setUser] = useState(null);
   const [matchingEasy, setMatchingEasy] = useState(null);
   const [matchingMedium, setMatchingMedium] = useState(null);
   const [matchingHard, setMatchingHard] = useState(null);
 
   useEffect(() => {
     async function getUser() {
-      const savedUser = await getSavedUser();
-      setUser(savedUser);
-
       const easyData = await getData("easy");
       const medium = await getData("medium");
       const hard = await getData("hard");
 
-      if (savedUser?.username) {
-        setMatchingEasy(easyData);
-        setMatchingMedium(medium);
-        setMatchingHard(hard);
+      setMatchingEasy(easyData);
+      setMatchingMedium(medium);
+      setMatchingHard(hard);
 
-        setFetching(false);
-      }
+      setFetching(false);
     }
     getUser();
   }, []);
@@ -35,7 +29,6 @@ const AnimalsContextProvider = ({ children }) => {
     <AnimalsContext.Provider
       value={{
         fetching,
-        user,
         matchingEasy,
         matchingMedium,
         matchingHard,

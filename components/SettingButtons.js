@@ -5,11 +5,9 @@ import {
   ImageBackground,
   Image,
 } from "react-native";
-import React, { useContext } from "react";
-import { Context } from "../DataContext";
+import React from "react";
 
 const SettingButtons = ({ toggleSetting, showBack, showSetting, goBack }) => {
-  const { sound } = useContext(Context);
   return (
     <View style={styles.buttonContainer}>
       {/* buttons */}

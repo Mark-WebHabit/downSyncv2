@@ -14,8 +14,6 @@ const EmotionMatching = ({ navigation }) => {
   const renderItem = ({ item, index }) => {
     const isComplete = emotionsMatching[index]?.complete;
 
-    console.log(index);
-
     const newItem = {
       ...item,
       name: emotionsMatching[index]?.name,
