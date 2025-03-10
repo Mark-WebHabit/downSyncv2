@@ -66,7 +66,7 @@ const EmotionLevel = ({ navigation, route }) => {
           <TouchableOpacity
             style={styles.nextContainer}
             onPress={() => {
-              navigation.navigate("EmotionLevel", {
+              navigation.replace("EmotionLevel", {
                 item: nextItem,
               });
             }}
