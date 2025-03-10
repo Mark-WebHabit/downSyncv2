@@ -1,7 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
 import { getSavedUser } from "../utilities/preferences";
-import { createListener } from "../utilities/CreateListener";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getData } from "../utilities/LocalStorage";
 
 export const AnimalsContext = createContext(null);

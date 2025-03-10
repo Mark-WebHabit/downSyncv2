@@ -1,6 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getData } from "./LocalStorage";
-// import { emitPreferenceChange } from "./EventEMitter";
 
 // Function to get a preference
 export const getPreference = async (key) => {

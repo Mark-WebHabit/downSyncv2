@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState } from "react";
 import { getSavedUser } from "../utilities/preferences";
-import { createListener } from "../utilities/CreateListener";
 import { getData } from "../utilities/LocalStorage";
 
 export const ProgressContext = createContext(null);
@@ -52,39 +51,7 @@ const Dashboard = ({ children }) => {
         setEmotionTypes(emotionTypesData);
         setEmotionMatching(emotionMatchingData);
 
-        const unsubscribeLoginDates = createListener(
-          `logins`,
-          savedUser.uid,
-          (data) => {
-            const result = [];
-
-            const keys = Object.keys(data);
-            keys.forEach((key) => {
-              const date = Object.values(data[key]);
-
-              date.forEach((d) => {
-                if (d.logoutTime) {
-                  const obj = {
-                    uid: key,
-                    ...d,
-                  };
-
-                  result.push(obj);
-                }
-              });
-            });
-            const sorted = result.sort((a, b) => b.loginTime - a.loginTime);
-
-            setLogins(sorted);
-          }
-        );
-
         setFetching(false);
-
-        // Cleanup listeners when the component unmounts
-        return () => {
-          unsubscribeLoginDates();
-        };
       }
     }
     getUser();

@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { createContext, useEffect, useState } from "react";
 import { getSavedUser } from "../utilities/preferences";
-import { createListener } from "../utilities/CreateListener";
 import { getData } from "../utilities/LocalStorage";
 
 export const GamesContext = createContext(null);

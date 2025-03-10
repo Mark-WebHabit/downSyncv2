@@ -13,10 +13,6 @@ import {
 import React, { useState, useRef, useEffect, useContext } from "react";
 import Modal from "react-native-modal";
 
-import { ref, set, push } from "firebase/database";
-import { db } from "../firebase";
-
-import { savePreference } from "../utilities/preferences";
 import {
   createGameInstance,
   createLoginDocument,
