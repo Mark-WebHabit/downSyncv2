@@ -3,7 +3,6 @@ import React, { useContext } from "react";
 import ButtonSvg from "../components/ButtonSvg";
 
 import MainContainer from "../components/MainContainer";
-import { ImageBackground } from "expo-image";
 import useUserPreferences from "../customHooks/useUserPreference";
 import { Context } from "../DataContext";
 

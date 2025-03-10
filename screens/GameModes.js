@@ -5,7 +5,6 @@ import useUserPreferences from "../customHooks/useUserPreference";
 import ButtonSvg from "../components/ButtonSvg";
 
 import MainContainer from "../components/MainContainer";
-import { GamesContext } from "../GroupContext/GameContext";
 import { Context } from "../DataContext";
 import { AnimalsContext } from "../GroupContext/AnimalsContext";
 
@@ -31,7 +30,6 @@ const buttons = [
 ];
 
 const GameModes = ({ navigation }) => {
-  const [doneFetching, setDoneFetching] = useState(false);
   const { buttonSize } = useUserPreferences();
   const { fetching } = useContext(AnimalsContext);
   const { sound, height } = useContext(Context);

@@ -1,32 +1,25 @@
 import React, { createContext, useEffect, useState } from "react";
-import { getSavedUser } from "../utilities/preferences";
 import { getData } from "../utilities/LocalStorage";
 
 export const ArtContext = createContext(null);
 
 const ArtContextProvider = ({ children }) => {
   const [fetching, setFetching] = useState(true);
-  const [user, setUser] = useState(null);
   const [colors, setColors] = useState(null);
   const [basicShapes, setBasicShapes] = useState(null);
   const [shapesMatching, setShapesMatching] = useState(null);
 
   useEffect(() => {
     async function getUser() {
-      const savedUser = await getSavedUser();
-      setUser(savedUser);
-
       const colorsData = await getData("colors");
       const basicShapesData = await getData("basicShapes");
       const shapesMatchingData = await getData("shapesMatching");
 
-      if (savedUser?.username) {
-        setColors(colorsData);
-        setBasicShapes(basicShapesData);
-        setShapesMatching(shapesMatchingData);
+      setColors(colorsData);
+      setBasicShapes(basicShapesData);
+      setShapesMatching(shapesMatchingData);
 
-        setFetching(false);
-      }
+      setFetching(false);
     }
     getUser();
   }, []);
@@ -35,7 +28,6 @@ const ArtContextProvider = ({ children }) => {
     <ArtContext.Provider
       value={{
         fetching,
-        user,
         colors,
         setColors,
         basicShapes,

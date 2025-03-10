@@ -24,7 +24,6 @@ const buttons = [
 ];
 
 const EmotionsCategory = ({ navigation }) => {
-  const [doneFetching, setDoneFetching] = useState(false);
   const { buttonSize } = useUserPreferences();
   const { sound, height } = useContext(Context);
   const { fetching } = useContext(EmotionContext);

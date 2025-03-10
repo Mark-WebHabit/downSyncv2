@@ -30,21 +30,11 @@ const buttons = [
 ];
 
 const ArtsCategory = ({ navigation }) => {
-  const [doneFetching, setDoneFetching] = useState(false);
   const { buttonSize } = useUserPreferences();
   const { sound, height } = useContext(Context);
   const { fetching } = useContext(ArtContext);
 
-  //   if done fetching add another second of dealy
-  useEffect(() => {
-    if (!fetching) {
-      setTimeout(() => {
-        setDoneFetching(true);
-      }, 1500);
-    }
-  }, [fetching]);
-
-  if (!doneFetching) return <SplashScreen navigation={navigation} />;
+  if (fetching) return <SplashScreen navigation={navigation} />;
 
   return (
     <MainContainer
