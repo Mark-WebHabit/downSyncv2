@@ -34,7 +34,7 @@ const MathScreen = ({ navigation, route }) => {
         num2 = Math.floor(Math.random() * 10) + 1;
       } while (
         (op == "plus" && num1 + num2 > 30) ||
-        (op == "minus" && num1 - num2 > 30)
+        (op == "minus" && (num1 - num2 > 30 || num1 < num2))
       );
     } else {
       num1 = Math.floor(Math.random() * 9) + 1;

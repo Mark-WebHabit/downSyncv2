@@ -36,8 +36,7 @@ const buttons = [
 const screen = "MathQuestions";
 
 const Operations = ({ navigation }) => {
-  const { fontSize, buttonFontColor, buttonSize, bodyText } =
-    useUserPreferences();
+  const { buttonSize } = useUserPreferences();
   const { height, sound } = useContext(Context);
   return (
     <MainContainer
