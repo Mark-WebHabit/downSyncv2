@@ -5,113 +5,88 @@ import {
   TouchableOpacity,
   ImageBackground,
   BackHandler,
+  FlatList,
 } from "react-native";
 import useUserPreferences from "../customHooks/useUserPreference";
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Context } from "../DataContext";
+import ButtonSvg from "./ButtonSvg";
 
 const SettinModal = ({ redirect }) => {
   const { fontSize, buttonFontColor, buttonSize } = useUserPreferences();
-  const { sound } = useContext(Context);
+  const { sound, height } = useContext(Context);
+
+  const buttons = [
+    {
+      title: "Setting",
+      image: require("../assets/images/setting/setting.png"),
+      action: () => {
+        sound();
+        redirect("Setting");
+      },
+
+      color: "#FF6EC7",
+    },
+    {
+      title: "Progress",
+      image: require("../assets/images/setting/progress.png"),
+      action: () => {
+        sound();
+        redirect("Dashboard");
+      },
+      color: "#00CED1",
+    },
+    {
+      title: "Exit",
+      image: require("../assets/images/setting/exit.png"),
+      action: () => {
+        BackHandler.exitApp();
+      },
+      color: "#E6E6FA",
+    },
+  ];
 
   return (
     <View style={styles.settingContainerButton}>
-      {/* btn 1 */}
-      <TouchableOpacity
-        style={[
-          styles.button,
-          {
-            transform: [{ scale: buttonSize }],
-          },
-        ]}
-        onPress={() => {
-          sound();
-          redirect("Setting");
-        }}
-      >
-        <ImageBackground
-          style={styles.buttonWrapper}
-          source={require("../assets/images/buttonwhite.png")}
-          resizeMode="stretch"
-        >
-          <Text
-            style={[
-              styles.buttonText,
-              {
-                color: buttonFontColor,
-                fontSize: fontSize,
-                fontWeight: "500",
-              },
-            ]}
+      <FlatList
+        data={buttons}
+        keyExtractor={(item) => item.title}
+        numColumns={1}
+        contentContainerStyle={styles.flatListContainer}
+        style={{ width: "80%" }}
+        renderItem={({ item, index }) => (
+          <TouchableOpacity
+            style={{
+              width: "50%",
+              justifyContent: "center",
+              alignItems: "center",
+              transform: [
+                {
+                  scale: buttonSize * 1.2,
+                },
+                {
+                  scaleX: index % 2 == 1 ? -1 : 1,
+                },
+              ],
+            }}
+            onPress={() => {
+              item.action();
+            }}
           >
-            Settings
-          </Text>
-        </ImageBackground>
-      </TouchableOpacity>
-
-      {/* btn2 */}
-      <TouchableOpacity
-        style={[
-          styles.button,
-          {
-            transform: [{ scale: buttonSize }],
-          },
-        ]}
-        onPress={() => {
-          redirect("Dashboard");
-        }}
-      >
-        <ImageBackground
-          style={styles.buttonWrapper}
-          source={require("../assets/images/buttonblue.png")}
-          resizeMode="stretch"
-        >
-          <Text
-            style={[
-              styles.buttonText,
-              {
-                color: buttonFontColor,
-                fontSize: fontSize,
-                fontWeight: "500",
-              },
-            ]}
-          >
-            Progress
-          </Text>
-        </ImageBackground>
-      </TouchableOpacity>
-
-      {/* btn3 */}
-      <TouchableOpacity
-        style={[
-          styles.button,
-          {
-            transform: [{ scale: buttonSize }],
-          },
-        ]}
-        onPress={() => {
-          BackHandler.exitApp();
-        }}
-      >
-        <ImageBackground
-          style={styles.buttonWrapper}
-          source={require("../assets/images/buttongreen.png")}
-          resizeMode="stretch"
-        >
-          <Text
-            style={[
-              styles.buttonText,
-              {
-                color: buttonFontColor,
-                fontSize: fontSize,
-                fontWeight: "500",
-              },
-            ]}
-          >
-            Exit
-          </Text>
-        </ImageBackground>
-      </TouchableOpacity>
+            <ButtonSvg
+              style={{
+                height: height / 4,
+                width: (height / 5) * 3,
+              }}
+              img={item.image}
+              bgColor={item.color}
+              text={item.title}
+              index={index}
+              isBlack={item.title === "Exit"}
+            />
+          </TouchableOpacity>
+        )}
+      />
     </View>
   );
 };
@@ -123,24 +98,13 @@ const styles = StyleSheet.create({
     width: "50%",
     height: "100%",
     alignItems: "center",
-    justifyContent: "space-evenly",
-    marginHorizontal: "auto",
-    zIndex: 1,
+    justifyContent: "space-between",
+    paddin: 0,
+    margin: 0,
   },
-  button: {
-    width: "80%",
-    height: 70,
-    borderRadius: 20,
-    overflow: "hidden",
-  },
-  buttonWrapper: {
-    height: "100%",
-    width: "100%",
+  flatListContainer: {
     justifyContent: "center",
     alignItems: "center",
-  },
-  buttonText: {
-    width: "100%",
-    textAlign: "center",
+    height: "100%",
   },
 });

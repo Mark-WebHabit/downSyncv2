@@ -1,9 +1,7 @@
 import {
-  Platform,
   StyleSheet,
   Text,
   View,
-  StatusBar,
   ScrollView,
   Image,
   Dimensions,
@@ -12,6 +10,7 @@ import {
 import React, { useState, useEffect } from "react";
 import { changeScreenOrientation } from "../utilities/Orientation";
 import { updateUsername } from "../utilities/Database";
+
 import {
   getPreference,
   getSavedUser,
