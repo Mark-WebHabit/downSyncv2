@@ -15,7 +15,7 @@ const EmotionsType = ({ navigation }) => {
   const renderItem = ({ item, index }) => {
     const isComplete = emotionTypes[index]?.complete;
 
-    const newItem = { ...item, uid: emotionTypes[index]?.uid };
+    const newItem = { ...item, uid: emotionTypes[index]?.uid, index };
 
     const navigateToGame = () => {
       sound();

@@ -6,11 +6,30 @@ import { Image } from "expo-image";
 import { updateMatching } from "../utilities/Database";
 import { Context } from "../DataContext";
 import { EmotionContext } from "../GroupContext/EmotionContext";
+import { emotions } from "../assets/emotions_flatfiledb_local";
 
 const EmotionLevel = ({ navigation, route }) => {
   const { sound, speak } = useContext(Context);
   const [ndx, setNdx] = useState(0);
   const { item } = route.params;
+  const [nextItem, setNextItem] = useState(null);
+
+  useEffect(() => {
+    if (item) {
+      const index = item.index;
+
+      if (index < emotions.length - 1) {
+        const newItem = {
+          ...emotions[index + 1],
+          uid: emotionTypes[index + 1]?.uid,
+          index: index + 1,
+        };
+        setNextItem(newItem);
+      } else {
+        setNextItem(null);
+      }
+    }
+  }, [item]);
 
   const { emotionTypes, setEmotionTypes } = useContext(EmotionContext);
 
@@ -43,6 +62,26 @@ const EmotionLevel = ({ navigation, route }) => {
   return (
     <MainContainer navigation={navigation} showSetting={false}>
       <View style={styles.container}>
+        {nextItem && (
+          <TouchableOpacity
+            style={styles.nextContainer}
+            onPress={() => {
+              navigation.navigate("EmotionLevel", {
+                item: nextItem,
+              });
+            }}
+          >
+            <Image source={nextItem.image} style={styles.next} />
+            <Text
+              style={{
+                textAlign: "center",
+                fontWeight: "bold",
+              }}
+            >
+              NEXT
+            </Text>
+          </TouchableOpacity>
+        )}
         <View style={styles.imageConatiner}>
           <Image
             source={item?.image}
@@ -137,5 +176,17 @@ const styles = StyleSheet.create({
   arrowImg: {
     height: 60,
     width: 60,
+  },
+  nextContainer: {
+    width: 40,
+    height: 40,
+    position: "absolute",
+    top: 20,
+    right: 50,
+  },
+  next: {
+    width: "80%",
+    height: "80%",
+    marginHorizontal: "auto",
   },
 });
