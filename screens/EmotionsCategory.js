@@ -29,16 +29,7 @@ const EmotionsCategory = ({ navigation }) => {
   const { sound, height } = useContext(Context);
   const { fetching } = useContext(EmotionContext);
 
-  //   if done fetching add another second of dealy
-  useEffect(() => {
-    if (!fetching) {
-      setTimeout(() => {
-        setDoneFetching(true);
-      }, 1500);
-    }
-  }, [fetching]);
-
-  if (!doneFetching) return <SplashScreen navigation={navigation} />;
+  if (fetching) return <SplashScreen navigation={navigation} />;
 
   return (
     <MainContainer

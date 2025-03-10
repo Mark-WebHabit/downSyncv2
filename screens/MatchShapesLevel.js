@@ -74,8 +74,6 @@ const MatchShapesLevel = ({ navigation, route }) => {
   }, []);
 
   useEffect(() => {
-    console.log(nextItem);
-
     if (correct && nextItem) {
       setTimeout(() => {
         (async function () {

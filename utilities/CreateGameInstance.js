@@ -34,17 +34,17 @@ export const createGameInstance = async () => {
     const emotionsType = require("../assets/db/emotions/typeEmotions.json");
     const emotionsMatching = require("../assets/db/emotions/emotionMatching.json");
 
-    storeData("easy", easyData);
-    storeData("medium", mediumData);
-    storeData("hard", hardData);
-    storeData("objectMatching", objectMatchingData);
-    storeData("letters", letters);
-    storeData("dnd", dnd);
-    storeData("colors", colors);
-    storeData("basicShapes", basicShapes);
-    storeData("shapesMatching", shapesMatching);
-    storeData("typeEmotions", emotionsType);
-    storeData("emotionsMatching", emotionsMatching);
+    await storeData("easy", easyData);
+    await storeData("medium", mediumData);
+    await storeData("hard", hardData);
+    await storeData("objectMatching", objectMatchingData);
+    await storeData("letters", letters);
+    await storeData("dnd", dnd);
+    await storeData("colors", colors);
+    await storeData("basicShapes", basicShapes);
+    await storeData("shapesMatching", shapesMatching);
+    await storeData("typeEmotions", emotionsType);
+    await storeData("emotionsMatching", emotionsMatching);
   } catch (error) {
     console.error("Error in CreateGameInstance with push:", error);
     throw error; // Re-throw the error for the caller to handle
