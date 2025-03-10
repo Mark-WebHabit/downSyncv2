@@ -110,7 +110,7 @@ const MathScreen = ({ navigation, route }) => {
     >
       <View style={styles.questionConainer}>
         <ImageBackground
-          source={require("../assets/images/buttonwhite.png")}
+          source={require("../assets/images/math/board.png")}
           style={styles.bg}
         >
           {nums && (
@@ -137,7 +137,7 @@ const MathScreen = ({ navigation, route }) => {
           >
             <ImageBackground
               style={styles.buttonBg}
-              source={require("../assets/images/buttonbluebox.png")}
+              source={require("../assets/images/math/box.png")}
             >
               <Text
                 style={[
@@ -172,8 +172,8 @@ const styles = StyleSheet.create({
   },
 
   bg: {
-    height: "100%",
     width: "100%",
+    aspectRatio: 4459 / 1672,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -195,8 +195,8 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
   },
   buttonBg: {
-    width: "100%",
     height: "100%",
+    aspectRatio: 1,
     justifyContent: "center",
     alignItems: "center",
   },

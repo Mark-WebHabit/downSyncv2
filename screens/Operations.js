@@ -47,7 +47,7 @@ const Operations = ({ navigation }) => {
     >
       <FlatList
         data={buttons}
-        keyExtractor={(item) => item.screen}
+        keyExtractor={(item) => item.title}
         numColumns={1}
         contentContainerStyle={styles.flatListContainer}
         style={{ width: "80%" }}
