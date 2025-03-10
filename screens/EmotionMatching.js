@@ -8,21 +8,12 @@ import { emotionSample } from "../assets/emotions_sample_flatfiledb_local";
 import LevelContainer from "../components/LevelContainer";
 import { Context } from "../DataContext";
 
-const images = [
-  require("../assets/images/buttonbluebox.png"),
-  require("../assets/images/buttonwhitebox.png"),
-  require("../assets/images/buttonmintbox.png"),
-  require("../assets/images/buttongreenbox.png"),
-];
-
 const EmotionMatching = ({ navigation }) => {
   const { emotionsMatching } = useContext(EmotionContext);
   const { sound, height, width } = useContext(Context);
 
   const renderItem = ({ item, index }) => {
     const isComplete = emotionsMatching[index]?.complete;
-
-    const imageSource = images[index % images.length];
 
     const newItem = {
       ...item,
@@ -40,7 +31,6 @@ const EmotionMatching = ({ navigation }) => {
     return (
       <LevelContainer
         text={index + 1}
-        imageSource={imageSource}
         navigateToGame={navigateToGame}
         isComplete={isComplete}
         height={Math.floor(height / 4)}

@@ -8,21 +8,12 @@ import LevelContainer from "../components/LevelContainer";
 import { Context } from "../DataContext";
 import { WordContext } from "../GroupContext/WordsContext";
 
-const images = [
-  require("../assets/images/buttonbluebox.png"),
-  require("../assets/images/buttonwhitebox.png"),
-  require("../assets/images/buttonmintbox.png"),
-  require("../assets/images/buttongreenbox.png"),
-];
-
 const Letter = ({ navigation }) => {
-  const { sound, height, width } = useContext(Context);
+  const { sound, height } = useContext(Context);
   const { letters } = useContext(WordContext);
 
   const renderItem = ({ item, index }) => {
     const isComplete = letters[index]?.complete;
-
-    const imageSource = images[index % images.length];
 
     const newItem = { ...item, uid: letters[index]?.uid, index };
 

@@ -6,21 +6,12 @@ import { GamesContext } from "../GroupContext/GameContext";
 import LevelContainer from "../components/LevelContainer";
 import { Context } from "../DataContext";
 
-const images = [
-  require("../assets/images/buttonbluebox.png"),
-  require("../assets/images/buttonwhitebox.png"),
-  require("../assets/images/buttonmintbox.png"),
-  require("../assets/images/buttongreenbox.png"),
-];
-
 const MatchingObjects = ({ navigation }) => {
   const { matching } = useContext(GamesContext);
-  const { sound, height, width } = useContext(Context);
+  const { sound, height } = useContext(Context);
 
   const renderItem = ({ item, index }) => {
     const isComplete = item.complete;
-
-    const imageSource = images[index % images.length];
 
     const newItem = { ...item, ...matching[item.name] };
 
@@ -34,7 +25,6 @@ const MatchingObjects = ({ navigation }) => {
     return (
       <LevelContainer
         text={index + 1}
-        imageSource={imageSource}
         navigateToGame={navigateToGame}
         isComplete={isComplete}
         height={Math.floor(height / 3.5)}

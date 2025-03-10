@@ -216,7 +216,7 @@ const DragDrop = ({ navigation, route }) => {
           </TouchableOpacity>
           <ImageBackground
             style={[styles.dropBox, { width: 150, height: 150 }]}
-            source={require("../assets/images/buttonbluebox.png")}
+            source={require("../assets/images/math/box.png")}
           >
             <Text style={styles.text}>DROP HERE</Text>
           </ImageBackground>
