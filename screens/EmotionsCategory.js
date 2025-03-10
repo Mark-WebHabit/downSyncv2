@@ -70,6 +70,7 @@ const EmotionsCategory = ({ navigation }) => {
             }}
             onPress={() => {
               sound();
+
               navigation.navigate(item.screen);
             }}
           >

@@ -10,7 +10,7 @@ import { Context } from "../DataContext";
 
 const EmotionMatching = ({ navigation }) => {
   const { emotionsMatching } = useContext(EmotionContext);
-  const { sound, height, width } = useContext(Context);
+  const { sound, height } = useContext(Context);
 
   const renderItem = ({ item, index }) => {
     const isComplete = emotionsMatching[index]?.complete;

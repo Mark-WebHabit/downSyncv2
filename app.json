@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "KDs App",
-    "slug": "KDs App",
+    "slug": "DownSync",
     "version": "1.0.0",
     "orientation": "landscape",
     "icon": "./assets/logos/logo_splash.png",

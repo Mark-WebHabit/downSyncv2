@@ -24,7 +24,10 @@ const height =
   (Platform.OS === "android" ? StatusBar.currentHeight : 0);
 
 const Count = ({ navigation }) => {
-  const [number, setNumber] = useState(Math.floor(Math.random() * 20)); // Generate number only once
+  const [number, setNumber] = useState(Math.floor(Math.random() * 19) + 1); // Generate number only once
+
+  console.log(number);
+
   const [answer, setAnswer] = useState("");
   const [doneTyping, setDoneTyping] = useState(false);
   const [randomObjects, setRandomObjects] = useState([]);
