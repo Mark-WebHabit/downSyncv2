@@ -27,7 +27,7 @@ const Numbers = ({ navigation }) => {
       color: "#00CED1",
     },
     {
-      title: "Operations",
+      title: "Math",
       image: require("../assets/images/numbers/math.png"),
       screen: "Math",
       color: "#E6E6FA",
@@ -57,7 +57,7 @@ const Numbers = ({ navigation }) => {
             img={button.image}
             bgColor={button.color}
             text={button.title}
-            isBlack={button.title === "Operations"}
+            isBlack={button.title === "Math"}
           />
         </TouchableOpacity>
       ))}

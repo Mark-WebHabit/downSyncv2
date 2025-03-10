@@ -1,23 +1,40 @@
-import {
-  ImageBackground,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, TouchableOpacity, FlatList } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import SplashScreem from "../screens/SplashScreen";
 import useUserPreferences from "../customHooks/useUserPreference";
+import ButtonSvg from "../components/ButtonSvg";
 
 import MainContainer from "../components/MainContainer";
 import { GamesContext } from "../GroupContext/GameContext";
 import { Context } from "../DataContext";
 import { AnimalsContext } from "../GroupContext/AnimalsContext";
 
+const buttons = [
+  {
+    title: "Sound",
+    image: require("../assets/images/animals/sound.png"),
+    screen: "MatchingEasy",
+    color: "#FFA500",
+  },
+  {
+    title: "Name",
+    image: require("../assets/images/animals/name.png"),
+    screen: "MatchingMedium",
+    color: "#8A2BE2",
+  },
+  {
+    title: "Description",
+    image: require("../assets/images/animals/description.png"),
+    screen: "MatchingDescription",
+    color: "#FF00FF",
+  },
+];
+
 const GameModes = ({ navigation }) => {
   const [doneFetching, setDoneFetching] = useState(false);
-  const { fontSize, buttonFontColor, buttonSize } = useUserPreferences();
+  const { buttonSize } = useUserPreferences();
   const { fetching } = useContext(AnimalsContext);
-  const { sound } = useContext(Context);
+  const { sound, height } = useContext(Context);
 
   //   if done fetching add another second of dealy
   useEffect(() => {
@@ -36,104 +53,46 @@ const GameModes = ({ navigation }) => {
       showSetting={false}
       addStyle={styles.container}
     >
-      <TouchableOpacity
-        style={[
-          [
-            styles.button,
-            {
-              transform: [{ scale: buttonSize }],
-            },
-          ],
-        ]}
-        onPress={() => {
-          sound();
-          navigation.navigate("MatchingEasy");
-        }}
-      >
-        <ImageBackground
-          source={require("../assets/images/buttonblue.png")}
-          style={styles.buttonWrapper}
-          resizeMode="stretch"
-        >
-          <Text
-            style={[
-              styles.text,
-              {
-                fontSize: fontSize,
-                color: buttonFontColor,
-              },
-            ]}
+      <FlatList
+        data={buttons}
+        keyExtractor={(item) => item.screen}
+        numColumns={1}
+        contentContainerStyle={styles.flatListContainer}
+        style={{ width: "80%" }}
+        renderItem={({ item, index }) => (
+          <TouchableOpacity
+            style={{
+              width: "50%",
+              justifyContent: "center",
+              alignItems: "center",
+              transform: [
+                {
+                  scale: buttonSize * 1,
+                },
+                {
+                  scaleX: index % 2 == 1 ? -1 : 1,
+                },
+              ],
+            }}
+            onPress={() => {
+              sound();
+              navigation.navigate(item.screen);
+            }}
           >
-            Sound
-          </Text>
-        </ImageBackground>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        style={[
-          [
-            styles.button,
-            {
-              transform: [{ scale: buttonSize }],
-            },
-          ],
-        ]}
-        onPress={() => {
-          sound();
-          navigation.navigate("MatchingMedium");
-        }}
-      >
-        <ImageBackground
-          source={require("../assets/images/buttongreen.png")}
-          style={styles.buttonWrapper}
-          resizeMode="stretch"
-        >
-          <Text
-            style={[
-              styles.text,
-              {
-                fontSize: fontSize,
-                color: buttonFontColor,
-              },
-            ]}
-          >
-            Name
-          </Text>
-        </ImageBackground>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        style={[
-          [
-            styles.button,
-            {
-              transform: [{ scale: buttonSize }],
-            },
-          ],
-        ]}
-        onPress={() => {
-          sound();
-          navigation.navigate("MatchingDescription");
-        }}
-      >
-        <ImageBackground
-          source={require("../assets/images/buttonmint.png")}
-          style={styles.buttonWrapper}
-          resizeMode="stretch"
-        >
-          <Text
-            style={[
-              styles.text,
-              {
-                fontSize: fontSize,
-                color: buttonFontColor,
-              },
-            ]}
-          >
-            Description
-          </Text>
-        </ImageBackground>
-      </TouchableOpacity>
+            <ButtonSvg
+              style={{
+                height: height / 4,
+                width: (height / 5) * 3,
+              }}
+              img={item.image}
+              bgColor={item.color}
+              text={item.title}
+              index={index}
+              isBlack={item.title === "Things"}
+            />
+          </TouchableOpacity>
+        )}
+      />
     </MainContainer>
   );
 };
@@ -142,19 +101,17 @@ export default GameModes;
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
-    justifyContent: "space-evenly",
-  },
-  button: {
-    width: 270,
-    height: 70,
-  },
-  buttonWrapper: {
-    height: "100%",
-    width: "100%",
+    flex: 1,
     justifyContent: "center",
+    alignItems: "center",
+    gap: 0,
+    paddin: 0,
+    margin: 0,
   },
-  text: {
-    textAlign: "center",
+  flatListContainer: {
+    paddingVertical: 20,
+    justifyContent: "space-between",
+    alignItems: "center",
+    height: "100%",
   },
 });

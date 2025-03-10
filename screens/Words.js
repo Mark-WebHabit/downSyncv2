@@ -3,8 +3,10 @@ import {
   Text,
   TouchableOpacity,
   ImageBackground,
+  FlatList,
 } from "react-native";
 import React, { useContext, useState, useEffect } from "react";
+import ButtonSvg from "../components/ButtonSvg";
 
 import MainContainer from "../components/MainContainer";
 import SplashScreen from "./SplashScreen";
@@ -12,11 +14,32 @@ import useUserPreferences from "../customHooks/useUserPreference";
 import { Context } from "../DataContext";
 import { WordContext } from "../GroupContext/WordsContext";
 
+const buttons = [
+  {
+    title: "Letters",
+    image: require("../assets/images/words/letters.png"),
+    screen: "Letters",
+    color: "#FFA500",
+  },
+  {
+    title: "Words",
+    image: require("../assets/images/words/words.png"),
+    screen: "Pronunciation",
+    color: "#8A2BE2",
+  },
+  {
+    title: "D & D",
+    image: require("../assets/images/words/dnd.png"),
+    screen: "DandDList",
+    color: "#FF00FF",
+  },
+];
+
 const Words = ({ navigation }) => {
   const [doneFetching, setDoneFetching] = useState(false);
   const { fetching } = useContext(WordContext);
   const { fontSize, buttonFontColor, buttonSize } = useUserPreferences();
-  const { sound } = useContext(Context);
+  const { sound, height } = useContext(Context);
 
   //   if done fetching add another second of dealy
   useEffect(() => {
@@ -35,95 +58,46 @@ const Words = ({ navigation }) => {
       showSetting={false}
       navigation={navigation}
     >
-      <TouchableOpacity
-        style={[
-          styles.button,
-          {
-            transform: [{ scale: buttonSize }],
-          },
-        ]}
-        onPress={() => {
-          sound();
-          navigation.navigate("Letters");
-        }}
-      >
-        <ImageBackground
-          style={styles.buttonImage}
-          source={require("../assets/images/buttonblue.png")}
-        >
-          <Text
-            style={[
-              styles.Text,
-              {
-                color: buttonFontColor,
-                fontSize: fontSize,
-              },
-            ]}
+      <FlatList
+        data={buttons}
+        keyExtractor={(item) => item.screen}
+        numColumns={1}
+        contentContainerStyle={styles.flatListContainer}
+        style={{ width: "80%" }}
+        renderItem={({ item, index }) => (
+          <TouchableOpacity
+            style={{
+              width: "50%",
+              justifyContent: "center",
+              alignItems: "center",
+              transform: [
+                {
+                  scale: buttonSize * 1,
+                },
+                {
+                  scaleX: index % 2 == 1 ? -1 : 1,
+                },
+              ],
+            }}
+            onPress={() => {
+              sound();
+              navigation.navigate(item.screen);
+            }}
           >
-            Letters
-          </Text>
-        </ImageBackground>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        style={[
-          styles.button,
-          {
-            transform: [{ scale: buttonSize }],
-          },
-        ]}
-        onPress={() => {
-          sound();
-          navigation.navigate("Pronunciation");
-        }}
-      >
-        <ImageBackground
-          style={styles.buttonImage}
-          source={require("../assets/images/buttonmint.png")}
-        >
-          <Text
-            style={[
-              styles.Text,
-              {
-                color: buttonFontColor,
-                fontSize: fontSize,
-              },
-            ]}
-          >
-            Words
-          </Text>
-        </ImageBackground>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        style={[
-          styles.button,
-          {
-            transform: [{ scale: buttonSize }],
-          },
-        ]}
-        onPress={() => {
-          sound();
-          navigation.navigate("DandDList");
-        }}
-      >
-        <ImageBackground
-          style={styles.buttonImage}
-          source={require("../assets/images/buttongreen.png")}
-        >
-          <Text
-            style={[
-              styles.Text,
-              {
-                color: buttonFontColor,
-                fontSize: fontSize,
-              },
-            ]}
-          >
-            D & D
-          </Text>
-        </ImageBackground>
-      </TouchableOpacity>
+            <ButtonSvg
+              style={{
+                height: height / 4,
+                width: (height / 5) * 3,
+              }}
+              img={item.image}
+              bgColor={item.color}
+              text={item.title}
+              index={index}
+              fontSize={item.title === "Mood Match" ? 50 : 60}
+            />
+          </TouchableOpacity>
+        )}
+      />
     </MainContainer>
   );
 };
@@ -132,22 +106,15 @@ export default Words;
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "space-around",
-    alignItems: "center",
-  },
-
-  button: {
-    width: "45%",
-    height: 80,
-  },
-  buttonImage: {
-    width: "100%",
-    height: "100%",
     justifyContent: "center",
     alignItems: "center",
+    gap: 0,
+    paddin: 0,
+    margin: 0,
   },
-  Text: {
-    fontWeight: "600",
-    textAlign: "center",
+  flatListContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100%",
   },
 });

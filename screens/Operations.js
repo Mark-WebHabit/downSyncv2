@@ -1,123 +1,90 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React from "react";
+import { StyleSheet, Text, TouchableOpacity, FlatList } from "react-native";
+import React, { useContext } from "react";
+import ButtonSvg from "../components/ButtonSvg";
 
 import MainContainer from "../components/MainContainer";
 import { ImageBackground } from "expo-image";
 import useUserPreferences from "../customHooks/useUserPreference";
+import { Context } from "../DataContext";
+
+const buttons = [
+  {
+    title: "Additioon",
+    image: require("../assets/images/math/plus.png"),
+    color: "#FFA500",
+    op: "plus",
+  },
+  {
+    title: "Subtraction",
+    image: require("../assets/images/math/minus.png"),
+    color: "#8A2BE2",
+    op: "minus",
+  },
+  {
+    title: "Multiplication",
+    image: require("../assets/images/math/times.png"),
+    color: "#FF00FF",
+    op: "times",
+  },
+  {
+    title: "Division",
+    image: require("../assets/images/math/divide.png"),
+    color: "#0000FF",
+    op: "divide",
+  },
+];
+const screen = "MathQuestions";
 
 const Operations = ({ navigation }) => {
   const { fontSize, buttonFontColor, buttonSize, bodyText } =
     useUserPreferences();
+  const { height, sound } = useContext(Context);
   return (
     <MainContainer
       navigation={navigation}
       showSetting={false}
       addStyle={styles.container}
     >
-      <TouchableOpacity
-        style={[
-          styles.button,
-          {
-            transform: [{ scale: buttonSize }],
-          },
-        ]}
-        onPress={() => navigation.navigate("MathQuestions", { op: "plus" })}
-      >
-        <ImageBackground
-          source={require("../assets/images/buttonblue.png")}
-          style={styles.bg}
-        >
-          <Text
-            style={[
-              styles.op,
-              {
-                fontSize: fontSize,
-                color: buttonFontColor,
-              },
-            ]}
+      <FlatList
+        data={buttons}
+        keyExtractor={(item) => item.screen}
+        numColumns={1}
+        contentContainerStyle={styles.flatListContainer}
+        style={{ width: "80%" }}
+        renderItem={({ item, index }) => (
+          <TouchableOpacity
+            style={{
+              width: "50%",
+              justifyContent: "center",
+              alignItems: "center",
+              transform: [
+                {
+                  scale: buttonSize * 1,
+                },
+                {
+                  scaleX: index % 2 == 1 ? -1 : 1,
+                },
+              ],
+            }}
+            onPress={() => {
+              sound();
+              navigation.navigate(screen, { op: item.op });
+            }}
           >
-            Addition
-          </Text>
-        </ImageBackground>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={[
-          styles.button,
-          {
-            transform: [{ scale: buttonSize }],
-          },
-        ]}
-        onPress={() => navigation.navigate("MathQuestions", { op: "minus" })}
-      >
-        <ImageBackground
-          source={require("../assets/images/buttonwhite.png")}
-          style={styles.bg}
-        >
-          <Text
-            style={[
-              styles.op,
-              {
-                fontSize: fontSize,
-                color: buttonFontColor,
-              },
-            ]}
-          >
-            Subtraction
-          </Text>
-        </ImageBackground>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={[
-          styles.button,
-          {
-            transform: [{ scale: buttonSize }],
-          },
-        ]}
-        onPress={() => navigation.navigate("MathQuestions", { op: "times" })}
-      >
-        <ImageBackground
-          source={require("../assets/images/buttongreen.png")}
-          style={styles.bg}
-        >
-          <Text
-            style={[
-              styles.op,
-              {
-                fontSize: fontSize,
-                color: buttonFontColor,
-              },
-            ]}
-          >
-            Multiplication
-          </Text>
-        </ImageBackground>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={[
-          styles.button,
-          {
-            transform: [{ scale: buttonSize }],
-          },
-        ]}
-        onPress={() => navigation.navigate("MathQuestions", { op: "divide" })}
-      >
-        <ImageBackground
-          source={require("../assets/images/buttonmint.png")}
-          style={styles.bg}
-        >
-          <Text
-            style={[
-              styles.op,
-              {
-                fontSize: fontSize,
-                color: buttonFontColor,
-              },
-            ]}
-          >
-            Division
-          </Text>
-        </ImageBackground>
-      </TouchableOpacity>
+            <ButtonSvg
+              style={{
+                height: height / 4,
+                width: (height / 5) * 3,
+              }}
+              img={item.image}
+              bgColor={item.color}
+              text={item.title}
+              index={index}
+              fontSize={item.title === "Mood Match" ? 50 : 60}
+            />
+          </TouchableOpacity>
+        )}
+      />
     </MainContainer>
   );
 };
@@ -126,21 +93,15 @@ export default Operations;
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "space-evenly",
-    alignItems: "center",
-  },
-  button: {
-    width: "50%",
-    height: "20%",
-  },
-  bg: {
-    width: "100%",
-    height: "100%",
     justifyContent: "center",
     alignItems: "center",
+    gap: 0,
+    paddin: 0,
+    margin: 0,
   },
-  op: {
-    textAlign: "center",
-    fontWeight: "bold",
+  flatListContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100%",
   },
 });

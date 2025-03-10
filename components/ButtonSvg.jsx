@@ -77,7 +77,7 @@ const ButtonSvg = (props) => (
       <Text
         x={371.5} // Centering the text horizontally
         y={130.5} // Centering the text vertically
-        fontSize="60"
+        fontSize={props.fontSize ?? "60"}
         fontWeight="bold"
         fill={`${props.isBlack ? "#000000" : "#FFFFFF"}`} // Text color
         textAnchor="middle" // Center the text

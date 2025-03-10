@@ -1,22 +1,32 @@
-import {
-  ImageBackground,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, TouchableOpacity, FlatList } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import MainContainer from "../components/MainContainer";
+import ButtonSvg from "../components/ButtonSvg";
 
 import useUserPreferences from "../customHooks/useUserPreference";
 import { Context } from "../DataContext";
 import { EmotionContext } from "../GroupContext/EmotionContext";
 import SplashScreen from "./SplashScreen";
 
+const buttons = [
+  {
+    title: "Mood",
+    image: require("../assets/images/emotion/mood.png"),
+    screen: "EmotionType",
+    color: "#FF69B4",
+  },
+  {
+    title: "Mood Match",
+    image: require("../assets/images/emotion/mood_match.png"),
+    screen: "EmotionMatching",
+    color: "#8A2BE2",
+  },
+];
+
 const EmotionsCategory = ({ navigation }) => {
   const [doneFetching, setDoneFetching] = useState(false);
-  const { fontSize, buttonFontColor, buttonSize } = useUserPreferences();
-  const { sound } = useContext(Context);
+  const { buttonSize } = useUserPreferences();
+  const { sound, height } = useContext(Context);
   const { fetching } = useContext(EmotionContext);
 
   //   if done fetching add another second of dealy
@@ -37,65 +47,46 @@ const EmotionsCategory = ({ navigation }) => {
       addStyle={styles.container}
       navigation={navigation}
     >
-      <ScrollView contentContainerStyle={styles.scroll}>
-        {/* buttons */}
-        <TouchableOpacity
-          style={[
-            styles.button,
-            {
-              transform: [{ scale: buttonSize }],
-            },
-          ]}
-          onPress={() => {
-            sound();
-
-            navigation.navigate("EmotionType");
-          }}
-        >
-          <ImageBackground
-            source={require("../assets/images/buttonwhite.png")}
-            resizeMode="stretch"
-            style={styles.buttonContainer}
+      <FlatList
+        data={buttons}
+        keyExtractor={(item) => item.screen}
+        numColumns={1}
+        contentContainerStyle={styles.flatListContainer}
+        style={{ width: "80%" }}
+        renderItem={({ item, index }) => (
+          <TouchableOpacity
+            style={{
+              width: "50%",
+              justifyContent: "center",
+              alignItems: "center",
+              transform: [
+                {
+                  scale: buttonSize * 1.2,
+                },
+                {
+                  scaleX: index % 2 == 1 ? -1 : 1,
+                },
+              ],
+            }}
+            onPress={() => {
+              sound();
+              navigation.navigate(item.screen);
+            }}
           >
-            <Text
-              style={[
-                styles.text,
-                { fontSize: fontSize, color: buttonFontColor },
-              ]}
-            >
-              Mood
-            </Text>
-          </ImageBackground>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={[
-            styles.button,
-            {
-              transform: [{ scale: buttonSize }],
-            },
-          ]}
-          onPress={() => {
-            sound();
-            navigation.navigate("EmotionMatching");
-          }}
-        >
-          <ImageBackground
-            source={require("../assets/images/buttonblue.png")}
-            resizeMode="stretch"
-            style={styles.buttonContainer}
-          >
-            <Text
-              style={[
-                styles.text,
-                { fontSize: fontSize, color: buttonFontColor },
-              ]}
-            >
-              Mood Match
-            </Text>
-          </ImageBackground>
-        </TouchableOpacity>
-      </ScrollView>
+            <ButtonSvg
+              style={{
+                height: height / 4,
+                width: (height / 5) * 3,
+              }}
+              img={item.image}
+              bgColor={item.color}
+              text={item.title}
+              index={index}
+              fontSize={item.title === "Mood Match" ? 50 : 60}
+            />
+          </TouchableOpacity>
+        )}
+      />
     </MainContainer>
   );
 };
@@ -106,26 +97,13 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
+    gap: 0,
+    paddin: 0,
+    margin: 0,
   },
-  scroll: {
+  flatListContainer: {
     justifyContent: "center",
     alignItems: "center",
-    minHeight: "100%",
-  },
-  button: {
-    width: 300,
-    height: 80,
-    marginVertical: 10,
-  },
-  buttonContainer: {
-    width: "100%",
     height: "100%",
-    justifyContent: "center",
-  },
-  text: {
-    width: "100%",
-    textAlign: "center",
-    fontWeight: "700",
-    textTransform: "uppercase",
   },
 });

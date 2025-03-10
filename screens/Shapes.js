@@ -4,15 +4,33 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  FlatList,
 } from "react-native";
 import React, { useContext } from "react";
 import MainContainer from "../components/MainContainer";
+import ButtonSvg from "../components/ButtonSvg";
 
 import useUserPreferences from "../customHooks/useUserPreference";
 import { Context } from "../DataContext";
+
+const buttons = [
+  {
+    title: "Basic",
+    image: require("../assets/images/art/shape.png"),
+    screen: "ShapesBasic",
+    color: "#FF69B4",
+  },
+  {
+    title: "Recognize",
+    image: require("../assets/images/art/recognize.png"),
+    screen: "MatchShapes",
+    color: "#8A2BE2",
+  },
+];
+
 const Shapes = ({ navigation }) => {
   const { fontSize, buttonFontColor, buttonSize } = useUserPreferences();
-  const { sound } = useContext(Context);
+  const { sound, height } = useContext(Context);
 
   return (
     <MainContainer
@@ -21,65 +39,46 @@ const Shapes = ({ navigation }) => {
       addStyle={styles.container}
       navigation={navigation}
     >
-      <ScrollView contentContainerStyle={styles.scroll}>
-        {/* buttons */}
-        <TouchableOpacity
-          style={[
-            styles.button,
-            {
-              transform: [{ scale: buttonSize * 0.8 }],
-            },
-          ]}
-          onPress={() => {
-            sound();
-
-            navigation.navigate("ShapesBasic");
-          }}
-        >
-          <ImageBackground
-            source={require("../assets/images/buttongreen.png")}
-            resizeMode="stretch"
-            style={styles.buttonContainer}
+      <FlatList
+        data={buttons}
+        keyExtractor={(item) => item.screen}
+        numColumns={1}
+        contentContainerStyle={styles.flatListContainer}
+        style={{ width: "80%" }}
+        renderItem={({ item, index }) => (
+          <TouchableOpacity
+            style={{
+              width: "50%",
+              justifyContent: "center",
+              alignItems: "center",
+              transform: [
+                {
+                  scale: buttonSize * 1.2,
+                },
+                {
+                  scaleX: index % 2 == 1 ? -1 : 1,
+                },
+              ],
+            }}
+            onPress={() => {
+              sound();
+              navigation.navigate(item.screen);
+            }}
           >
-            <Text
-              style={[
-                styles.text,
-                { fontSize: fontSize, color: buttonFontColor },
-              ]}
-            >
-              Basic Shapes
-            </Text>
-          </ImageBackground>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            styles.button,
-            {
-              transform: [{ scale: buttonSize * 0.8 }],
-            },
-          ]}
-          onPress={() => {
-            sound();
-
-            navigation.navigate("MatchShapes");
-          }}
-        >
-          <ImageBackground
-            source={require("../assets/images/buttonwhite.png")}
-            resizeMode="stretch"
-            style={styles.buttonContainer}
-          >
-            <Text
-              style={[
-                styles.text,
-                { fontSize: fontSize, color: buttonFontColor },
-              ]}
-            >
-              Recognize
-            </Text>
-          </ImageBackground>
-        </TouchableOpacity>
-      </ScrollView>
+            <ButtonSvg
+              style={{
+                height: height / 4,
+                width: (height / 5) * 3,
+              }}
+              img={item.image}
+              bgColor={item.color}
+              text={item.title}
+              index={index}
+              fontSize={item.title === "Mood Match" ? 50 : 60}
+            />
+          </TouchableOpacity>
+        )}
+      />
     </MainContainer>
   );
 };
@@ -90,26 +89,13 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
+    gap: 0,
+    paddin: 0,
+    margin: 0,
   },
-  scroll: {
+  flatListContainer: {
     justifyContent: "center",
     alignItems: "center",
-    minHeight: "100%",
-  },
-  button: {
-    width: 400,
-    height: 100,
-    marginVertical: 10,
-  },
-  buttonContainer: {
-    width: "100%",
     height: "100%",
-    justifyContent: "center",
-  },
-  text: {
-    width: "100%",
-    textAlign: "center",
-    fontWeight: "700",
-    textTransform: "uppercase",
   },
 });
