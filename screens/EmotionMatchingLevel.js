@@ -7,7 +7,7 @@ import {
   Image,
   ActivityIndicator,
 } from "react-native";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useTransition } from "react";
 
 import MainContainer from "../components/MainContainer";
 import { generateTwoRandomNumbers } from "../utilities/Arrays";
@@ -17,6 +17,7 @@ import { feedbackSound } from "../customHooks/PlaySound";
 import { updateMatching } from "../utilities/Database";
 import { Context } from "../DataContext";
 import { EmotionContext } from "../GroupContext/EmotionContext";
+import Lottie from "../components/Lottie";
 
 const backgrounds = [
   require("../assets/images/buttonbluebox.png"),
@@ -26,14 +27,37 @@ const backgrounds = [
 
 const EmotionMatchingLevel = ({ navigation, route }) => {
   const { buttonSize, bodyText } = useUserPreferences();
+
   const { item } = route.params;
 
   const { speak, stop } = useContext(Context);
 
   const [emotionsArray, setEmotionsArray] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [correct, setCorrect] = useState(false);
 
   const { emotionsMatching, setEmotionsMatching } = useContext(EmotionContext);
+
+  useEffect(() => {
+    if (correct) {
+      setTimeout(() => {
+        if (item.index < emotionSample.length - 1) {
+          const nextItem = {
+            ...emotionSample[item.index + 1],
+            name: emotionsMatching[item.index + 1]?.name,
+            uid: emotionsMatching[item.index + 1]?.uid,
+            index: item.index + 1,
+          };
+          stop();
+          navigation.replace("EmotionMatchingLevel", {
+            item: nextItem,
+          });
+        } else {
+          navigation.goBack();
+        }
+      }, 1500);
+    }
+  }, [correct]);
 
   useEffect(() => {
     const loadData = async () => {
@@ -80,8 +104,7 @@ const EmotionMatchingLevel = ({ navigation, route }) => {
         emotionsMatching
       );
       feedbackSound(true);
-      stop();
-      navigation.goBack();
+      setCorrect(true);
     } else {
       feedbackSound();
     }
@@ -100,6 +123,7 @@ const EmotionMatchingLevel = ({ navigation, route }) => {
 
   return (
     <MainContainer navigation={navigation} showSetting={false}>
+      {correct && <Lottie />}
       <View style={styles.imagesContainer}>
         {emotionsArray.map((emoteItem, index) => {
           if (index > 2) {

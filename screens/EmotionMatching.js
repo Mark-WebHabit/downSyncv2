@@ -4,7 +4,6 @@ import React, { useContext } from "react";
 import MainContainer from "../components/MainContainer";
 import { EmotionContext } from "../GroupContext/EmotionContext";
 import { emotionSample } from "../assets/emotions_sample_flatfiledb_local";
-
 import LevelContainer from "../components/LevelContainer";
 import { Context } from "../DataContext";
 
@@ -15,10 +14,13 @@ const EmotionMatching = ({ navigation }) => {
   const renderItem = ({ item, index }) => {
     const isComplete = emotionsMatching[index]?.complete;
 
+    console.log(index);
+
     const newItem = {
       ...item,
       name: emotionsMatching[index]?.name,
       uid: emotionsMatching[index]?.uid,
+      index,
     };
 
     const navigateToGame = () => {
