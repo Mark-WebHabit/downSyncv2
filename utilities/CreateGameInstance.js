@@ -27,6 +27,7 @@ export const createGameInstance = async () => {
     const hardData = require("../assets/db/animals/hard.json");
     const objectMatchingData = require("../assets/db/games/matching.json");
     const objectMatchingMedium = require("../assets/db/games/matchingmedium.json");
+    const objectMatchingHard = require("../assets/db/games/matchinghard.json");
     const letters = require("../assets/db/words/letters.json");
     const dnd = require("../assets/db/words/dnd.json");
     const colors = require("../assets/db/arts/colors.json");
@@ -40,6 +41,7 @@ export const createGameInstance = async () => {
     await storeData("hard", hardData);
     await storeData("objectMatching", objectMatchingData);
     await storeData("objectMatchingMedium", objectMatchingMedium);
+    await storeData("objectMatchingHard", objectMatchingHard);
     await storeData("letters", letters);
     await storeData("dnd", dnd);
     await storeData("colors", colors);
