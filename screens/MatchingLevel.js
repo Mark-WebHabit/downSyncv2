@@ -68,10 +68,8 @@ const MatchingLevel = ({ navigation, route }) => {
     );
   };
 
-  const handleGesture = async (event, i) => {
-    if (connecteds.includes(i)) return;
-
-    const targettext = texts[i];
+  const handleGesture = async (event, index) => {
+    if (connecteds.includes(index)) return;
 
     const { nativeEvent } = event;
     if (nativeEvent.state === State.BEGAN) {
@@ -80,6 +78,10 @@ const MatchingLevel = ({ navigation, route }) => {
         startY: nativeEvent.absoluteY,
         endX: nativeEvent.absoluteX,
         endY: nativeEvent.absoluteY,
+        startingKey:
+          `img-${index}` in validTargets.current
+            ? `img-${index}`
+            : `text-${index}`,
       });
     } else if (nativeEvent.state === State.ACTIVE && currentLine) {
       setCurrentLine({
@@ -97,13 +99,20 @@ const MatchingLevel = ({ navigation, route }) => {
       );
 
       if (endKey) {
-        const imageIndex = endKey.replace("img-", "");
-        const targetImage = images[imageIndex];
+        const isStartingFromImage = currentLine.startingKey.startsWith("img-");
+        const targetIndex = isStartingFromImage
+          ? endKey.replace("text-", "")
+          : endKey.replace("img-", "");
 
-        if (targettext == targetImage) {
+        const targetItem = isStartingFromImage
+          ? texts[targetIndex]
+          : images[targetIndex];
+        const currentItem = isStartingFromImage ? images[index] : texts[index];
+
+        if (targetItem === currentItem) {
           setLines([...lines, { ...currentLine, color: "green" }]);
 
-          if (connecteds.length == 2) {
+          if (connecteds.length === level.length - 1) {
             feedbackSound(true);
             setCorrectMatchVisible(true);
             await updateMatching(
@@ -113,11 +122,12 @@ const MatchingLevel = ({ navigation, route }) => {
               matchingObject
             );
           }
-          setConnecteds((old) => [...old, i]);
+
+          setConnecteds((old) => [...old, index]);
         } else {
           feedbackSound(false);
           setIncorrectMatchVisible(true);
-          setConnecteds((old) => [...old, i]);
+          setConnecteds((old) => [...old, index]);
           setLines([...lines, { ...currentLine, color: "red" }]);
         }
       } else {
@@ -173,7 +183,7 @@ const MatchingLevel = ({ navigation, route }) => {
           {images.map((item, index) => (
             <View
               key={index}
-              style={styles.itemContainer}
+              style={[styles.itemContainer]}
               onLayout={(e) =>
                 registerTarget(
                   `img-${index}`,
@@ -189,9 +199,18 @@ const MatchingLevel = ({ navigation, route }) => {
               </Pressable>
               <PanGestureHandler
                 onGestureEvent={(e) => handleGesture(e, index)}
-                onHandlerStateChange={(e) => handleGesture(e, index)}
+                // onHandlerStateChange={(e) => handleGesture(e, index)}
               >
-                <TouchableOpacity></TouchableOpacity>
+                <View
+                  disabled={true}
+                  style={[
+                    styles.connectionPoint,
+                    styles.textConnectionPoint,
+                    {
+                      backgroundColor: "green",
+                    },
+                  ]}
+                ></View>
               </PanGestureHandler>
             </View>
           ))}
@@ -296,6 +315,7 @@ const styles = StyleSheet.create({
     paddingVertical: 0,
     borderColor: "black",
     justifyContent: "center",
+    paddingRight: 50,
   },
   columnContainer: {
     flexDirection: "row",
@@ -312,6 +332,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     margin: 10,
+    position: "relative",
   },
   img: {
     resizeMode: "stretch",
@@ -319,9 +340,9 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
   },
   connectionPoint: {
-    width: 20,
-    height: 20,
-    borderRadius: 5,
+    width: 30,
+    height: 30,
+    borderRadius: 999,
     borderWidth: 1,
     borderColor: "black",
     marginHorizontal: 10,
