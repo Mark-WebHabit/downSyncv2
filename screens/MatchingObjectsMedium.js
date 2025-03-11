@@ -6,18 +6,18 @@ import { GamesContext } from "../GroupContext/GameContext";
 import LevelContainer from "../components/LevelContainer";
 import { Context } from "../DataContext";
 
-const MatchingObjects = ({ navigation }) => {
-  const { matching } = useContext(GamesContext);
+const MatchingObjectsMedium = ({ navigation }) => {
+  const { matchingMedium } = useContext(GamesContext);
   const { sound, height } = useContext(Context);
 
   const renderItem = ({ item, index }) => {
     const isComplete = item.complete;
 
-    const newItem = { ...item, ...matching[item.name] };
+    const newItem = { ...item, ...matchingMedium[item.name] };
 
     const navigateToGame = () => {
       sound();
-      navigation.navigate("Matching", {
+      navigation.navigate("MatchingMedium", {
         item: newItem,
       });
     };
@@ -28,7 +28,7 @@ const MatchingObjects = ({ navigation }) => {
         navigateToGame={navigateToGame}
         isComplete={isComplete}
         height={Math.floor(height / 3.5)}
-        dataArray={matching}
+        dataArray={matchingMedium}
         index={index}
       />
     );
@@ -42,7 +42,7 @@ const MatchingObjects = ({ navigation }) => {
     >
       <View style={styles.levelContainer}>
         <FlatList
-          data={matching}
+          data={matchingMedium}
           renderItem={renderItem}
           keyExtractor={(item) => item.uid}
           numColumns={3}
@@ -53,7 +53,7 @@ const MatchingObjects = ({ navigation }) => {
   );
 };
 
-export default MatchingObjects;
+export default MatchingObjectsMedium;
 
 const styles = StyleSheet.create({
   levelContainer: {

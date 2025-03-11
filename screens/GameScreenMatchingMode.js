@@ -11,29 +11,29 @@ import useUserPreferences from "../customHooks/useUserPreference";
 
 import { Context } from "../DataContext";
 import ButtonSvg from "../components/ButtonSvg";
-const GameScreen = ({ navigation }) => {
+const GameScreenMatchingMode = ({ navigation }) => {
   const { buttonSize } = useUserPreferences();
 
   const { height, sound } = useContext(Context);
 
   const buttons = [
     {
-      title: "Matching",
+      title: "Easy",
       image: require("../assets/images/difficulty/easy.png"),
-      screen: "GameScreenMatchingMode",
-      color: "#FF4500",
+      screen: "MatchingObjects",
+      color: "#32CD32",
     },
     {
-      title: "TicTacToe",
+      title: "Fair",
       image: require("../assets/images/difficulty/fair.png"),
-      screen: "xox",
-      color: "#1E90FF",
+      screen: "MatchingObjectsMedium",
+      color: "#40E0D0",
     },
     {
-      title: "Memory",
+      title: "Hard",
       image: require("../assets/images/difficulty/hard.png"),
       screen: "Memory",
-      color: "#8A2BE2",
+      color: "#FF7F50",
     },
   ];
 
@@ -67,7 +67,7 @@ const GameScreen = ({ navigation }) => {
   );
 };
 
-export default GameScreen;
+export default GameScreenMatchingMode;
 
 const styles = StyleSheet.create({
   container: {

@@ -8,6 +8,11 @@ import XOX from "../screens/XOX";
 import MemoryGame from "../screens/MemoryGame";
 import MatchingLevel from "../screens/MatchingLevel";
 import MatchingObjects from "../screens/MatchingObjects";
+import MatchingObjectsMedium from "../screens/MatchingObjectsMedium";
+import MatchingLevelMedium from "../screens/MatchingLevelMedium";
+
+// mode for matching
+import GameScreenMatchingMode from "../screens/GameScreenMatchingMode";
 
 const Stack = createStackNavigator();
 
@@ -21,10 +26,24 @@ const GamesNavigator = () => {
         }}
       >
         <Stack.Screen name="GameScreen" component={GameScreen} />
-        <Stack.Screen name="MatchingObjects" component={MatchingObjects} />
-        <Stack.Screen name="Matching" component={MatchingLevel} />
         <Stack.Screen name="xox" component={XOX} />
         <Stack.Screen name="Memory" component={MemoryGame} />
+
+        {/*  */}
+        <Stack.Screen name="Matching" component={MatchingLevel} />
+        <Stack.Screen name="MatchingMedium" component={MatchingLevelMedium} />
+
+        {/*  */}
+        <Stack.Screen name="MatchingObjects" component={MatchingObjects} />
+        <Stack.Screen
+          name="MatchingObjectsMedium"
+          component={MatchingObjectsMedium}
+        />
+
+        <Stack.Screen
+          name="GameScreenMatchingMode"
+          component={GameScreenMatchingMode}
+        />
       </Stack.Navigator>
     </GameContext>
   );
