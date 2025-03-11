@@ -19,19 +19,19 @@ const GameScreen = ({ navigation }) => {
   const buttons = [
     {
       title: "Matching",
-      image: require("../assets/images/difficulty/easy.png"),
+      image: require("../assets/images/gameslist/matching.png"),
       screen: "GameScreenMatchingMode",
       color: "#FF4500",
     },
     {
       title: "TicTacToe",
-      image: require("../assets/images/difficulty/fair.png"),
+      image: require("../assets/images/gameslist/tctc.png"),
       screen: "xox",
       color: "#1E90FF",
     },
     {
       title: "Memory",
-      image: require("../assets/images/difficulty/hard.png"),
+      image: require("../assets/images/gameslist/memory.png"),
       screen: "Memory",
       color: "#8A2BE2",
     },
