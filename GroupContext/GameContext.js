@@ -1,4 +1,3 @@
-import { StyleSheet, Text, View } from "react-native";
 import React, { createContext, useEffect, useState } from "react";
 import { getData } from "../utilities/LocalStorage";
 
@@ -12,7 +11,7 @@ const GameContextProvider = ({ children }) => {
 
   useEffect(() => {
     async function getUser() {
-      const objectMatching = await getData("objectMatching");
+      const objectMatching = await getData("objectMatchingMedium");
       const objectMatchingMedium = await getData("objectMatchingMedium");
 
       setMatching(objectMatching);
