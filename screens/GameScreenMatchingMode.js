@@ -32,7 +32,7 @@ const GameScreenMatchingMode = ({ navigation }) => {
     {
       title: "Hard",
       image: require("../assets/images/difficulty/hard.png"),
-      screen: "Memory",
+      screen: "MatchingObjectsHard",
       color: "#FF7F50",
     },
   ];

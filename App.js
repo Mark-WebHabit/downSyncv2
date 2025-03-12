@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import * as SplashScreen from "expo-splash-screen";
-import { matching } from "./assets/matching_hard_flatfile_local";
 import GatherResources from "./screens/GatherResources";
 import GetStarted from "./screens/GetStarted";
 import Home from "./screens/Home";

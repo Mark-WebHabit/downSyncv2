@@ -10,6 +10,8 @@ import MatchingLevel from "../screens/MatchingLevel";
 import MatchingObjects from "../screens/MatchingObjects";
 import MatchingObjectsMedium from "../screens/MatchingObjectsMedium";
 import MatchingLevelMedium from "../screens/MatchingLevelMedium";
+import MatchingObjectsHard from "../screens/MatchingObjectsHard";
+import MatchingLevelHard from "../screens/MatchingLevelHard";
 
 // mode for matching
 import GameScreenMatchingMode from "../screens/GameScreenMatchingMode";
@@ -32,12 +34,17 @@ const GamesNavigator = () => {
         {/*  */}
         <Stack.Screen name="Matching" component={MatchingLevel} />
         <Stack.Screen name="MatchingMedium" component={MatchingLevelMedium} />
+        <Stack.Screen name="MatchingHard" component={MatchingLevelHard} />
 
         {/*  */}
         <Stack.Screen name="MatchingObjects" component={MatchingObjects} />
         <Stack.Screen
           name="MatchingObjectsMedium"
           component={MatchingObjectsMedium}
+        />
+        <Stack.Screen
+          name="MatchingObjectsHard"
+          component={MatchingObjectsHard}
         />
 
         <Stack.Screen

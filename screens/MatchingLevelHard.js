@@ -11,7 +11,7 @@ import { Image } from "react-native";
 import Svg, { Line } from "react-native-svg";
 import { PanGestureHandler, State } from "react-native-gesture-handler";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { matchingMedium } from "../assets/matching_medium_flatfile_local";
+import { matchingHard } from "../assets/matching_hard_flatfile_local";
 import { Context } from "../DataContext";
 import IncorrectMatchModal from "../components/IncorrctMacth";
 import CorrectMatchModal from "../components/CorrctMactch";
@@ -28,12 +28,12 @@ const getRandomOrder = (array) => {
     .map(({ item }) => item);
 };
 
-const MatchingLevelMedium = ({ navigation, route }) => {
+const MatchingLevelHard = ({ navigation, route }) => {
   const { item } = route.params;
 
-  const [level, setLevel] = useState(matchingMedium[item["name"]]);
+  const [level, setLevel] = useState(matchingHard[item["name"]]);
 
-  const { matchingMedium: matchingObject, setMatchingMedium } =
+  const { matchingHard: matchingObject, setMatchingHard } =
     useContext(GamesContext);
 
   // const level = matching[0]; // Using the first index for demonstration
@@ -119,8 +119,8 @@ const MatchingLevelMedium = ({ navigation, route }) => {
             setCorrectMatchVisible(true);
             await updateMatching(
               item.uid,
-              "objectMatchingMedium",
-              setMatchingMedium,
+              "objectMatchingHard",
+              setMatchingHard,
               matchingObject
             );
           }
@@ -294,7 +294,7 @@ const MatchingLevelMedium = ({ navigation, route }) => {
 
           if (item?.name < matchingObject.length - 1) {
             const newItem = { ...matchingObject[item.name + 1] };
-            navigation.replace("MatchingMedium", {
+            navigation.replace("MatchingHard", {
               item: newItem,
             });
           } else {
@@ -307,7 +307,7 @@ const MatchingLevelMedium = ({ navigation, route }) => {
   );
 };
 
-export default MatchingLevelMedium;
+export default MatchingLevelHard;
 
 const styles = StyleSheet.create({
   container: {
@@ -336,7 +336,7 @@ const styles = StyleSheet.create({
   },
   img: {
     resizeMode: "stretch",
-    height: Dimensions.get("window").height * 0.25,
+    height: Dimensions.get("window").height * 0.18,
     aspectRatio: 1,
   },
   connectionPoint: {
@@ -368,8 +368,8 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   text: {
-    width: "50%",
-    fontSize: 20,
+    width: "80%",
+    fontSize: 17,
     fontWeight: "bold",
   },
 });
