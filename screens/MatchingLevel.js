@@ -292,6 +292,7 @@ const MatchingLevel = ({ navigation, route }) => {
 
           if (item?.name < matchingData.length - 1) {
             const newItem = { ...matchingData[item.name + 1] };
+
             navigation.replace("Matching", {
               item: newItem,
             });

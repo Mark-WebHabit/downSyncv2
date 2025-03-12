@@ -30,9 +30,16 @@ const getRandomOrder = (array) => {
 
 const MatchingLevelMedium = ({ navigation, route }) => {
   const { item } = route.params;
-  const { matchingMedium: matchingData } = useContext(GamesContext);
 
   const [level, setLevel] = useState(matchingMedium[item["name"]]);
+
+  useEffect(() => {
+    for (const n in level) {
+      if (Object.prototype.hasOwnProperty.call(level, n)) {
+        const element = level[n];
+      }
+    }
+  }, []);
 
   const { matchingMedium: matchingObject, setMatchingMedium } =
     useContext(GamesContext);
@@ -51,9 +58,9 @@ const MatchingLevelMedium = ({ navigation, route }) => {
 
   useEffect(() => {
     const randomizedImages = getRandomOrder(level);
-    const randomizedTexts = getRandomOrder(level);
+
     setImages(randomizedImages);
-    setTexts(randomizedTexts);
+    setTexts(level);
   }, []);
 
   const registerTarget = (key, x, y, width, height) => {
@@ -101,16 +108,18 @@ const MatchingLevelMedium = ({ navigation, route }) => {
 
       if (endKey) {
         const isStartingFromImage = currentLine.startingKey.startsWith("img-");
+
         const targetIndex = isStartingFromImage
           ? endKey.replace("text-", "")
           : endKey.replace("img-", "");
 
+        const target = images[targetIndex]?.name;
+
         const targetItem = isStartingFromImage
           ? texts[targetIndex]
           : images[targetIndex];
-        const currentItem = isStartingFromImage ? images[index] : texts[index];
 
-        if (targetItem === currentItem) {
+        if (target === level[index]?.name) {
           setLines([...lines, { ...currentLine, color: "green" }]);
 
           if (connecteds.length === level.length - 1) {
@@ -187,7 +196,7 @@ const MatchingLevelMedium = ({ navigation, route }) => {
               style={[styles.itemContainer]}
               onLayout={(e) =>
                 registerTarget(
-                  `img-${index}`,
+                  `img-${item.index}`,
                   e.nativeEvent.layout.x,
                   e.nativeEvent.layout.y,
                   e.nativeEvent.layout.width,
@@ -291,8 +300,8 @@ const MatchingLevelMedium = ({ navigation, route }) => {
         onClose={() => {
           setCorrectMatchVisible(false);
 
-          if (item?.name < matchingData.length - 1) {
-            const newItem = { ...matchingData[item.name + 1] };
+          if (item?.name < matchingObject.length - 1) {
+            const newItem = { ...matchingObject[item.name + 1] };
             navigation.replace("MatchingMedium", {
               item: newItem,
             });

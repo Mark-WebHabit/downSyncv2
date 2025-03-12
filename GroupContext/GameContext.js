@@ -11,7 +11,7 @@ const GameContextProvider = ({ children }) => {
 
   useEffect(() => {
     async function getUser() {
-      const objectMatching = await getData("objectMatchingMedium");
+      const objectMatching = await getData("objectMatching");
       const objectMatchingMedium = await getData("objectMatchingMedium");
 
       setMatching(objectMatching);
