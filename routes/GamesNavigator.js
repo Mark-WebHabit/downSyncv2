@@ -15,6 +15,7 @@ import MatchingLevelHard from "../screens/MatchingLevelHard";
 
 // mode for matching
 import GameScreenMatchingMode from "../screens/GameScreenMatchingMode";
+import GameScreenMemoryMode from "../screens/GameScreenMemoryMode";
 
 const Stack = createStackNavigator();
 
@@ -50,6 +51,10 @@ const GamesNavigator = () => {
         <Stack.Screen
           name="GameScreenMatchingMode"
           component={GameScreenMatchingMode}
+        />
+        <Stack.Screen
+          name="GameScreenMemoryMode"
+          component={GameScreenMemoryMode}
         />
       </Stack.Navigator>
     </GameContext>

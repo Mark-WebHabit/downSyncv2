@@ -1,9 +1,4 @@
-import {
-  ImageBackground,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import React, { useContext } from "react";
 
 import MainContainer from "../components/MainContainer";
@@ -11,31 +6,35 @@ import useUserPreferences from "../customHooks/useUserPreference";
 
 import { Context } from "../DataContext";
 import ButtonSvg from "../components/ButtonSvg";
-const GameScreen = ({ navigation }) => {
+const GameScreenMemoryMode = ({ navigation }) => {
   const { buttonSize } = useUserPreferences();
 
   const { height, sound } = useContext(Context);
 
   const buttons = [
     {
-      title: "Matching",
-      image: require("../assets/images/gameslist/matching.png"),
-      screen: "GameScreenMatchingMode",
-      color: "#FF4500",
+      title: "Easy",
+      image: require("../assets/images/difficulty/easy.png"),
+      size: 2,
+      color: "#32CD32",
     },
     {
-      title: "TicTacToe",
-      image: require("../assets/images/gameslist/tctc.png"),
-      screen: "xox",
-      color: "#1E90FF",
+      title: "Fair",
+      image: require("../assets/images/difficulty/fair.png"),
+      screen: "MatchingObjectsMedium",
+      size: 4,
+      color: "#40E0D0",
     },
     {
-      title: "Memory",
-      image: require("../assets/images/gameslist/memory.png"),
-      screen: "GameScreenMemoryMode",
-      color: "#8A2BE2",
+      title: "Hard",
+      image: require("../assets/images/difficulty/hard.png"),
+      screen: "MatchingObjectsHard",
+      size: 6,
+      color: "#FF7F50",
     },
   ];
+
+  const screen = "Memory";
 
   return (
     <MainContainer
@@ -48,7 +47,7 @@ const GameScreen = ({ navigation }) => {
           key={index}
           onPress={() => {
             sound();
-            navigation.navigate(button.screen);
+            navigation.navigate(screen, { size: button.size });
           }}
         >
           <ButtonSvg
@@ -67,7 +66,7 @@ const GameScreen = ({ navigation }) => {
   );
 };
 
-export default GameScreen;
+export default GameScreenMemoryMode;
 
 const styles = StyleSheet.create({
   container: {

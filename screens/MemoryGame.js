@@ -15,10 +15,9 @@ import { usePlayMp3, feedbackSound } from "../customHooks/PlaySound";
 import { Context } from "../DataContext";
 import Lottie from "../components/Lottie";
 
-const size = 4;
-const widthAndHeight = 100 / size;
-
-const MemoryGame = ({ navigation }) => {
+const MemoryGame = ({ navigation, route }) => {
+  const { size = 2 } = route.params;
+  const widthAndHeight = 100 / size;
   const randomArray = randomizeOrder(objects).slice(0, (size * size) / 2);
 
   const duplicate = [...randomArray];
@@ -180,7 +179,14 @@ const MemoryGame = ({ navigation }) => {
       showSetting={false}
     >
       {showDone && <Lottie />}
-      <View style={styles.board}>
+      <View
+        style={[
+          styles.board,
+          {
+            transform: [{ scale: size === 2 ? 0.8 : 1 }],
+          },
+        ]}
+      >
         {images.map((image, index) => {
           const frontInterpolate = animatedValues[index].interpolate({
             inputRange: [0, 180],
@@ -194,7 +200,10 @@ const MemoryGame = ({ navigation }) => {
 
           return (
             <TouchableOpacity
-              style={styles.imageContainer}
+              style={[
+                styles.imageContainer,
+                { width: `${widthAndHeight}%`, height: `${widthAndHeight}%` },
+              ]}
               key={index}
               onPress={() => handleClick(index)}
             >
@@ -276,8 +285,6 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   imageContainer: {
-    width: `${widthAndHeight}%`,
-    height: `${widthAndHeight}%`,
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 1,
