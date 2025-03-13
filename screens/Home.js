@@ -4,6 +4,8 @@ import {
   Text,
   Animated,
   Easing,
+  View,
+  Pressable,
 } from "react-native";
 import React, { useContext, useEffect, useRef } from "react";
 
@@ -49,23 +51,33 @@ const Home = ({ navigation }) => {
         source={require("../assets/images/kdsapp.png")}
         style={styles.app}
       />
-      <TouchableOpacity
-        style={styles.imgContainer}
-        onPress={() => {
-          sound();
-          navigation.navigate("GameList");
-        }}
-      >
-        <Animated.View style={[styles.playWrapper, { opacity: fadeAnim }]}>
+      <View style={styles.imgContainer}>
+        <Pressable
+          onPress={() => {
+            sound();
+            navigation.navigate("GameList");
+          }}
+        >
+          <Animated.View style={[styles.playWrapper, { opacity: fadeAnim }]}>
+            <Image
+              source={require("../assets/images/play.png")}
+              style={styles.play}
+              contentFit="fill"
+            />
+          </Animated.View>
+        </Pressable>
+        <Pressable
+          onPress={() => {
+            sound();
+            navigation.navigate("GameList");
+          }}
+        >
           <Image
-            source={require("../assets/images/play.png")}
-            style={styles.play}
-            contentFit="fill"
+            source={require("../assets/images/clickhere.png")}
+            style={styles.clickHereImg}
           />
-        </Animated.View>
-
-        <Text style={styles.clickHere}>✨ Click Here! ✨</Text>
-      </TouchableOpacity>
+        </Pressable>
+      </View>
     </MainContainer>
   );
 };
@@ -83,28 +95,26 @@ const styles = StyleSheet.create({
     width: 300,
     justifyContent: "center",
     alignItems: "center",
+    marginTop: 30,
   },
   playWrapper: {
     justifyContent: "center",
     alignItems: "center",
   },
   play: {
-    height: 90,
-    width: 90,
+    height: 120,
+    width: 120,
   },
-  clickHere: {
-    fontSize: 32,
-    fontWeight: "bold",
-    color: "#FFD700", // Gold color for a glowing effect
-    textShadowColor: "rgba(255, 215, 0, 0.8)", // Golden glow
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 5,
-    marginTop: 10,
-  },
+
   app: {
     width: 300,
-    aspectRatio: 547 / 110,
+    aspectRatio: 435 / 112,
     position: "absolute",
     top: 30,
+  },
+  clickHereImg: {
+    aspectRatio: 406 / 102,
+    height: 50,
+    marginTop: 20,
   },
 });
