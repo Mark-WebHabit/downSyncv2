@@ -7,11 +7,7 @@
     "icon": "./assets/logos/logo_splash.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
-    "splash": {
-      "image": "./assets/logos/logo.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
+
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.markdev03.DownSync"
@@ -28,6 +24,18 @@
       "favicon": "./assets/logos/logo.png"
     },
     "plugins": [
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#ffffff",
+          "image": "./assets/logos/logo_splash_big.png",
+          "dark": {
+            "image": "./assets/logos/logo_splash_big.png",
+            "backgroundColor": "#000000"
+          },
+          "imageWidth": 400
+        }
+      ],
       [
         "expo-screen-orientation",
         {
