@@ -3,13 +3,13 @@ export const matchingHard = [
     {
       name: "Car",
       description: "A vehicle with four wheels for road travel.",
-      image: require("../assets/images/matching/hard/Car.png"),
+      image: require("../assets/images/matching/hard/car.png"),
       index: 0,
     },
     {
       name: "Canoe",
       description: "A lightweight boat paddled by hand.",
-      image: require("../assets/images/matching/hard/Canoe.png"),
+      image: require("../assets/images/matching/hard/canoe.png"),
       index: 1,
     },
     {
@@ -21,7 +21,7 @@ export const matchingHard = [
     {
       name: "Boat",
       description: "A vehicle that moves on water.",
-      image: require("../assets/images/matching/hard/Boat.png"),
+      image: require("../assets/images/matching/hard/boat.png"),
       index: 3,
     },
   ],
@@ -29,13 +29,13 @@ export const matchingHard = [
     {
       name: "Bicycle",
       description: "A two-wheeled vehicle powered by pedals.",
-      image: require("../assets/images/matching/hard/Bicycle.png"),
+      image: require("../assets/images/matching/hard/bicycle.png"),
       index: 0,
     },
     {
       name: "Bus",
       description: "A large vehicle that carries many passengers.",
-      image: require("../assets/images/matching/hard/Bus.png"),
+      image: require("../assets/images/matching/hard/bus.png"),
       index: 1,
     },
     {
@@ -47,7 +47,7 @@ export const matchingHard = [
     {
       name: "Glider",
       description: "A light aircraft without an engine.",
-      image: require("../assets/images/matching/hard/Glider.png"),
+      image: require("../assets/images/matching/hard/glider.png"),
       index: 3,
     },
   ],
@@ -55,19 +55,19 @@ export const matchingHard = [
     {
       name: "Hydroplane",
       description: "A fast boat that skims on water.",
-      image: require("../assets/images/matching/hard/Hydroplane.png"),
+      image: require("../assets/images/matching/hard/hydroplane.png"),
       index: 0,
     },
     {
       name: "Motorcycle",
       description: "A two-wheeled vehicle powered by an engine.",
-      image: require("../assets/images/matching/hard/Motorcycle.png"),
+      image: require("../assets/images/matching/hard/motorcycle.png"),
       index: 1,
     },
     {
       name: "Rickshaw",
       description: "A small cart pulled by a person or bike.",
-      image: require("../assets/images/matching/hard/Rickshaw.png"),
+      image: require("../assets/images/matching/hard/rickshaw.png"),
       index: 2,
     },
     {
@@ -87,7 +87,7 @@ export const matchingHard = [
     {
       name: "Helicopter",
       description: "A flying vehicle with rotating blades.",
-      image: require("../assets/images/matching/hard/Helicopter.png"),
+      image: require("../assets/images/matching/hard/helicopter.png"),
       index: 1,
     },
     {
@@ -107,7 +107,7 @@ export const matchingHard = [
     {
       name: "Tram",
       description: "A city train on tracks.",
-      image: require("../assets/images/matching/hard/Tram.png"),
+      image: require("../assets/images/matching/hard/tram.png"),
       index: 0,
     },
     {
@@ -133,7 +133,7 @@ export const matchingHard = [
     {
       name: "Ambulance",
       description: "A vehicle for medical emergencies.",
-      image: require("../assets/images/matching/hard/Ambulance.png"),
+      image: require("../assets/images/matching/hard/ambulance.png"),
       index: 0,
     },
     {
@@ -145,7 +145,7 @@ export const matchingHard = [
     {
       name: "Spaceship",
       description: "A vehicle for space travel.",
-      image: require("../assets/images/matching/hard/Spaceship.png"),
+      image: require("../assets/images/matching/hard/spaceship.png"),
       index: 2,
     },
     {
@@ -159,7 +159,7 @@ export const matchingHard = [
     {
       name: "Skateboard",
       description: "A board with wheels for riding.",
-      image: require("../assets/images/matching/hard/Skateboard.png"),
+      image: require("../assets/images/matching/hard/skateboard.png"),
       index: 0,
     },
     {
@@ -171,13 +171,13 @@ export const matchingHard = [
     {
       name: "Bulldozer",
       description: "A large vehicle for pushing heavy materials.",
-      image: require("../assets/images/matching/hard/Bulldozer.png"),
+      image: require("../assets/images/matching/hard/bulldozer.png"),
       index: 2,
     },
     {
       name: "ATV",
       description: "A small off-road vehicle.",
-      image: require("../assets/images/matching/hard/ATV.png"),
+      image: require("../assets/images/matching/hard/atv.png"),
       index: 3,
     },
   ],
@@ -191,13 +191,13 @@ export const matchingHard = [
     {
       name: "Submarine",
       description: "A watercraft that moves underwater.",
-      image: require("../assets/images/matching/hard/Submarine.png"),
+      image: require("../assets/images/matching/hard/submarine.png"),
       index: 1,
     },
     {
       name: "Gondola",
       description: "A small boat used in canals.",
-      image: require("../assets/images/matching/hard/Gondola.png"),
+      image: require("../assets/images/matching/hard/gondola.png"),
       index: 2,
     },
     {
@@ -211,13 +211,13 @@ export const matchingHard = [
     {
       name: "Blimp",
       description: "A large airship filled with gas.",
-      image: require("../assets/images/matching/hard/Blimp.png"),
+      image: require("../assets/images/matching/hard/blimp.png"),
       index: 0,
     },
     {
       name: "Seaplane",
       description: "A plane that can land on water.",
-      image: require("../assets/images/matching/hard/Seaplane.png"),
+      image: require("../assets/images/matching/hard/seaplane.png"),
       index: 1,
     },
     {
@@ -229,7 +229,7 @@ export const matchingHard = [
     {
       name: "Snowmobile",
       description: "A vehicle for traveling on snow.",
-      image: require("../assets/images/matching/hard/Snowmobile.png"),
+      image: require("../assets/images/matching/hard/snowmobile.png"),
       index: 3,
     },
   ],
@@ -237,19 +237,19 @@ export const matchingHard = [
     {
       name: "Hoverboard",
       description: "A self-balancing electric board.",
-      image: require("../assets/images/matching/hard/Hoverboard.png"),
+      image: require("../assets/images/matching/hard/hoverboard.png"),
       index: 0,
     },
     {
       name: "Unicycle",
       description: "A one-wheeled pedal vehicle.",
-      image: require("../assets/images/matching/hard/Unicycle.png"),
+      image: require("../assets/images/matching/hard/unicycle.png"),
       index: 1,
     },
     {
       name: "Wheelchair",
       description: "A chair with wheels for mobility.",
-      image: require("../assets/images/matching/hard/Wheelchair.png"),
+      image: require("../assets/images/matching/hard/wheelchair.png"),
       index: 2,
     },
     {
@@ -263,13 +263,13 @@ export const matchingHard = [
     {
       name: "Jeepney",
       description: "A public transport vehicle in the Philippines.",
-      image: require("../assets/images/matching/hard/Jeepney.png"),
+      image: require("../assets/images/matching/hard/jeepney.png"),
       index: 0,
     },
     {
       name: "Forklift",
       description: "A small industrial vehicle for lifting heavy loads.",
-      image: require("../assets/images/matching/hard/Forklift.png"),
+      image: require("../assets/images/matching/hard/forklift.png"),
       index: 1,
     },
     {
