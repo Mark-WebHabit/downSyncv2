@@ -18,6 +18,8 @@ import AnimalsNavigator from "./routes/AnimalsNavigator";
 import ThinsNavigator from "./routes/ThingsNavigator";
 import BodyParts from "./screens/BodyParts";
 
+import * as NavigationBar from "expo-navigation-bar";
+
 import { usePlayBg } from "./customHooks/PlaySound";
 import Setting from "./screens/Setting";
 import { StatusBar } from "react-native";
@@ -28,6 +30,8 @@ SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const bgSound = usePlayBg(0.07);
+
+  NavigationBar.setVisibilityAsync("hidden");
 
   useEffect(() => {
     bgSound();

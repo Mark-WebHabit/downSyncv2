@@ -30,6 +30,7 @@
     "expo-dev-client": "~5.0.12",
     "expo-image": "~2.0.6",
     "expo-image-picker": "~16.0.6",
+    "expo-navigation-bar": "^4.0.8",
     "expo-screen-orientation": "~8.0.4",
     "expo-speech": "~13.0.1",
     "expo-splash-screen": "~0.29.22",

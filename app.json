@@ -19,7 +19,8 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/logos/logo.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#ffffff",
+        "permissions": ["SYSTEM_ALERT_WINDOW"]
       },
       "package": "com.markdev03.DownSync"
     },
