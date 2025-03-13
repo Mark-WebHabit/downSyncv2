@@ -39,9 +39,9 @@ const GatherResources = ({ navigation }) => {
       const userInfo = await getSavedUser();
 
       if (userInfo && userInfo?.username) {
-        navigation.navigate("Home");
+        navigation.replace("Home");
       } else {
-        navigation.navigate("Start");
+        navigation.replace("Start");
       }
     }
 
